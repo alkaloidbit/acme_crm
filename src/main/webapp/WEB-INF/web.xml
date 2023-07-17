@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+	<display-name>CRM ACME</display-name>
+	<description>Gestion de la relation client</description>
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+	<servlet>
+		<servlet-name>Main</servlet-name>
+		<servlet-class>com.mspr.servlets.Main</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Main</servlet-name>
+		<url-pattern>/main</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Employee</servlet-name>
+		<servlet-class>com.mspr.servlets.Employee</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Employee</servlet-name>
+		<url-pattern>/employee</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Routeur</servlet-name>
+		<servlet-class>acme.back.servlet.Routeur</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Routeur</servlet-name>
+		<url-pattern>/Routeur</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Authentification</servlet-name>
+		<servlet-class>acme.back.servlet.Authentification</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Authentification</servlet-name>
+		<url-pattern>/Authentification</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Commande</servlet-name>
+		<servlet-class>acme.back.servlet.Commande</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Commande</servlet-name>
+		<url-pattern>/Commande</url-pattern>
+	</servlet-mapping>
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
+</web-app>
