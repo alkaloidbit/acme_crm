@@ -23,8 +23,8 @@ public class Commande extends HttpServlet {
 		HttpSession session = (HttpSession)request.getSession();
 		session.removeAttribute("erreur");
 		String pageApresErreur = "/jsp/erreur.jsp";
-		
 		try {
+			//Bouton rechercher
 			if ("Rechercher".equals(request.getParameter("rechercher")))  {
 				System.out.println("Rechercher");
 				CommandeBean cb = (CommandeBean)session.getAttribute("cb");
@@ -45,7 +45,15 @@ public class Commande extends HttpServlet {
 				System.out.println(commandes);
 				session.setAttribute("commandes", commandes);
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
-			} else 
+			} else
+			//Bouton Détail
+			if ("Detail".equals(request.getParameter("detail"))) {
+				System.out.println("Détail");
+				int i = Integer.parseInt(request.getParameter("simu"));
+				ArrayList<CommandeBean> commandes = (ArrayList<CommandeBean>)session.getAttribute("commandes");
+				session.setAttribute("cbdetail", commandes.get(i));
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/detailCommande.jsp").forward(request, response);
+			} else				
 			// On trie selon le critere "date"
 			if ("date".equals(request.getParameter("critere"))) {
 				pageApresErreur = "/jsp/commande.jsp";
