@@ -86,7 +86,7 @@ if (window.document.forms[0].simu.value == "") {
         <td width="200"><div align="center"><font face="Tahoma"><a href="Commande?critere=idCommande" id="8" target="mainFrame" class="style1"><b>N° Commande</b></a></font></div></td>
         <td width="140"><div align="center"><font face="Tahoma"><a href="Commande?critere=date" id="9" target="mainFrame" class="style1"><b>Date</b></a></font></div></td>
 		<td width="236"><div align="center"><font face="Tahoma"><a href="Commande?critere=nom" id="10" target="mainFrame" class="style1"><b>Nom/Raison sociale</b></a></font></div></td>
-		<td width="140"><div align="center"><font face="Tahoma" class="style1"><b>Montant</b></a></font></div></td>		
+		<td width="140"><div class="style1" align="center"><font face="Tahoma"><b>Montant</b></font></div></td>		
 		</tr>
     </table></td>
     <td>&nbsp;</td>
@@ -102,7 +102,7 @@ if (window.document.forms[0].simu.value == "") {
       <p>
 	  	<input name="page" type="hidden" value="commande" />
 		<input name="simu" type="hidden"/>
-        <input name="detail" type="submit" id="6" value="Détail" onclick="return verification()"/>
+        <input name="detail" type="submit" id="6" value="Detail" onclick="return verification()"/>
         <input name="creer" type="submit" id="11" value="Créer"/>
         <input name="modifier" type="submit" id="9" value="Modifier" onclick="return verification()"/>
         <input name="supprimer" type="submit" id="10" value="Supprimer" onclick="return verification()"/>

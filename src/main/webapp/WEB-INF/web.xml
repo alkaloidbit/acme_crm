@@ -23,22 +23,6 @@
 		<url-pattern>/main</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>Employee</servlet-name>
-		<servlet-class>com.mspr.servlets.Employee</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Employee</servlet-name>
-		<url-pattern>/employee</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Routeur</servlet-name>
-		<servlet-class>acme.back.servlet.Routeur</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Routeur</servlet-name>
-		<url-pattern>/Routeur</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>Authentification</servlet-name>
 		<servlet-class>acme.back.servlet.Authentification</servlet-class>
 	</servlet>
@@ -57,7 +41,7 @@
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
-			<include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
+			<include-prelude>/jsp/taglibs.jsp</include-prelude>
 		</jsp-property-group>
 	</jsp-config>
 </web-app>

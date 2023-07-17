@@ -9,7 +9,7 @@ import java.util.Properties;
 public class Proprietes extends Properties {
 	
 	private static final long serialVersionUID = 1L;
-	private final String CHEMIN = "/home/fred-badlieutenant/Code/Git/acme_crm/db.properties";
+	private final String CHEMIN = "C:\\Users\\Jérôme\\git\\acme_crm\\db.properties";
 	private final String CLASSE = "Proprietes";
     private static Proprietes singleton = null;
     private Log l = Log.getLog();

@@ -1,108 +1,92 @@
 <%@ page contentType="text/html; charset=iso-8859-1"
 		 language="java"
-		 import="java.util.ArrayList, java.util.HashMap, acme.util.Utilitaire, acme.front.CommandeBean"
+		 import="acme.util.Utilitaire, acme.front.CommandeBean"
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Commande</title>
-
-<%
+<title>Détail commande</title>
+<style type="text/css">
+<!--
+.style18 {font-family: Tahoma; font-size: 10pt; color: #336600; }
+-->
+</style>
+<%	
 	String msg = (String)request.getSession().getAttribute("erreur");
-	CommandeBean cb = (CommandeBean)request.getSession().getAttribute("cb");
+	CommandeBean cb = (CommandeBean)request.getSession().getAttribute("cbdetail");
 %>
 	
 <script language="javascript" src="./jsp/mspr.js" type="text/javascript"></script>
 <script language="javascript">
-
-function erreur() {	if ("<%=msg%>" != "null" && "<%=msg%>" != "") { alert("<%=msg%>"); }}
-function onloadFocus() { window.document.forms[0].codeCommande.focus(); }
-function loadMenu() { 
-	parent.frames['leftFrame'].location.reload();
-	return true;
-}
-function verifRecherche() {
-	if (isNull(window.document.forms[0].codeArticle.value) && isNull(window.document.forms[0].codeCommande.value) && isNull(window.document.forms[0].codeClient.value) && isNull(window.document.forms[0].dateCommande.value)) {
-		window.document.forms[0].codeCommande.focus();
-		return false;
-	}
-	if (isNull(window.document.forms[0].dateCommande.value)) return true;
-	if (isDateFormat(window.document.forms[0].dateCommande.value) == false) {
-		window.document.forms[0].dateCommande.focus();
-		return false;
-	}
-	return true;
-}
-
-function verification() {
-if (window.document.forms[0].simu.value == "") {
-	return false;
-} else { return true; }}
+	function erreur() {	if ("<%=msg%>" != "null" && "<%=msg%>" != "") { alert("<%=msg%>"); }}
 </script>
 
 </head>
-<body link="#336600" vlink="#336600" alink="#339900" onload="erreur();onloadFocus();loadMenu()">
+<body link="#336600" vlink="#336600" alink="#339900" onload="erreur()">
 <div align="center">
-  <p><font color="#006600" id="1" size="5" face="Tahoma"><b>Commande<br>
-  </b></font></p>
+  <p><font color="#006600" size="5" id="1" face="Tahoma"><b>Détail commande</b></font></p>
   <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p><font color="#006600" size="5" face="Tahoma"><b></br>
+  </b></font></p>
 </div>
 <FORM method=post action="Commande" >
-<table width="970" height="577" border="0" align="center">
+<table width="970" height="569" border="0" align="center">
   <tr>
-    <td width="190" height="240">&nbsp;</td>
+    <td width="190" height="234">&nbsp;</td>
     <td width="600">
-		 <table width="425" border="0" align="left">
+		 <table width="425" height="226" border="0" align="left">
 	<tr>
-      <td width="140" bgcolor="#FFEBBF"><div align="left" id="2" class="style4"><strong><font size="2" face="Tahoma">N° Commande : </font></strong></div></td>
-      <td width="275"><div align="left" class="style11">
-	  	<input name="idCommande" type="text" value="<%=(cb.getIdCommande()!=0)?cb.getIdCommande():""%>" size="21" maxlength="20"/>
-	  </div></td>
-    </tr>		 
-    <tr>
-      <td width="140" bgcolor="#FFEBBF"><div align="left" id="3" class="style4"><strong><font size="2" face="Tahoma">Date : </font></strong></div></td>
-      <td width="275"><div align="left" class="style11">
-	  	<input name="dateCommande" type="text" value="<%=(cb.getDateCommande()!=null)?Utilitaire.getDateEuropeenne(cb.getDateCommande()):""%>" size="11" maxlength="10"/>
+      <td width="140" bgcolor="#FFEBBF"><div align="left" id="2" class="style4"><strong><font size="2" face="Tahoma">Id Commande : </font></strong></div></td>
+      <td width="275"><div align="left" class="style4"><font size="2" face="Tahoma"><%=cb.getIdCommande()%></font>
 	  </div></td>
     </tr>
 	<tr>
-      <td width="140" bgcolor="#FFEBBF"><div align="left" id="4" class="style4"><strong><font size="2" face="Tahoma">Client : </font></strong></div></td>
-      <td width="275"><div align="left" class="style11">
-	  	<input name="nom" type="text" value="<%=(cb.getNomClient()!=null)?cb.getNomClient():""%>" size="11" maxlength="10"/>
-	 </div></td>
+      <td width="150" bgcolor="#FFEBBF"><div align="left" id="3" class="style4"><strong><font size="2" face="Tahoma">Nom/Raison sociale : </font></strong></div></td>
+      <td width="275"><div align="left" class="style11"><font size="2" face="Tahoma"><%=cb.getNomClient()%></font>
+	  </div></td>
     </tr>		 
+    <tr>
+      <td width="140" bgcolor="#FFEBBF"><div align="left" id="4" class="style4"><strong><font size="2" face="Tahoma">Date : </font></strong></div></td>
+      <td width="275"><div align="left" class="style11"><font size="2" face="Tahoma"><%=Utilitaire.getDateEuropeenne(cb.getDateCommande())%></font>
+	  </div></td>
+    </tr>
+	<tr>
+      <td height="104"><div align="left">
+        <p class="style18"><br>
+            <br>
+          <br></p>
+        <p class="style18" id="7"><u>Produits</u></p>
+      </div></td>
+    </tr>
   </table>
 	</td>
-    <td width="166"><input name="rechercher" type="submit" id="8" value="Rechercher" onclick="return verifRecherche()"/></td>
+    <td width="166">&nbsp;</td>
   </tr>
   <tr>
-    <td height="33">&nbsp;</td>
+    <td height="31">&nbsp;</td>
     <td><table width="602" border="1">
       <tr>
-        <td width="200"><div align="center"><font face="Tahoma"><a href="Commande?critere=idCommande" id="8" target="mainFrame" class="style1"><b>N° Commande</b></a></font></div></td>
-        <td width="140"><div align="center"><font face="Tahoma"><a href="Commande?critere=date" id="9" target="mainFrame" class="style1"><b>Date</b></a></font></div></td>
-		<td width="236"><div align="center"><font face="Tahoma"><a href="Commande?critere=nom" id="10" target="mainFrame" class="style1"><b>Nom/Raison sociale</b></a></font></div></td>
-		<td width="140"><div align="center"><font face="Tahoma"><a href="Commande?critere=montant" id="11" target="mainFrame" class="style1"><b>Montant</b></a></font></div></td>		
-		</tr>
+        <td width="149"><div align="center" id="8"><font color="#336600" face="Tahoma"><b>Code</b></a></font></div></td>
+        <td width="349"><div align="center" id="9"><font color="#336600" face="Tahoma"><b>Libellé</b></a></font></div></td>
+		<td width="82"><div align="center" id="10"><font color="#336600" face="Tahoma"><b>Quantité</b></a></font></div></td>
+		<td width="82"><div align="center" id="10"><font color="#336600" face="Tahoma"><b>Montant</b></a></font></div></td>
+      </tr>
     </table></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td height="202">&nbsp;</td>
-    <td><iframe name="centre" width="600" height="200" src="./jsp/commandeCentre.jsp" align="center" scrolling="auto"></iframe></td>
+    <td><iframe name="centre" width="600" height="200" src="./jsp/detailCommandeCentre.jsp" align="center" scrolling="auto"></iframe></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
     <td height="90">&nbsp;</td>
     <td><div align="center">
       <p>
-	  	<input name="page" type="hidden" value="commande" />
-		<input name="simu" type="hidden"/>
-        <input name="detail" type="submit" id="6" value="Détail" onclick="return verification()"/>
-        <input name="creer" type="submit" id="11" value="Créer"/>
-        <input name="modifier" type="submit" id="9" value="Modifier" onclick="return verification()"/>
-        <input name="supprimer" type="submit" id="10" value="Supprimer" onclick="return verification()"/>
+	    <input name="page" type="hidden" value="detailCommande" />
+        <input name="retour" type="submit" id="2" value="Retour" />
       </p>
       </div></td>
   </tr>

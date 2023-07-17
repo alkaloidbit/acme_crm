@@ -3,15 +3,9 @@ package acme.back.service;
 import java.util.ArrayList;
 
 import acme.back.db.CommandeDb;
-import acme.back.db.DetailCommandeDb;
-import acme.back.metier.Client;
 import acme.back.metier.Commande;
-import acme.back.metier.DetailCommande;
-import acme.back.metier.Produit;
-
 import acme.front.CommandeBean;
 import acme.front.DetailCommandeBean;
-
 import acme.util.BizException;
 import acme.util.Connexion;
 
@@ -83,6 +77,7 @@ public class CommandeService {
 			throw be;
 		}
 	}
+	/*
 	public ArrayList<CommandeBean> getAllCommandes() throws BizException {
 		
 		ArrayList<CommandeBean> result;
@@ -138,6 +133,7 @@ public class CommandeService {
 			throw be;
 		}
 	}
+	*/
 	private Commande commandeBeanToCommande(CommandeBean cb) {
 		Commande result = new Commande();
 		result.setDate(cb.getDateCommande());
@@ -145,6 +141,7 @@ public class CommandeService {
 		result.setNomClient(cb.getNomClient());
 		return result;
 	}
+	/*
 	private DetailCommandeBean detailCommandeToDetailCommandeBean(DetailCommande dc, Produit p) {
 		DetailCommandeBean result = new DetailCommandeBean();
 		result.setCodeProduit(dc.getCodeProduit());
@@ -165,4 +162,5 @@ public class CommandeService {
 		result.setAl(al);
 		return result;
 	}
+	*/
 }
