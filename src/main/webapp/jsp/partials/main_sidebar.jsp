@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/Test/Commande?parametre=menuCommande&parent=menuCommande" class="nav-link">
               <i class="nav-icon fas fa-file-invoice"></i>
               <p>
                 Commandes
@@ -54,7 +54,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="/Test/Client" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Clients

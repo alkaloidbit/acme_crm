@@ -31,6 +31,14 @@
 		<url-pattern>/Authentification</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>Client</servlet-name>
+		<servlet-class>acme.back.servlet.Client</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Client</servlet-name>
+		<url-pattern>/Client</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>Commande</servlet-name>
 		<servlet-class>acme.back.servlet.Commande</servlet-class>
 	</servlet>
