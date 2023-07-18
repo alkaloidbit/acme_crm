@@ -17,17 +17,23 @@
 <!-- Theme style -->
 <!-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+<script language="javascript">
+function loadGauche() {
+	parent.frames['leftFrame'].window.location='jsp/gauche.jsp';
+	return true;
+}
+</script>
 </head>
-<body>
+<body onload="loadGauche()">
   <div class="wrapper">
-    <%@ include file="navbar.jsp"%>
-    <%@ include file="main_sidebar.jsp"%>
+    <%@ include file="partials/navbar.jsp"%>
+    <%@ include file="partials/main_sidebar.jsp"%>
     <div class="content-wrapper">
-      <%@ include file="content_header.jsp"%>
-      <%@ include file="main_frame.jsp" %>
+      <%@ include file="partials/content_header.jsp"%>
+      <%@ include file="partials/main_frame.jsp" %>
     </div>
-    <%@ include file="control_sidebar.jsp"%>
-    <%@ include file="footer.jsp"%>
+    <%@ include file="partials/control_sidebar.jsp"%>
+    <%@ include file="partials/footer.jsp"%>
   </div>
   <!-- ./wrapper -->
 
@@ -62,5 +68,6 @@
     });
   });
 </script>
+
 </body>
 </html>

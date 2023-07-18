@@ -15,14 +15,6 @@
 		<session-timeout>60</session-timeout>
 	</session-config>
 	<servlet>
-		<servlet-name>Main</servlet-name>
-		<servlet-class>com.mspr.servlets.Main</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Main</servlet-name>
-		<url-pattern>/main</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>Authentification</servlet-name>
 		<servlet-class>acme.back.servlet.Authentification</servlet-class>
 	</servlet>
@@ -46,21 +38,14 @@
 		<servlet-name>Commande</servlet-name>
 		<url-pattern>/Commande</url-pattern>
 	</servlet-mapping>
-<servlet>
-
-<servlet-name>Produits</servlet-name>
-
-<servlet-class>acme.back.servlet.Produits</servlet-class>
-
-</servlet>
-
-<servlet-mapping>
-
-<servlet-name>Produits</servlet-name>
-
-<url-pattern>/Produits</url-pattern>
-
-</servlet-mapping>
+	<servlet>
+		<servlet-name>Produits</servlet-name>
+		<servlet-class>acme.back.servlet.Produits</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Produits</servlet-name>
+		<url-pattern>/Produits</url-pattern>
+	</servlet-mapping>
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
