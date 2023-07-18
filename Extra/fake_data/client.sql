@@ -1,0 +1,13 @@
+use mspr;
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('36987-3043', 'Powlett', 'Yolanda', '936 Blue Bill Park Place', 'LTCL', 'Sambuluan');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('50387-200', 'Hicken', 'Vikky', '87778 Homewood Trail', 'LIDR', 'Chư Prông');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('0573-1945', 'Anfrey', 'Simone', '3020 Florence Crossing', 'YCMT', 'Qelëz');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('49781-022', 'Spoerl', 'Kylen', '300 Crescent Oaks Plaza', 'LTAW', 'Princeville');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('54868-6097', 'Beddard', 'Jsandye', '638 Service Lane', 'KLUL', 'Đông Thành');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('58411-224', 'Readie', 'Marcille', '5504 Spenser Center', 'RPVS', 'Rezé');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('36987-2661', 'Wallbrook', 'Innis', '2 Gale Hill', 'PFKT', 'Madette');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('55111-664', 'Kochl', 'Glenn', '76707 Londonderry Junction', 'CZGI', 'Katwijk');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('54868-4435', 'Dablin', 'Gladys', '30 Fuller Alley', 'KVNC', 'Jiuchenggong');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('68462-466', 'Varnals', 'Alfy', '1379 Erie Trail', 'SETN', 'Haruai');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('65862-657', 'Klimus', 'Adrianna', '36 Debra Trail', 'RKRO', 'Sandayong Sur');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('24338-850', 'Loker', 'Kent', '899 Rutledge Place', '4R7', 'Bonneuil-sur-Marne');

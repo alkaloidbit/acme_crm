@@ -16,7 +16,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div> -->
         <div class="info">
-          <a href="#" class="d-block">${ utilisateur.actif ? "Logged as" : "Not logged" } ${ utilisateur.prenom } ${ utilisateur.nom }</a>
+          <a href="#" class="d-block">${authentification.getLogin()}</a>
         </div>
       </div>
 
