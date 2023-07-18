@@ -87,7 +87,7 @@ function soumet() {
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" name="connexion" class="btn btn-primary btn-block">connexion</button>
+            <button type="submit" name="connexion" value="connexion" class="btn btn-primary btn-block">connexion</button>
           </div>
           <!-- /.col -->
         </div>
