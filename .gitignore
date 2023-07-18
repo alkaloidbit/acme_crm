@@ -1,4 +1,3 @@
-MSPR/src/main/java/acme/util/Proprietes.java
 MSPR/.settings/org.eclipse.jdt.core.prefs
 MSPR/.classpath
 MSPR/.project
@@ -113,3 +112,5 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 db.properties
+Extra/fake_data/
+Proprietes.java
