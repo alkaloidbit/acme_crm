@@ -6,9 +6,7 @@ import acme.back.service.AuthentificationService;
 import acme.front.AuthentificationBean;
 import acme.util.BizException;
 import acme.util.Utilitaire;
-
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -39,7 +37,7 @@ public class Authentification extends HttpServlet {
 				System.out.println("ab : " + ab);
 				//Pour communiquer entre le serveur et le client on passe par la session qui est une hashmap (cle/valeur)
 				//on choisit arbitrairement une cle (string et on lui associe un objet que l'on pourra récuperer dans la jsp)
-				request.setAttribute("page_name", "Acme Station");
+				//request.setAttribute("page_name", "Acme Station");
 				session.setAttribute("authentification", ab);
 				request.setAttribute("page_content", "content_datatable");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
@@ -51,10 +49,6 @@ public class Authentification extends HttpServlet {
 					getServletConfig().getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 					return;
 				}
-				/*
-				String parent = request.getParameter("parent");
-				if (parent.compareTo("null") == 0) { parent = null; }
-				*/
 				session.invalidate();
 				getServletConfig().getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 			} else {

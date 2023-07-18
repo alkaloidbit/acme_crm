@@ -46,7 +46,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Commande?parametre=menuCommande&parent=menuCommande" class="nav-link">
+            <a href="/MSPR/Commande?parametre=menuCommande&parent=menuCommande" class="nav-link">
               <i class="nav-icon fas fa-file-invoice"></i>
               <p>
                 Commandes

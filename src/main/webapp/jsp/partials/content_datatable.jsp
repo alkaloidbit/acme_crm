@@ -46,26 +46,6 @@
 			</tr>
 			<tr>
 				<td>Trident</td>
-				<td>Internet
-					Explorer 6
-				</td>
-				<td>Win 98+</td>
-				<td>6</td>
-				<td>A</td>
-				<td>
-					<a class="btn btn-success me-2" href="#">
-						<i class="fas fa-search"></i>
-					</a>
-					<a class="btn btn-info me-2" href="#">
-						<i class="fas fa-pen"></i>
-					</a>
-					<a class="btn btn-danger" href="#">
-						<i class="fas fa-trash"></i>
-					</a>
-				</td>
-			</tr>
-			<tr>
-				<td>Trident</td>
 				<td>Internet Explorer 7</td>
 				<td>Win XP SP2+</td>
 				<td>7</td>

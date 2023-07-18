@@ -46,7 +46,6 @@
 		<servlet-name>Produits</servlet-name>
 		<url-pattern>/Produits</url-pattern>
 	</servlet-mapping>
-
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
