@@ -14,6 +14,7 @@ public class App {
                     //position result to first
                     rs.first();
                     System.out.println(rs.getString(1)); //result is "Hello World!"
+                    System.out.println("test"); //result is "Hello World!"
                 }
             }
         }
