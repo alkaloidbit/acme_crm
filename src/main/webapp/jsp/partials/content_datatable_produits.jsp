@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.ArrayList, acme.front.ProduitBean, acme.util.Utilitaire"
 	pageEncoding="UTF-8"%>
 <div class="card">
 	<div class="card-header">
@@ -14,12 +14,32 @@
 				<th>Description</th>
 				<th>Prix</th>
 				<th>Date de création</th>
+				<th>Actions</th>
 			</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="i" begin="0" end="30" step="1">
-    			<tr><td>Code ${i}</td><td>Libéllé  ${i}</td><td>Description ${i}</td><td>Prix ${i}</td><td>Date ${i}</td></tr>
-			</c:forEach>
+			<% 	
+				ArrayList<ProduitBean> al = (ArrayList<ProduitBean>)request.getSession().getAttribute("produits");
+				for (int i = 0; i < al.size(); i++) {%>
+    			<tr>
+    				<td><%=((ProduitBean)al.get(i)).getCodeProduit()%></td>
+					<td><%=((ProduitBean)al.get(i)).getLibelleProduit()%></td>
+					<td><%=((ProduitBean)al.get(i)).getDescription()%></td>
+					<td><%=Math.round(((ProduitBean)al.get(i)).getPrix()*100.0)/100.0%></td>
+					<td><%=((ProduitBean)al.get(i)).getStimestamp()%></td>
+	    			<td>
+						<a class="btn btn-success me-2" href="#">
+							<i class="fas fa-search"></i>
+						</a>
+						<a class="btn btn-info me-2" href="#">
+							<i class="fas fa-pen"></i>
+						</a>
+						<a class="btn btn-danger" href="#">
+							<i class="fas fa-trash"></i>
+						</a>
+					</td>
+    			</tr>
+			<%}%>
 			</tbody>
 			<tfoot>
 			<tr>
@@ -27,7 +47,7 @@
 				<th>Libéllé produit</th>
 				<th>Description</th>
 				<th>Prix</th>
-				<th>Date de création</th>
+				<th>Date de création</th>				
 			</tr>
 			</tfoot>
 		</table>

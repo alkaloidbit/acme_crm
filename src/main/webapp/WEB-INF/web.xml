@@ -39,11 +39,11 @@
 		<url-pattern>/Commande</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>Produits</servlet-name>
-		<servlet-class>acme.back.servlet.Produits</servlet-class>
+		<servlet-name>Produit</servlet-name>
+		<servlet-class>acme.back.servlet.Produit</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Produits</servlet-name>
+		<servlet-name>Produit</servlet-name>
 		<url-pattern>/Produits</url-pattern>
 	</servlet-mapping>
 	<jsp-config>

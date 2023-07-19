@@ -3,7 +3,9 @@ package acme.back.servlet;
 import java.io.IOException;
 
 import acme.back.service.AuthentificationService;
+import acme.back.service.ProduitService;
 import acme.front.AuthentificationBean;
+import acme.front.ProduitBean;
 import acme.util.BizException;
 import acme.util.Utilitaire;
 import jakarta.servlet.ServletException;
@@ -14,14 +16,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Produits
+ * Servlet implementation class Produit
  */
 
-public class Produits extends HttpServlet {
+public class Produit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public Produits() {
+    public Produit() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,8 +40,16 @@ public class Produits extends HttpServlet {
 		ab.setCodeRole("ADMIN");
 		// FIN PROVISOIRE POUR TEST
 		// TRY CATCH A FAIRE
+	
 		
 		HttpSession session = (HttpSession)request.getSession();
+		try {
+			ProduitBean produits = new ProduitService().ProductListBean();
+			session.setAttribute("produits", produits);
+		} catch (BizException e) {
+			e.printStackTrace();
+		}
+
 		session.removeAttribute("erreur");
 		session.setAttribute("authentification", ab);
 		request.setAttribute("page_content", "content_datatable_produits");
