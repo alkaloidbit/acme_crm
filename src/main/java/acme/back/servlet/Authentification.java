@@ -46,11 +46,11 @@ public class Authentification extends HttpServlet {
 			if ("menuDeconnexion".equals(request.getParameter("parametre"))) {
 				pageApresErreur = "/login.jsp";
 				if (session.getAttribute("login") == null) {
-					getServletConfig().getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+					getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 					return;
 				}
 				session.invalidate();
-				getServletConfig().getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+				getServletConfig().getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
 			} else {
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/erreur.jsp").forward(request, response);
 			}

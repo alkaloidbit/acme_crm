@@ -44,7 +44,7 @@ public class Commande extends HttpServlet {
 				ArrayList<CommandeBean> commandes = CommandeService.getService().search(cb);
 				System.out.println(commandes);
 				session.setAttribute("commandes", commandes);
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/partials/commande.jsp").forward(request, response);
 			} else
 			//Bouton Détail
 			if ("Detail".equals(request.getParameter("detail"))) {
@@ -55,6 +55,7 @@ public class Commande extends HttpServlet {
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/detailCommande.jsp").forward(request, response);
 			} else				
 			// On trie selon le critere "date"
+			/*
 			if ("date".equals(request.getParameter("critere"))) {
 				pageApresErreur = "/jsp/commande.jsp";
 				ArrayList<CommandeBean> commandes = (ArrayList<CommandeBean>)session.getAttribute("commandes");
@@ -80,7 +81,8 @@ public class Commande extends HttpServlet {
 				Collections.sort(commandes, c);
 				session.setAttribute("commande", commandes);
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
-			} else 				
+			} else
+			*/ 				
 			//Je viens du menu commande
 			if ("menuCommande".equals(request.getParameter("parametre"))) {
 				System.out.println("Menucommande");
@@ -93,6 +95,7 @@ public class Commande extends HttpServlet {
 				session.setAttribute("commandes", commandes);
 				cb.setNomClient("");
 				session.setAttribute("cb", cb);
+				request.setAttribute("page_content", "commandeTable");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
 			} else {
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/erreur.jsp").forward(request, response);

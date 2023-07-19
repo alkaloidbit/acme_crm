@@ -6,8 +6,8 @@
 		<div class="row">
 			<div class="col-12">
 				<%
-				 String page_content = (String)request.getAttribute("page_content");
-				 String pagePath = "partials/" + page_content + ".jsp";
+				 //String pageContent = (String)request.getAttribute("page_content");
+				 String pagePath = "partials/" + (String)request.getAttribute("page_content") + ".jsp";
 				%>
 				<jsp:include page="<%=pagePath%>" ></jsp:include>
 			</div>
