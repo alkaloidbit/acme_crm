@@ -4,28 +4,29 @@ import java.util.ArrayList;
 
 import acme.back.db.ClientDb;
 import acme.back.metier.Client;
-import acme.front.CommandeBean;
-import acme.front.DetailCommandeBean;
+import acme.front.ClientBean;
 import acme.util.BizException;
 import acme.util.Connexion;
 
-public class CommandeService {
+public class ClientService {
 
-	private static CommandeService singleton = null;
-	
-	private CommandeService() {}
+	private static ClientService singleton = null;
 
-	public static CommandeService getService() {
-		if (singleton == null) singleton = new CommandeService();
+	private ClientService() {}
+
+	public static ClientService getService() {
+		if (singleton == null) singleton = new ClientService();
 		return singleton;
 	}
-	public ArrayList<CommandeBean> search(CommandeBean cb) throws BizException {
-		
-		ArrayList<CommandeBean> result;
+
+	public ArrayList<ClientBean> getAllClients() throws BizException {
+
+		ArrayList<ClientBean> result;
 		Connexion con = new Connexion();
-		
+
 		try {
-			result = search(cb, con);
+			result = getAllClient(con);
+			System.out.println(result);
 			con.close();
 			return result;
 		} catch (BizException be) {
@@ -33,85 +34,24 @@ public class CommandeService {
 			throw be;
 		}
 	}
-	public ArrayList<CommandeBean> search(CommandeBean cb, Connexion con) throws BizException {
-		
-		ArrayList<CommandeBean> result = new ArrayList<CommandeBean>();
-		Commande cm = commandeBeanToCommande(cb);
+
+	public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
+
+		ArrayList<ClientBean> result = new ArrayList<ClientBean>();
+
 		try {
-			ArrayList<Commande> commandes = CommandeDb.search(con, cm);
-			CommandeBean cbt = null;
-			int pId = -1; 
-			for (int i=0; i<commandes.size(); i++) {
-				Commande tmp = commandes.get(i);
-				int cId = tmp.getIdCommande();
-				if (cId != pId) {
-					if (cbt != null) result.add(cbt);
-					cbt = new CommandeBean();
-					DetailCommandeBean dcb = new DetailCommandeBean();
-					cbt.setCodeClient(tmp.getCodeClient());
-					cbt.setDateCommande(tmp.getDate());
-					cbt.setIdCommande(tmp.getIdCommande());
-					cbt.setNomClient(tmp.getNomClient());
-					cbt.setStimestamp(tmp.getStimestamp());
-					dcb.setCodeProduit(tmp.getCodeProduit());
-					dcb.setLibelleProduit(tmp.getLibelleProduit());
-					dcb.setMontant(tmp.getPrix() * tmp.getQuantite());
-					dcb.setQuantite(tmp.getQuantite());
-					dcb.setStimestamp(tmp.getStimestamp());
-					cbt.addDetailCommandeBean(dcb);
-				} else {
-					DetailCommandeBean dcb = new DetailCommandeBean();
-					dcb.setCodeProduit(tmp.getCodeProduit());
-					dcb.setLibelleProduit(tmp.getLibelleProduit());
-					dcb.setMontant(tmp.getPrix() * tmp.getQuantite());
-					dcb.setQuantite(tmp.getQuantite());
-					dcb.setStimestamp(tmp.getStimestamp());
-					cbt.addDetailCommandeBean(dcb);	
-				}
-				if (i == (commandes.size()-1)) result.add(cbt);
-				pId = cId;
-			}
-			return result;
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
-		}
-	}
-	/*
-	public ArrayList<CommandeBean> getAllCommandes() throws BizException {
-		
-		ArrayList<CommandeBean> result;
-		Connexion con = new Connexion();
-		
-		try {
-			result = getAllCommande(con);
-			con.close();
-			return result;
-		} catch (BizException be) {
-			con.close();
-			throw be;
-		}
-	}
-	public ArrayList<CommandeBean> getAllCommande(Connexion con) throws BizException {
-		
-		ArrayList<CommandeBean> result = new ArrayList<CommandeBean>();
-				
-		try {
-			ArrayList<Commande> commandes = CommandeDb.getAll(con);
-			for (Commande commande : commandes) {
-				ArrayList<DetailCommandeBean> dcbs = new ArrayList<DetailCommandeBean>();
-				ArrayList<DetailCommande> dcs = getAllDetailCommandeByIdCommande(commande.getIdCommande(), con);
-				for (DetailCommande detailCommande : dcs) {
-					Produit p = new Produit();
-					p.setCodeProduit(detailCommande.getCodeProduit());
-					p = p.select(con);
-					DetailCommandeBean dcb = detailCommandeToDetailCommandeBean(detailCommande, p);
-					dcbs.add(dcb);
-				}
+			ArrayList<Client> clients = ClientDb.getAll(con);
+			for (Client client : clients) {
 				Client cl = new Client();
-				cl.setCodeClient(commande.getCodeClient());
+				cl.setCodeClient(client.getCodeClient());
+				cl.setNom(client.getNom());
+				cl.setPrenom(client.getPrenom());
+				cl.setAdresse(client.getAdresse());
+				cl.setCodePostal(client.getCodePostal());
+				cl.setVille(client.getVille());
+				cl.setStimestamp(client.getStimestamp());
 				cl = cl.select(con);
-				result.add(commandeToCommandeBean(commande, cl, dcbs));
+				result.add(clientToClientBean(cl));
 			}
 			return result;
 		} catch (BizException be) {
@@ -119,48 +59,26 @@ public class CommandeService {
 			throw be;
 		}
 	}
-	public ArrayList<DetailCommande> getAllDetailCommandeByIdCommande(int idCommande, Connexion con) throws BizException {
-		
-		ArrayList<DetailCommande> result;
-		
-		try {
-			DetailCommande dc = new DetailCommande();
-			dc.setIdCommande(idCommande);
-			result = DetailCommandeDb.getByIdCommande(con, dc);
-			return result;
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
-		}
-	}
-	*/
-	private Commande commandeBeanToCommande(CommandeBean cb) {
-		Commande result = new Commande();
-		result.setDate(cb.getDateCommande());
-		result.setIdCommande(cb.getIdCommande());
-		result.setNomClient(cb.getNomClient());
+
+	private Client clientBeanToClient(ClientBean cb) {
+		Client result = new Client();
+		result.setCodeClient(cb.getCodeClient());
+		result.setNom(cb.getNom());
+		result.setPrenom(cb.getPrenom());
+		result.setAdresse(cb.getAdresse());
+		result.setVille(cb.getVille());
+		result.setCodePostal(cb.getCodePostal());
+
 		return result;
 	}
-	/*
-	private DetailCommandeBean detailCommandeToDetailCommandeBean(DetailCommande dc, Produit p) {
-		DetailCommandeBean result = new DetailCommandeBean();
-		result.setCodeProduit(dc.getCodeProduit());
-		result.setLibelleProduit(p.getLibelleProduit());
-		result.setStimestamp(dc.getStimestamp());
-		result.setQuantite(dc.getQuantite());
-		result.setMontant(p.getPrix()*dc.getQuantite());
-		return result;
-	}
-	private CommandeBean commandeToCommandeBean(Commande c, Client cl, ArrayList<DetailCommandeBean> al) {
-		CommandeBean result = new CommandeBean();
+	private ClientBean clientToClientBean(Client c) {
+		ClientBean result = new ClientBean();
 		result.setCodeClient(c.getCodeClient());
-		result.setDateCommande(c.getDate());
-		result.setIdCommande(c.getIdCommande());
-		result.setStimestamp(c.getStimestamp());
-		result.setCodeClient(cl.getCodeClient());
-		result.setNomClient(cl.getNom());
-		result.setAl(al);
+		result.setNom(c.getNom());
+		result.setPrenom(c.getPrenom());
+		result.setAdresse(c.getAdresse());
+		result.setVille(c.getVille());
+		result.setCodePostal(c.getCodePostal());
 		return result;
 	}
-	*/
 }

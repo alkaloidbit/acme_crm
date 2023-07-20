@@ -1,7 +1,8 @@
 package acme.back.servlet;
 
-import acme.back.service.CommandeService;
-import acme.front.CommandeBean;
+import acme.front.ClientBean;
+import acme.util.BizException;
+import acme.back.service.ClientService;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import java.util.ArrayList;
 /**
  * Servlet implementation class Client
  */
@@ -30,18 +32,27 @@ public class Client extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = (HttpSession)request.getSession();
-		this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
+			HttpSession session = (HttpSession)request.getSession();
+			session.removeAttribute("erreur");
+		try {
+			ArrayList<ClientBean> clients = ClientService.getService().getAllClients();
+			session.setAttribute("clients", clients);
+			request.setAttribute("page_name", "Nos clients");
+			request.setAttribute("page_content", "clientTable");
+			this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
+		} catch (BizException be) {
+			try {
+				be.printStackTrace();
+				session.setAttribute("erreur", be.getMessage());
+			} catch (Exception e) { e.printStackTrace(); }
+		}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		// TODO Auto-generated method stub doGet(request, response);
 	}
 
 }
