@@ -14,22 +14,22 @@
 <link rel="stylesheet" href="resources/AdminLTE/plugins/fontawesome-free/css/all.min.css">
 <!-- Datatables -->
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
 
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+
+<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
 
 
-
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
+
 
 <script language="javascript">
 function loadGauche() {
@@ -61,6 +61,7 @@ function loadGauche() {
 <!-- DataTables -->
 <script src="resources/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
 
+
 <script src="resources/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
@@ -69,7 +70,6 @@ function loadGauche() {
 <script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
 <script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-
 
 <!-- AdminLTE App -->
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
