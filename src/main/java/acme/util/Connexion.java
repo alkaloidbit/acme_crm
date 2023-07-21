@@ -46,10 +46,11 @@ public class Connexion {
 		try {
 			// Class.forName("org.gjt.mm.mysql.Driver");
 			Class.forName("com.mysql.jdbc.Driver");
+			/*
 			System.out.println(Proprietes.getSingleton().getProperty("database") + "?" +
 					"user=" + Proprietes.getSingleton().getProperty("user")
 					+ "&password=" + Proprietes.getSingleton().getProperty("password"));
-			
+			*/
 			c = DriverManager.getConnection(Proprietes.getSingleton().getProperty("database") + "?" +
 											"user=" + Proprietes.getSingleton().getProperty("user")
 											+ "&password=" + Proprietes.getSingleton().getProperty("password"));

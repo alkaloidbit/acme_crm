@@ -9,7 +9,7 @@
 %>
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">DataTable with default features</h3>
+		<h3 class="card-title">Commandes</h3>
 	</div>
 	<!-- /.card-header -->
 	<div class="card-body">
@@ -20,6 +20,7 @@
 				<th>Date</th>
 				<th>Client</th>
 				<th>Montant</th>
+				<th></th>
 			</tr>
 			</thead>
 			<tbody>
@@ -29,20 +30,20 @@
 					<td><%=Utilitaire.getDateEuropeenne(((CommandeBean)al.get(i)).getDateCommande())%></td>
 					<td><%=((CommandeBean)al.get(i)).getNomClient()%></td>
 					<td><%=Math.round(((CommandeBean)al.get(i)).getMontant()*100.0)/100.0%></td>
+					<td>
+						<a class="btn btn-success me-2" href="#">
+							<i class="fas fa-search"></i>
+						</a>
+						<a class="btn btn-info me-2" href="#">
+							<i class="fas fa-pen"></i>
+						</a>
+						<a class="btn btn-danger" href="/MSPR/Commande?parametre=supprimer&valeur=<%=i%>">
+							<i class="fas fa-trash"></i>
+						</a>
+					</td>
 				</tr>
 			<%}%>
 			</tbody>
-			<!-- 
-			<tfoot>
-			<tr>
-				<th>Rendering engine</th>
-				<th>Browser</th>
-				<th>Platform(s)</th>
-				<th>Engine version</th>
-				<th>CSS grade</th>
-			</tr>
-			</tfoot>
-			-->
 		</table>
 	</div>
 	<!-- /.card-body -->
