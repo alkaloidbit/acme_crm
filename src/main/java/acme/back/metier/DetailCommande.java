@@ -1,7 +1,7 @@
 package acme.back.metier;
 
 import java.sql.Timestamp;
-import java.util.Date;
+import java.util.ArrayList;
 
 import acme.back.db.DetailCommandeDb;
 import acme.util.BizException;
@@ -25,13 +25,13 @@ public class DetailCommande {
 	public void setCodeProduit(String codeProduit){ this.codeProduit = codeProduit; }
 	public void setQuantite(int quantite){ this.quantite = quantite; }
 	public void setStimestamp(Timestamp stimestamp){ this.stimestamp = stimestamp; }
-
+	
 	public String toString() {
 		String message = "";
 		message = message + "\n" +
 			"idCommande : " + idCommande + "\n" + 
 			"codeProduit : " + codeProduit + "\n" + 
-			"quantite : " + quantite + "\n" + 
+			"quantite : " + quantite + "\n" +
 			"stimestamp : " + stimestamp + "\n" + 
 			 super.toString();
 		return message;

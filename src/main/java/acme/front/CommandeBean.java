@@ -63,15 +63,12 @@ public class CommandeBean extends AbstractBean {
 	public void setAl(ArrayList<DetailCommandeBean> al) {
 		this.al = al;
 	}
-
 	public Timestamp getStimestamp() {
 		return stimestamp;
 	}
-
 	public void setStimestamp(Timestamp stimestamp) {
 		this.stimestamp = stimestamp;
 	}
-
 	@Override
 	public String toString() {
 		return " [idCommande=" + idCommande + "\n" +

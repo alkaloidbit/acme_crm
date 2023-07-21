@@ -118,6 +118,7 @@ public class CommandeDb {
 			return result;
 		}
 		catch(SQLException sqle) {
+			System.out.println(sqle);
 			throw new BizException(sqle.getMessage());
 		}
 	}

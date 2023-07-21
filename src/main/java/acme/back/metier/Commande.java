@@ -1,6 +1,7 @@
 package acme.back.metier;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 import acme.back.db.CommandeDb;
@@ -20,6 +21,8 @@ public class Commande {
 	private String libelleProduit;
 	private double prix;
 	private int quantite;
+	
+	private ArrayList<DetailCommande> al = new ArrayList<DetailCommande>();
 
 	public Commande(){}
 
@@ -72,13 +75,22 @@ public class Commande {
 	public void setQuantite(int quantite) {
 		this.quantite = quantite;
 	}
-
+	public void addDetailCommande(DetailCommande dc) {
+		al.add(dc);
+	}
+	public ArrayList<DetailCommande> getAl() {
+		return al;
+	}
+	public void setAl(ArrayList<DetailCommande> al) {
+		this.al = al;
+	}
 	public String toString() {
 		String message = "";
 		message = message + "\n" +
 			"idCommande : " + idCommande + "\n" + 
 			"codeClient : " + codeClient + "\n" + 
 			"date : " + date + "\n" + 
+			"Liste : " + al + "\n" +
 			"stimestamp : " + stimestamp + "\n" + 
 			 super.toString();
 		return message;
