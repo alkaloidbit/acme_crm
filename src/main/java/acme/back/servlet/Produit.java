@@ -1,6 +1,7 @@
 package acme.back.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import acme.back.service.AuthentificationService;
 import acme.back.service.ProduitService;
@@ -44,8 +45,8 @@ public class Produit extends HttpServlet {
 		
 		HttpSession session = (HttpSession)request.getSession();
 		try {
-			ProduitBean produits = new ProduitService().ProductListBean();
-			session.setAttribute("produits", produits);
+			ProduitBean prodBean = new ProduitService().ProductListBean();
+			session.setAttribute("produits", prodBean);
 		} catch (BizException e) {
 			e.printStackTrace();
 		}

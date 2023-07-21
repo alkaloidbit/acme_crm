@@ -22,6 +22,7 @@ function loadGauche() {
 	parent.frames['leftFrame'].window.location='jsp/gauche.jsp';
 	return true;
 }
+
 </script>
 </head>
 <body onload="loadGauche()">

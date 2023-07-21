@@ -35,7 +35,7 @@ public class ClientService {
 		}
 	}
 
-	public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
+public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
 
 		ArrayList<ClientBean> result = new ArrayList<ClientBean>();
 

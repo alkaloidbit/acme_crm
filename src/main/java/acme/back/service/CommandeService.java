@@ -3,7 +3,9 @@ package acme.back.service;
 import java.util.ArrayList;
 
 import acme.back.db.CommandeDb;
+import acme.back.db.DetailCommandeDb;
 import acme.back.metier.Commande;
+import acme.back.metier.DetailCommande;
 import acme.front.CommandeBean;
 import acme.front.DetailCommandeBean;
 import acme.util.BizException;
@@ -77,90 +79,56 @@ public class CommandeService {
 			throw be;
 		}
 	}
-	/*
-	public ArrayList<CommandeBean> getAllCommandes() throws BizException {
+	public int deleteCommande(CommandeBean cb) throws BizException {
 		
-		ArrayList<CommandeBean> result;
+		int result;
 		Connexion con = new Connexion();
 		
 		try {
-			result = getAllCommande(con);
-			con.close();
+			con.beginTransaction();
+			result = deleteCommande(cb, con);
+			con.endTransaction();
 			return result;
 		} catch (BizException be) {
-			con.close();
+			con.rollBack();
+			be.printStackTrace();
 			throw be;
 		}
 	}
-	public ArrayList<CommandeBean> getAllCommande(Connexion con) throws BizException {
+	public int deleteCommande(CommandeBean cb, Connexion con) throws BizException {
 		
-		ArrayList<CommandeBean> result = new ArrayList<CommandeBean>();
-				
+		int result = 0;
+		Commande cm = commandeBeanToCommande(cb);
 		try {
-			ArrayList<Commande> commandes = CommandeDb.getAll(con);
-			for (Commande commande : commandes) {
-				ArrayList<DetailCommandeBean> dcbs = new ArrayList<DetailCommandeBean>();
-				ArrayList<DetailCommande> dcs = getAllDetailCommandeByIdCommande(commande.getIdCommande(), con);
-				for (DetailCommande detailCommande : dcs) {
-					Produit p = new Produit();
-					p.setCodeProduit(detailCommande.getCodeProduit());
-					p = p.select(con);
-					DetailCommandeBean dcb = detailCommandeToDetailCommandeBean(detailCommande, p);
-					dcbs.add(dcb);
-				}
-				Client cl = new Client();
-				cl.setCodeClient(commande.getCodeClient());
-				cl = cl.select(con);
-				result.add(commandeToCommandeBean(commande, cl, dcbs));
+			for (DetailCommande tmp  : cm.getAl()) {
+				System.out.println("suppression detail=" + DetailCommandeDb.deleteByKey(con, tmp)); 
 			}
+			System.out.println("suppression=" + CommandeDb.deleteByKey(con, cm));
 			return result;
 		} catch (BizException be) {
 			be.printStackTrace();
 			throw be;
 		}
 	}
-	public ArrayList<DetailCommande> getAllDetailCommandeByIdCommande(int idCommande, Connexion con) throws BizException {
-		
-		ArrayList<DetailCommande> result;
-		
-		try {
-			DetailCommande dc = new DetailCommande();
-			dc.setIdCommande(idCommande);
-			result = DetailCommandeDb.getByIdCommande(con, dc);
-			return result;
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
-		}
-	}
-	*/
+
 	private Commande commandeBeanToCommande(CommandeBean cb) {
+		System.out.println("CommandeBean : " + cb);
 		Commande result = new Commande();
 		result.setDate(cb.getDateCommande());
 		result.setIdCommande(cb.getIdCommande());
 		result.setNomClient(cb.getNomClient());
+		result.setCodeClient(cb.getCodeClient());
+		result.setStimestamp(cb.getStimestamp());
+		ArrayList<DetailCommandeBean> dcbs = cb.getAl();
+		for (DetailCommandeBean tmp  : dcbs) {
+			DetailCommande dc = new DetailCommande();
+			dc.setCodeProduit(tmp.getCodeProduit());
+			dc.setIdCommande(cb.getIdCommande());
+			dc.setQuantite(tmp.getQuantite());
+			dc.setStimestamp(tmp.getStimestamp());
+			result.addDetailCommande(dc);
+		}
+		System.out.println("Commande : " + result);
 		return result;
 	}
-	/*
-	private DetailCommandeBean detailCommandeToDetailCommandeBean(DetailCommande dc, Produit p) {
-		DetailCommandeBean result = new DetailCommandeBean();
-		result.setCodeProduit(dc.getCodeProduit());
-		result.setLibelleProduit(p.getLibelleProduit());
-		result.setStimestamp(dc.getStimestamp());
-		result.setQuantite(dc.getQuantite());
-		result.setMontant(p.getPrix()*dc.getQuantite());
-		return result;
-	}
-	private CommandeBean commandeToCommandeBean(Commande c, Client cl, ArrayList<DetailCommandeBean> al) {
-		CommandeBean result = new CommandeBean();
-		result.setCodeClient(c.getCodeClient());
-		result.setDateCommande(c.getDate());
-		result.setIdCommande(c.getIdCommande());
-		result.setStimestamp(c.getStimestamp());
-		result.setCodeClient(cl.getCodeClient());
-		result.setNomClient(cl.getNom());
-		result.setAl(al);
-		return result;
-	}
-	*/
 }
