@@ -38,7 +38,7 @@ ClientBean cl = (ClientBean) request.getSession().getAttribute("cbdetail");
 			<div class="row">
 				<label class="control-label col-lg-3">Code Postal</label>
 				<div class="col-lg-9">
-					<p class="form-control-static"><%=cl.getPostal()%></p>
+					<p class="form-control-static"><%=cl.getCodePostal()%></p>
 				</div>
 			</div>
 			<div class="row">
