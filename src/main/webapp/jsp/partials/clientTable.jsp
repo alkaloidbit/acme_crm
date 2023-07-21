@@ -35,14 +35,22 @@
 					<td><%=((ClientBean)al.get(i)).getCodePostal()%></td>
 					<td><%=((ClientBean)al.get(i)).getVille()%></td>
 					<td>
+<<<<<<< HEAD
 						<a class="btn btn-success me-2" href="./Client?action=detail&valeur=<%=i%>">
+=======
+						<a class="btn btn-success me-2" href="/Test/Client?action=detail&valeur=<%=i%>">
+>>>>>>> 702d3f3 (Add Client deletion)
 							<i class="fas fa-search"></i>
 						</a>
 
 						<a class="btn btn-info me-2" href="./Client?action=update&valeur=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
+<<<<<<< HEAD
 					<a class="btn btn-danger btn-delete" href="/MSPR/Client?action=suppression&valeur=<%=i%>">
+=======
+						<a class="btn btn-danger" href="/Test/Client?action=suppression&valeur=<%=i%>">
+>>>>>>> 702d3f3 (Add Client deletion)
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>
