@@ -43,8 +43,6 @@
 						</a>
 
 						<a class="btn btn-danger btn-delete" href="/MSPR/Client?action=suppression&valeur=<%=i%>">
-
-
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>
