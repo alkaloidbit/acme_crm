@@ -7,6 +7,8 @@
 <title>Détails du produit</title>
 </head>
 <body>
-DETAILS PRODUIT
+<h1>DETAILS PRODUIT</h1>
+<p>Le code produit : <%=request.getAttribute("codeProduit")%></p>
+
 </body>
 </html>
