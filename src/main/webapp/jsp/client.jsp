@@ -14,12 +14,15 @@
 <link rel="stylesheet" href="resources/AdminLTE/plugins/fontawesome-free/css/all.min.css">
 <!-- Datatables -->
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 
+
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
+
 </head>
 <body>
   <div class="wrapper">
