@@ -35,13 +35,13 @@
 					<td><%=((ClientBean)al.get(i)).getCodePostal()%></td>
 					<td><%=((ClientBean)al.get(i)).getVille()%></td>
 					<td>
-						<a class="btn btn-success me-2" href="#">
+						<a class="btn btn-success me-2" href="/Test/Client?detail=supprimer&valeur=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
 						<a class="btn btn-info me-2" href="#">
 							<i class="fas fa-pen"></i>
 						</a>
-						<a class="btn btn-danger" href="#">
+						<a class="btn btn-danger"">
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>
