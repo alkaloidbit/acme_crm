@@ -66,6 +66,7 @@ function loadGauche() {
 <script src="resources/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
 <script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
@@ -79,8 +80,11 @@ function loadGauche() {
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
+    const deleteUser = function ($link) {
+
 
     const deleteUser = function ($link) {
+
 
 	$link.addClass('text-danger');
 	$link.find('.fas')
@@ -117,7 +121,6 @@ function loadGauche() {
 	  }
 	})
     });
-
   });
 </script>
 </body>
