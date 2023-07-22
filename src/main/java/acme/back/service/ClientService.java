@@ -82,7 +82,7 @@ public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
 		System.out.println(cb);
 		Client cm = clientBeanToClient(cb);
 		try {
-			System.out.println("suppression=" + ClientDb.deleteByKey(con, cm));
+			result = ClientDb.deleteByKey(con, cm);
 			return result;
 		} catch (BizException be) {
 			be.printStackTrace();
