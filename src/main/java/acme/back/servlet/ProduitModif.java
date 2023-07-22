@@ -1,6 +1,7 @@
 package acme.back.servlet;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,13 +16,16 @@ import acme.util.Utilitaire;
 import acme.front.CommandeBean;
 import acme.front.ProduitBean;
 import acme.util.BizException;
+=======
+import java.util.ArrayList;
+
+import acme.front.ProduitBean;
+>>>>>>> 5ccf802 (Ajout de la page utilisateur avec ses données)
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-
 
 public class ProduitModif extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -171,7 +175,6 @@ public class ProduitModif extends HttpServlet {
 			
 		}
 		
-
 	}
 	
     private ProduitBean createProduitBeanFromInputs(String codeProduit, String libelleProduit, 

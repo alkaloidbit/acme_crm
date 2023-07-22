@@ -21,7 +21,9 @@ public class ProduitDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
+
 		"SELECT CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX, STIMESTAMP FROM produit", 
+
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE);
 	}
@@ -38,11 +40,7 @@ public class ProduitDb {
 		"SET 		LIBELLE_PRODUIT = ?, " +  
 		"DESCRIPTION = ?, " +  
 		"PRIX = ? " + 
-<<<<<<< HEAD
 		"WHERE CODE_PRODUIT = ? ",
-=======
-		"WHERE CODE_PRODUIT = ? ", 
->>>>>>> a292a85 (Update chaine Produit)
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE); 
 	}
@@ -50,22 +48,14 @@ public class ProduitDb {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO produit " + 
 		"(CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX) " + 
-<<<<<<< HEAD
 		"values(?, ?, ?, ?)",
-=======
-		"values(?, ?, ?, ?)", 
->>>>>>> a292a85 (Update chaine Produit)
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM produit " + 
-<<<<<<< HEAD
 		"WHERE CODE_PRODUIT = ? ",
-=======
-		"WHERE CODE_PRODUIT = ? ", 
->>>>>>> a292a85 (Update chaine Produit)
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE); 
 	}
