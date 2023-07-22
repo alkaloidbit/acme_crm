@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="acme.front.ProduitBean"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -7,14 +7,14 @@
 <title>Gérer un produit</title>
 </head>
 <body>
-    <% if (request.getAttribute("choix").equals("update")) { %>
+    <% if (request.getSession().getAttribute("choice").equals("update")) { %>
         <h1>Modification Produit</h1>
-    <% } else if (request.getAttribute("choix").equals("delete")) { %>
+    <% } else if (request.getSession().getAttribute("choice").equals("delete")) { %>
         <h1>Suppression Produit</h1>
     <% } %>
-
-    <p>Code produit : <%= request.getAttribute("codeProduit") %></p>
-    <p>Libellé produit : <%= request.getAttribute("libelleProduit") %></p>
-    <p>Description : <%= request.getAttribute("description") %></p>
+	<% ProduitBean prodB = (ProduitBean) request.getSession().getAttribute("produitBean"); %>
+    <p>Code produit : <%= prodB.getCodeProduit() %></p>
+    <p>Libellé produit : <%= prodB.getLibelleProduit() %></p>
+    <p>Description : <%= prodB.getDescription() %></p>
 </body>
 </html>
