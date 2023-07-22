@@ -27,11 +27,15 @@ VALUES (1, 'P001', 2),
       
 -- Insertion de données dans la table `role`
 INSERT INTO `role` (`CODE_ROLE`, `LIBELLE_ROLE`)
-VALUES ('R001', 'Admin'),
-       ('R002', 'Utilisateur');
+VALUES ('ADMIN', 'ADMINISTRATEUR');
 
 -- Insertion de données dans la table `utilisateur`
 INSERT INTO `utilisateur` (`LOGIN`, `PSW`, `CODE_ROLE`)
+<<<<<<< HEAD
 VALUES ('admin', '482c811da5d5b4bc6d497ffa98491e38', 'R001'),
        ('user1', '482c811da5d5b4bc6d497ffa98491e38', 'R002'),
        ('user2', '482c811da5d5b4bc6d497ffa98491e38', 'R002');
+=======
+VALUES ('JSE', '11894eea1b12cf706b905884083852ed', 'ADMIN');
+ 
+>>>>>>> ce16ff5 (modif de l'url (/TEST --> /MSPR))

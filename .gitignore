@@ -113,3 +113,7 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 db.properties
+.classpath
+src/main/webapp/jsp/partials/main_sidebar.jsp
+.classpath
+.classpath

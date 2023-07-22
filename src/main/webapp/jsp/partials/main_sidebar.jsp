@@ -41,7 +41,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Utilisateur
               </p>
             </a>
           </li>
@@ -49,7 +49,7 @@
             <a href="/MSPR/Commande?parametre=menuCommande" class="nav-link">
               <i class="nav-icon fas fa-file-invoice"></i>
               <p>
-                Commandes
+                Commande
               </p>
             </a>
           </li>
@@ -57,7 +57,7 @@
             <a href="/MSPR/Client" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Clients
+                Client
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
@@ -71,6 +71,7 @@
             </a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD
             <a href="/MSPR/Utilisateur" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
