@@ -17,29 +17,22 @@
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
-<<<<<<< HEAD
-<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
 
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 
-<!-- Theme style -->
-<link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
-<<<<<<< HEAD
+<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
 
-
-=======
-
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
->>>>>>> 2c5ceca (Add CSS JS resources locally)
+
+
 <script language="javascript">
 function loadGauche() {
 	parent.frames['leftFrame'].window.location='jsp/gauche.jsp';
@@ -47,8 +40,6 @@ function loadGauche() {
 }
 </script>
 
-=======
->>>>>>> adf57e9 (Add CSS JS resources locally)
 </head>
 <body>
   <div class="wrapper">
@@ -91,7 +82,6 @@ function loadGauche() {
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
 
     const deleteUser = function ($link) {
 
@@ -136,6 +126,7 @@ function loadGauche() {
     });
 
   });
+
 </script>
 </body>
 </html>
