@@ -41,29 +41,29 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Utilisateur
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Commande?parametre=menuCommande" class="nav-link">
+            <a href="/MSPR/Commande?parametre=menuCommande" class="nav-link">
               <i class="nav-icon fas fa-file-invoice"></i>
               <p>
-                Commandes
+                Commande
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Client" class="nav-link">
+            <a href="/MSPR/Client" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Clients
+                Client
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Produits" class="nav-link">
+            <a href="/MSPR/Produits" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Catalogue
@@ -71,7 +71,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Authentification?parametre=menuDeconnexion" class="nav-link">
+            <a href="/MSPR/Authentification?parametre=menuDeconnexion" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Déconnexion

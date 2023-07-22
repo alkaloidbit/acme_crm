@@ -27,11 +27,9 @@ VALUES (1, 'P001', 2),
       
 -- Insertion de données dans la table `role`
 INSERT INTO `role` (`CODE_ROLE`, `LIBELLE_ROLE`)
-VALUES ('R001', 'Admin'),
-       ('R002', 'Utilisateur');
+VALUES ('ADMIN', 'ADMINISTRATEUR');
 
 -- Insertion de données dans la table `utilisateur`
 INSERT INTO `utilisateur` (`LOGIN`, `PSW`, `CODE_ROLE`)
-VALUES ('admin', 'password123', 'R001'),
-       ('user1', 'pass456', 'R002'),
-       ('user2', 'pass789', 'R002');
+VALUES ('JSE', '11894eea1b12cf706b905884083852ed', 'ADMIN');
+ 
