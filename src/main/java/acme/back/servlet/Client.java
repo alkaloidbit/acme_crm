@@ -17,6 +17,7 @@ import java.util.ArrayList;
  * Servlet implementation class Client
  */
 public class Client extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -39,9 +40,8 @@ public class Client extends HttpServlet {
 			if ("detail".equals(request.getParameter("action"))) {
 				int i = Integer.parseInt(request.getParameter("valeur"));
 				ArrayList<ClientBean> clients = (ArrayList<ClientBean>)session.getAttribute("clients");
-
-
 				session.setAttribute("cbdetail", clients.get(i));
+				request.setAttribute("page_name", "Nos clients");
 				request.setAttribute("page_content", "clientDetail");
 				this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
 			} else {
@@ -67,7 +67,36 @@ public class Client extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub doGet(request, response);
 	}
 
+	@Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				HttpSession session = (HttpSession) request.getSession();
+		try {
+				int i = Integer.parseInt(request.getParameter("valeur"));
+				System.out.println("client:" + i);
+				ArrayList<ClientBean> clients = (ArrayList<ClientBean>)session.getAttribute("clients");
+				ClientBean cb = clients.get(i);
+
+				int res = ClientService.getService().deleteClient(cb);
+				System.out.println("res" + res);
+				String resultat = "success";
+
+				if (res == 0) {
+					resultat = "error";
+				}
+
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+
+				response.getWriter().write("{resultat:"+ resultat +"}");
+		} catch (BizException be) {
+			try {
+				be.printStackTrace();
+				session.setAttribute("erreur", be.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }

@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import acme.back.service.AuthentificationService;
+import acme.back.service.CommandeService;
 import acme.back.service.ProduitService;
 import acme.front.AuthentificationBean;
+import acme.front.CommandeBean;
 import acme.front.ProduitBean;
 import acme.util.BizException;
 import acme.util.Utilitaire;
@@ -42,11 +44,10 @@ public class Produit extends HttpServlet {
 		// FIN PROVISOIRE POUR TEST
 		// TRY CATCH A FAIRE
 	
-		
 		HttpSession session = (HttpSession)request.getSession();
 		try {
-			ProduitBean prodBean = new ProduitService().ProductListBean();
-			session.setAttribute("produits", prodBean);
+			ArrayList<ProduitBean> prodBeans = new ProduitService().ProductListBean();
+			session.setAttribute("produits", prodBeans);
 		} catch (BizException e) {
 			e.printStackTrace();
 		}

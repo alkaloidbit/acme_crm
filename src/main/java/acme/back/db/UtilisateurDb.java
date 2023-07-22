@@ -10,7 +10,7 @@ import acme.util.BizException;
 import acme.util.Connexion;
 
 public class UtilisateurDb {
-
+	
 	private static PreparedStatement selectAll;
 	private static PreparedStatement selectByKey;
 	private static PreparedStatement updateByKey;
@@ -21,30 +21,41 @@ public class UtilisateurDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT LOGIN, PSW, CODE_ROLE, STIMESTAMP FROM utilisateur");
+		"SELECT LOGIN, PSW, CODE_ROLE, STIMESTAMP FROM utilisateur",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
 		"SELECT LOGIN, PSW, CODE_ROLE, STIMESTAMP FROM utilisateur " + 
-		"WHERE LOGIN = ? " ); 
+		"WHERE LOGIN = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+        ResultSet.CONCUR_UPDATABLE);
+		
  	}
 	private static void statementUpdateByKey(Connexion c) throws SQLException {
 		updateByKey = c.getConnection().prepareStatement(
 		"UPDATE utilisateur " + 
 		"SET 		PSW = ?, " +  
 		"CODE_ROLE = ? " + 
-		"WHERE LOGIN = ? "); 
+		"WHERE LOGIN = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
 	}
 	private static void statementInsert(Connexion c) throws SQLException {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO utilisateur " + 
 		"(LOGIN, PSW, CODE_ROLE) " + 
-		"values(?, ?, ?)");
+		"values(?, ?, ?)",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM utilisateur " + 
-		"WHERE LOGIN = ? "); 
+		"WHERE LOGIN = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
 	}
 	public static int deleteByKey(Connexion c, Utilisateur t) throws BizException {
 		ResultSet rs = null;
@@ -138,13 +149,13 @@ public class UtilisateurDb {
 			throw new BizException(sqle.getMessage());
 		}
 	}
-	public static ArrayList getAll(Connexion c) throws BizException {
+	public static ArrayList<Utilisateur> getAll(Connexion c) throws BizException {
 		ResultSet rs = null;
-		ArrayList result = null;
+		ArrayList<Utilisateur> result = null;
 		try {
 			statementSelectAll(c);
 			rs = selectAll.executeQuery();
-			result = new ArrayList();
+			result = new ArrayList<Utilisateur>();
 			rs.beforeFirst();
 			while (rs.next()) {
 				Utilisateur t = new Utilisateur();

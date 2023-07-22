@@ -21,29 +21,39 @@ public class RoleDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT CODE_ROLE, LIBELLE_ROLE, STIMESTAMP FROM role");
+		"SELECT CODE_ROLE, LIBELLE_ROLE, STIMESTAMP FROM role",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
 		"SELECT CODE_ROLE, LIBELLE_ROLE, STIMESTAMP FROM role " + 
-		"WHERE CODE_ROLE = ? " ); 
+		"WHERE CODE_ROLE = ? " ,
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
  	}
 	private static void statementUpdateByKey(Connexion c) throws SQLException {
 		updateByKey = c.getConnection().prepareStatement(
 		"UPDATE role " + 
 		"SET 		LIBELLE_ROLE = ? " + 
-		"WHERE CODE_ROLE = ? "); 
+		"WHERE CODE_ROLE = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
 	}
 	private static void statementInsert(Connexion c) throws SQLException {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO role " + 
 		"(CODE_ROLE, LIBELLE_ROLE) " + 
-		"values(?, ?)");
+		"values(?, ?)",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM role " + 
-		"WHERE CODE_ROLE = ? "); 
+		"WHERE CODE_ROLE = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
 	}
 	public static int deleteByKey(Connexion c, Role t) throws BizException {
 		ResultSet rs = null;

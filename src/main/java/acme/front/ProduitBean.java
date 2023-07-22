@@ -13,7 +13,6 @@ public class ProduitBean extends AbstractBean {
 	private String description;
 	private float prix;
 	private Timestamp stimestamp;
-	private ArrayList<Produit> prods = new ArrayList<Produit>();
 	
 	public ProduitBean() {}
 
@@ -57,23 +56,11 @@ public class ProduitBean extends AbstractBean {
 		this.stimestamp = stimestamp;
 	}
 
-	public ArrayList<Produit> getProds() {
-		return prods;
-	}
-
-	public void setProds(ArrayList<Produit> prods) {
-		this.prods = prods;
-	}
 	@Override
 	public String toString() {
-		return "[\n" +
-			"codeProduit : " + codeProduit + "\n" + 
-			"libelleProduit : " + libelleProduit + "\n" + 
-			"description : " + description + "\n" + 
-			"prix : " + prix + "\n" + 
-			"stimestamp : " + stimestamp + "\n" + 
-			"prods : " + stimestamp + "]\n";
-			 
+		return "ProduitBean [codeProduit=" + codeProduit + ", libelleProduit=" + libelleProduit + ", description="
+				+ description + ", prix=" + prix + ", stimestamp=" + stimestamp + "]";
 	}
+
 		
 }
