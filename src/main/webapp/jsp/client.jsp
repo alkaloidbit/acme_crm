@@ -68,6 +68,7 @@ function loadGauche() {
 <script src="resources/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
 <script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
@@ -85,10 +86,13 @@ function loadGauche() {
 
     const deleteUser = function ($link) {
 
+<<<<<<< HEAD
 
     const deleteUser = function ($link) {
 
 
+=======
+>>>>>>> 8136b37 (Move client deletion to servlet doDelete)
 	$link.addClass('text-danger');
 	$link.find('.fas')
 	  .removeClass('fa-trash')
@@ -124,9 +128,13 @@ function loadGauche() {
 	  }
 	})
     });
+<<<<<<< HEAD
 
   });
 
+=======
+  });
+>>>>>>> 8136b37 (Move client deletion to servlet doDelete)
 </script>
 </body>
 </html>

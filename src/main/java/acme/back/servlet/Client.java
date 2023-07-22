@@ -82,6 +82,7 @@ public class Client extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 			HttpSession session = (HttpSession) request.getSession();
 		try {
 			if ("update".equals(request.getParameter("action"))) {
@@ -182,6 +183,7 @@ public class Client extends HttpServlet {
 	}
 
 	@Override
+
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				HttpSession session = (HttpSession) request.getSession();
 		try {
