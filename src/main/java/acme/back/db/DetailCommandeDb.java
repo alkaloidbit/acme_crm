@@ -22,37 +22,49 @@ public class DetailCommandeDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT ID_COMMANDE, CODE_PRODUIT, QUANTITE, STIMESTAMP FROM detail_commande");
+		"SELECT ID_COMMANDE, CODE_PRODUIT, QUANTITE, STIMESTAMP FROM detail_commande",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
 		"SELECT ID_COMMANDE, CODE_PRODUIT, QUANTITE, STIMESTAMP FROM detail_commande " + 
 		"WHERE ID_COMMANDE = ? " + 
-		"AND CODE_PRODUIT = ? " ); 
+		"AND CODE_PRODUIT = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
  	}
 	private static void statementUpdateByKey(Connexion c) throws SQLException {
 		updateByKey = c.getConnection().prepareStatement(
 		"UPDATE detail_commande " + 
 		"SET 		QUANTITE = ? " + 
 		"WHERE ID_COMMANDE = ? " +
-		"AND CODE_PRODUIT = ? "); 
+		"AND CODE_PRODUIT = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
 	}
 	private static void statementInsert(Connexion c) throws SQLException {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO detail_commande " + 
 		"(ID_COMMANDE, CODE_PRODUIT, QUANTITE) " + 
-		"values(?, ?, ?)");
+		"values(?, ?, ?)",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM detail_commande " + 
 		"WHERE ID_COMMANDE = ? " +
-		"AND CODE_PRODUIT = ? "); 
+		"AND CODE_PRODUIT = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
 	}
 	private static void statementSelectByIdCommande(Connexion c) throws SQLException {
 		selectByIdCommande = c.getConnection().prepareStatement(
 		"SELECT ID_COMMANDE, CODE_PRODUIT, QUANTITE, STIMESTAMP FROM detail_commande " + 
-		"WHERE ID_COMMANDE = ? "); 
+		"WHERE ID_COMMANDE = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
  	}
 	public static ArrayList<DetailCommande> getByIdCommande(Connexion c, DetailCommande t) throws BizException {
 		ResultSet rs = null;

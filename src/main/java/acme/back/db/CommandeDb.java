@@ -24,12 +24,16 @@ public class CommandeDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT ID_COMMANDE, CODE_CLIENT, DATE, STIMETAMP FROM commande");
+		"SELECT ID_COMMANDE, CODE_CLIENT, DATE, STIMETAMP FROM commande",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
 		"SELECT ID_COMMANDE, CODE_CLIENT, DATE, STIMETAMP FROM commande " + 
-		"WHERE ID_COMMANDE = ? " ); 
+		"WHERE ID_COMMANDE = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
  	}
 	private static void statementUpdateByKey(Connexion c) throws SQLException {
 		updateByKey = c.getConnection().prepareStatement(
@@ -37,18 +41,24 @@ public class CommandeDb {
 		"SET 		CODE_CLIENT = ?, " +  
 		"DATE = ?, " +  
 		"STIMETAMP = ? " + 
-		"WHERE ID_COMMANDE = ? "); 
+		"WHERE ID_COMMANDE = ? ", 
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
 	}
 	private static void statementInsert(Connexion c) throws SQLException {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO commande " + 
 		"(ID_COMMANDE, CODE_CLIENT, DATE, STIMETAMP) " + 
-		"values(?, ?, ?, ?)");
+		"values(?, ?, ?, ?)", 
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM commande " + 
-		"WHERE ID_COMMANDE = ? "); 
+		"WHERE ID_COMMANDE = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
 	}
 	private static void statementSearch(Connexion c) throws SQLException {
 		search = c.getConnection().prepareStatement(
@@ -60,7 +70,9 @@ public class CommandeDb {
 		+ "AND c.ID_COMMANDE = dc.ID_COMMANDE "
 		+ "AND c.CODE_CLIENT = cl.CODE_CLIENT "
 		+ "AND dc.CODE_PRODUIT = p.CODE_PRODUIT "
-		+ "ORDER BY c.ID_COMMANDE LIMIT 500");
+		+ "ORDER BY c.ID_COMMANDE LIMIT 500",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	public static ArrayList<Commande> search(Connexion c, Commande t) throws BizException {
 		ResultSet rs = null;
