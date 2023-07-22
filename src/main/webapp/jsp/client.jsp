@@ -47,6 +47,7 @@
 <script src="resources/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
 <!-- AdminLTE App -->
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
@@ -57,25 +58,44 @@
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
+    const deleteUser = function ($link) {
 
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-	'Deleted!',
-	'Your file has been deleted.',
-	'success'
-      )
+	$link.addClass('text-danger');
+	$link.find('.fas')
+	  .removeClass('fa-trash')
+	  .addClass('fa-spinner')
+	  .addClass('fa-spin');
+
+	let deleteUrl = $link.attr('href');
+	let $row = $link.closest('tr');
+	$.ajax({
+	  url: deleteUrl,
+	  method: 'DELETE'
+	}).then(function() {
+	});
     }
-  })
-});
+    $('.btn-delete').on("click", function(e) {
+	e.preventDefault();
+	var $link = $(e.currentTarget);
+	Swal.fire({
+	  title: 'Etes-vous sur de vouloir supprimer ce client ?',
+	  showDenyButton: true,
+	  showCancelButton: true,
+	  confirmButtonText: 'Confirmer',
+	  denyButtonText: `Annuler`,
+	}).then((result) => {
+	  /* Read more about isConfirmed, isDenied below */
+	  if (result.isConfirmed) {
+	    deleteUser($link);
+	    $link.closest('tr').fadeOut();
+	    $link.remove();
+	    Swal.fire('Suppression effectuée!', '', 'success')
+	  } else if (result.isDenied) {
+	    Swal.fire('Suppression annulée', '', 'info')
+	  }
+	})
+    });
+  });
 </script>
 </body>
 </html>

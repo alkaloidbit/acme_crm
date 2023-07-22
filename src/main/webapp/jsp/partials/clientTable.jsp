@@ -41,7 +41,7 @@
 						<a class="btn btn-info me-2" href="#">
 							<i class="fas fa-pen"></i>
 						</a>
-						<a class="btn btn-danger" href="/Test/Client?action=suppression&valeur=<%=i%>">
+						<a class="btn btn-danger btn-delete" href="/Test/Client?action=suppression&valeur=<%=i%>">
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>
