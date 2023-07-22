@@ -10,7 +10,7 @@ import acme.util.BizException;
 import acme.util.Connexion;
 
 public class UtilisateurDb {
-
+	
 	private static PreparedStatement selectAll;
 	private static PreparedStatement selectByKey;
 	private static PreparedStatement updateByKey;
@@ -26,7 +26,10 @@ public class UtilisateurDb {
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
 		"SELECT LOGIN, PSW, CODE_ROLE, STIMESTAMP FROM utilisateur " + 
-		"WHERE LOGIN = ? " ); 
+		"WHERE LOGIN = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+        ResultSet.CONCUR_UPDATABLE);
+		
  	}
 	private static void statementUpdateByKey(Connexion c) throws SQLException {
 		updateByKey = c.getConnection().prepareStatement(
