@@ -1,10 +1,13 @@
 package acme.front;
+import java.sql.Timestamp;
 
 public class UtilisateurBean extends AbstractBean {
 	
 	private String CODE_ROLE, LIBELLE_ROLE;
-	private String LOGIN, PSW, CODE_ROLE;
-
+	private Timestamp STIMESTAMP_ROLE;
+	private String LOGIN, PSW;
+	private Timestamp STIMESTAMP_UTILISATEUR;
+	
 	public UtilisateurBean() {
 		// TODO Auto-generated constructor stub
 	}
@@ -40,12 +43,32 @@ public class UtilisateurBean extends AbstractBean {
 	public void setPSW(String pSW) {
 		PSW = pSW;
 	}
+	
+	
+
+	public Timestamp getSTIMESTAMP_ROLE() {
+		return STIMESTAMP_ROLE;
+	}
+
+	public void setSTIMESTAMP_ROLE(Timestamp sTIMESTAMP_ROLE) {
+		STIMESTAMP_ROLE = sTIMESTAMP_ROLE;
+	}
+
+	public Timestamp getSTIMESTAMP_UTILISATEUR() {
+		return STIMESTAMP_UTILISATEUR;
+	}
+
+	public void setSTIMESTAMP_UTILISATEUR(Timestamp sTIMESTAMP_UTILISATEUR) {
+		STIMESTAMP_UTILISATEUR = sTIMESTAMP_UTILISATEUR;
+	}
 
 	@Override
 	public String toString() {
-		return "UtilisateurBean [CODE_ROLE=" + CODE_ROLE + ", LIBELLE_ROLE=" + LIBELLE_ROLE + ", LOGIN=" + LOGIN
-				+ ", PSW=" + PSW + "]";
+		return "UtilisateurBean [CODE_ROLE=" + CODE_ROLE + ", LIBELLE_ROLE=" + LIBELLE_ROLE + ", STIMESTAMP_ROLE="
+				+ STIMESTAMP_ROLE + ", LOGIN=" + LOGIN + ", PSW=" + PSW + ", STIMESTAMP_UTILISATEUR="
+				+ STIMESTAMP_UTILISATEUR + "]";
 	}
+	
 	
 	
 

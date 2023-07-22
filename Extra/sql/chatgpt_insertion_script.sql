@@ -32,6 +32,6 @@ VALUES ('R001', 'Admin'),
 
 -- Insertion de données dans la table `utilisateur`
 INSERT INTO `utilisateur` (`LOGIN`, `PSW`, `CODE_ROLE`)
-VALUES ('admin', 'password123', 'R001'),
-       ('user1', 'pass456', 'R002'),
-       ('user2', 'pass789', 'R002');
+VALUES ('admin', '482c811da5d5b4bc6d497ffa98491e38', 'R001'),
+       ('user1', '482c811da5d5b4bc6d497ffa98491e38', 'R002'),
+       ('user2', '482c811da5d5b4bc6d497ffa98491e38', 'R002');
