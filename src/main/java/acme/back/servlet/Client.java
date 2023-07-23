@@ -5,6 +5,8 @@ import acme.util.BizException;
 import acme.back.service.ClientService;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,15 +45,26 @@ public class Client extends HttpServlet {
 				session.setAttribute("cbdetail", clients.get(i));
 				request.setAttribute("page_name", "Nos clients");
 				request.setAttribute("page_content", "clientDetail");
-				this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
-			} else {
+			} else
 
+			if ("creation".equals(request.getParameter("action"))) {
+				request.setAttribute("page_name", "Nouveau client");
+				request.setAttribute("page_content", "clientForm");
+
+			} else if ("update".equals(request.getParameter("action"))) {
+				int i = Integer.parseInt(request.getParameter("valeur"));
+				ArrayList<ClientBean> clients = (ArrayList<ClientBean>)session.getAttribute("clients");
+				session.setAttribute("cbedit", clients.get(i));
+				request.setAttribute("page_name", "Edition client");
+				request.setAttribute("page_content", "clientForm");
+			} else {
 				ArrayList<ClientBean> clients = ClientService.getService().getAllClients();
 				session.setAttribute("clients", clients);
 				request.setAttribute("page_name", "Nos clients");
 				request.setAttribute("page_content", "clientTable");
-				this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
 			}
+
+			this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
 		} catch (BizException be) {
 			try {
 				be.printStackTrace();
@@ -67,6 +80,39 @@ public class Client extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+			HttpSession session = (HttpSession) request.getSession();
+		try {
+			ClientBean cb = new ClientBean();
+			cb.setCodeClient(request.getParameter("code_client"));
+			cb.setNom(request.getParameter("nom"));
+			cb.setPrenom(request.getParameter("prenom"));
+			cb.setAdresse(request.getParameter("adresse"));
+			cb.setCodePostal(request.getParameter("code_postal"));
+			cb.setVille(request.getParameter("ville"));
+			System.out.println(cb);
+			int res = ClientService.getService().createClient(cb);
+
+			if (res == 1) {
+				request.setAttribute("msg", "Creation Effectuée !");
+			} else {
+				request.setAttribute("error", "Probleme avec la creation");
+			}
+
+			System.out.println("res :" + res);
+			ArrayList<ClientBean> clients = ClientService.getService().getAllClients();
+			session.setAttribute("clients", clients);
+			request.setAttribute("page_name", "Nos clients");
+			request.setAttribute("page_content", "clientTable");
+			this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
+		} catch (BizException be) {
+			try {
+				be.printStackTrace();
+				session.setAttribute("erreur", be.getMessage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 	@Override
