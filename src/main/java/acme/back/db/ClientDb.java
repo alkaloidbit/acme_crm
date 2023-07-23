@@ -21,7 +21,7 @@ public class ClientDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, STIMESTAMP FROM client");
+		"SELECT CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, STIMESTAMP FROM client ORDER BY STIMESTAMP DESC");
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
