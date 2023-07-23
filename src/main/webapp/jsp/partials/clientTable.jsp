@@ -38,6 +38,7 @@
 						<a class="btn btn-success me-2" href="./Client?action=detail&valeur=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
+
 						<a class="btn btn-info me-2" href="./Client?action=update&valeur=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>

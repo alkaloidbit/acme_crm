@@ -48,7 +48,6 @@ public class Client extends HttpServlet {
 				session.setAttribute("cbdetail", clients.get(i));
 				request.setAttribute("page_name", "Nos clients");
 				request.setAttribute("page_content", "clientDetail");
-
 			} else
 
 
@@ -61,6 +60,7 @@ public class Client extends HttpServlet {
 				ArrayList<ClientBean> clients = (ArrayList<ClientBean>)session.getAttribute("clients");
 				session.setAttribute("cbedit", clients.get(i));
 				request.setAttribute("page_name", "Edition client");
+
 				request.setAttribute("page_content", "clientUpdateForm");
 			} else {
 				ArrayList<ClientBean> clients = ClientService.getService().getAllClients();
