@@ -18,6 +18,12 @@ ClientBean cl = (ClientBean) request.getSession().getAttribute("cbdetail");
 				</div>
 			</div>
 			<div class="row">
+				<label class="control-label col-lg-3">Code Client</label>
+				<div class="col-lg-9">
+					<p class="form-control-static"><%=cl.getCodeClient()%></p>
+				</div>
+			</div>
+			<div class="row">
 				<label class="control-label col-lg-3">Nom</label>
 				<div class="col-lg-9">
 					<p class="form-control-static"><%=cl.getNom()%></p>
