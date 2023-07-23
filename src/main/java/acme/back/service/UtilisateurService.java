@@ -1,9 +1,8 @@
 package acme.back.service;
 
 import java.util.ArrayList;
-import acme.back.metier.Utilisateur;
+
 import acme.back.db.UtilisateurDb;
-import acme.back.metier.Role;
 import acme.back.metier.Utilisateur;
 import acme.front.UtilisateurBean;
 import acme.util.BizException;
@@ -21,35 +20,26 @@ public class UtilisateurService {
 		return singleton;
 	}
 	
-	public ArrayList<UtilisateurBean> getAllUtilisateurs() throws BizException {
-
-		ArrayList<UtilisateurBean> result;
-		Connexion con = new Connexion();
-
-		try {
-			result = getAllUtilisateurs(con);
-			System.out.println(result);
-			con.close();
-			return result;
-		} catch (BizException be) {
-			con.close();
-			throw be;
-		}
+	private Utilisateur utilisateurBeanToUtilisateur(UtilisateurBean ub) {
+		Utilisateur result = new Utilisateur();
+		result.setLogin(ub.getLOGIN());
+		result.setCodeRole(ub.getCODE_ROLE());
+		return result;
 	}
-
-	public ArrayList<UtilisateurBean> getAllUtilisateurs(Connexion con) throws BizException {
-
+	
+	public ArrayList<UtilisateurBean> search(UtilisateurBean ub, Connexion con) throws BizException {		
 		ArrayList<UtilisateurBean> result = new ArrayList<UtilisateurBean>();
-
+		Utilisateur ut = utilisateurBeanToUtilisateur(ub);
 		try {
 			ArrayList<Utilisateur> utilisateurs = UtilisateurDb.getAll(con);
-			for (Utilisateur utilisateur : utilisateurs) {
-				UtilisateurBean cl = new UtilisateurBean();
-				cl.setCODE_ROLE(utilisateur.getCodeRole());
-				cl.setLOGIN(utilisateur.getLogin());
-				cl.setPSW(utilisateur.getPsw());
-				cl.setSTIMESTAMP_UTILISATEUR(utilisateur.getStimestamp());
-				result.add(cl);
+			UtilisateurBean uba = null;
+			for (int i=0; i<utilisateurs.size(); i++) {
+				Utilisateur tmp = utilisateurs.get(i);
+				if (uba != null) result.add(uba);
+				uba = new UtilisateurBean();
+				uba.setCODE_ROLE(tmp.getCodeRole());
+				uba.setLIBELLE_ROLE(tmp.getCodeRole());
+				if (i == (utilisateurs.size()-1)) result.add(uba);
 			}
 			return result;
 		} catch (BizException be) {
@@ -57,52 +47,20 @@ public class UtilisateurService {
 			throw be;
 		}
 	}
-
-	public int deleteUtilisateur(UtilisateurBean cb) throws BizException {
+	
+	public ArrayList<UtilisateurBean> search(UtilisateurBean ub) throws BizException {
 		
-		int result;
+		ArrayList<UtilisateurBean> result;
 		Connexion con = new Connexion();
 		
 		try {
-			con.beginTransaction();
-			result = deleteUtilisateur(cb, con);
-			con.endTransaction();
+			result = search(ub, con);
+			con.close();
 			return result;
 		} catch (BizException be) {
-			con.rollBack();
-			be.printStackTrace();
+			con.close();
 			throw be;
 		}
-	}
-	public int deleteUtilisateur(UtilisateurBean cb, Connexion con) throws BizException {
-		
-		int result = 0;
-		System.out.println(cb);
-		Utilisateur cm = utilisateurBeanToUtilisateur(cb);
-		try {
-			System.out.println("suppression=" + UtilisateurDb.deleteByKey(con, cm));
-			return result;
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
-		}
-	}
-	private Utilisateur utilisateurBeanToUtilisateur(UtilisateurBean cb) {
-		Utilisateur result = new Utilisateur();
-		result.setCodeRole(cb.getCODE_ROLE());
-		result.setLogin(cb.getLOGIN());
-		result.setPsw(cb.getPSW());
-		result.setStimestamp(cb.getSTIMESTAMP_UTILISATEUR());		
-
-		return result;
-	}
-	private UtilisateurBean utilisateurToUtilisateurBean(Utilisateur c) {
-		UtilisateurBean result = new UtilisateurBean();
-		result.setCODE_ROLE(c.getCodeRole());
-		result.setLOGIN(c.getLogin());
-		result.setPSW(c.getPsw());
-		result.setSTIMESTAMP_UTILISATEUR(c.getStimestamp());
-		return result;
 	}
 
 }

@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 package acme.back.servlet;
 
 import java.util.Comparator;
 
 import acme.front.CommandeBean;
-=======
-package acme.front;
-
-import java.util.Comparator;
->>>>>>> refs/heads/DevCarlos
 
 public class ComparateurCommandeBean implements Comparator<CommandeBean> {
 	

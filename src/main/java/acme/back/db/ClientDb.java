@@ -21,16 +21,12 @@ public class ClientDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, STIMESTAMP FROM client",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE);
+		"SELECT CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, STIMESTAMP FROM client");
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
 		"SELECT CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, STIMESTAMP FROM client " + 
-		"WHERE CODE_CLIENT = ? ",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE ); 
+		"WHERE CODE_CLIENT = ? " ); 
  	}
 	private static void statementUpdateByKey(Connexion c) throws SQLException {
 		updateByKey = c.getConnection().prepareStatement(
@@ -40,24 +36,18 @@ public class ClientDb {
 		"ADRESSE = ?, " +  
 		"CODE_POSTAL = ?, " +  
 		"VILLE = ? " + 
-		"WHERE CODE_CLIENT = ? ",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE); 
+		"WHERE CODE_CLIENT = ? "); 
 	}
 	private static void statementInsert(Connexion c) throws SQLException {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO client " + 
 		"(CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) " + 
-		"values(?, ?, ?, ?, ?, ?)",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE);
+		"values(?, ?, ?, ?, ?, ?)");
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM client " + 
-		"WHERE CODE_CLIENT = ? ",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE); 
+		"WHERE CODE_CLIENT = ? "); 
 	}
 	public static int deleteByKey(Connexion c, Client t) throws BizException {
 		ResultSet rs = null;

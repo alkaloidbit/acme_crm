@@ -54,7 +54,7 @@
 		<servlet-name>ProduitInfo</servlet-name>
 		<url-pattern>/Produit/info</url-pattern>
 	</servlet-mapping>
-	<servlet>
+		<servlet>
 		<servlet-name>ProduitModif</servlet-name>
 		<servlet-class>acme.back.servlet.ProduitModif</servlet-class>
 	</servlet>
@@ -62,17 +62,6 @@
 		<servlet-name>ProduitModif</servlet-name>
 		<url-pattern>/Produit/modification</url-pattern>
 	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>Utilisateur</servlet-name>
-		<servlet-class>acme.back.servlet.Utilisateur</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Utilisateur</servlet-name>
-		<url-pattern>/Utilisateur</url-pattern>
-	</servlet-mapping>
-	
-
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
