@@ -105,17 +105,25 @@ public class ProduitService {
 	}
 	
 	
-	public ProduitBean ProductListBean() throws BizException {
-		
-		ProduitBean pb = new ProduitBean();
+	public ArrayList<ProduitBean> ProductListBean() throws BizException {		
+
 		ProduitDb prodDb = new ProduitDb();
 		Connexion con = new Connexion();
-		
+		ArrayList<ProduitBean> prodBeans = new ArrayList<ProduitBean>();
 		try {
-			ArrayList<Produit> ProductList = prodDb.getAll(con);
-			pb.setProds(ProductList);
+			ArrayList<Produit> productList = prodDb.getAll(con);
+			for (Produit produit : productList) {
+				ProduitBean pb = new ProduitBean();
+				pb.setCodeProduit(produit.getCodeProduit());
+				pb.setLibelleProduit(produit.getLibelleProduit());
+				pb.setPrix(produit.getPrix());
+				pb.setDescription(produit.getDescription());
+				pb.setStimestamp(produit.getStimestamp());
+				prodBeans.add(pb);
+			}
 			con.close();
-			return pb;
+			return prodBeans;
+
 		} catch (BizException be) {
 			con.close();
 			throw be;
