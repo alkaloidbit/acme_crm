@@ -14,7 +14,7 @@ insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) value
 insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('13107-006', 'Cadding', 'Mackenzie', '86835 Sheridan Court', 'DAUT', 'Novyye Cherëmushki');
 insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('55154-3875', 'Cubbino', 'Lura', '73407 Meadow Vale Plaza', 'LFBO', 'Makin Village');
 insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('31357-040', 'Garnett', 'Ethelda', '20 Arizona Hill', 'NSAS', 'Kungsbacka');
-insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('37808-056', 'Baterip', 'Munmro', '48339 Manufacturers Plaza', null, 'Washington');
+insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('37808-056', 'Baterip', 'Munmro', '48339 Manufacturers Plaza', 'PTAI', 'Washington');
 insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('52125-926', 'Warby', 'Shayne', '71484 Spaight Plaza', 'KSDY', 'Tacheng');
 insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('37000-617', 'Darwen', 'Sari', '580 Hansons Alley', 'EGXW', 'Tashla');
 insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('57237-013', 'Coger', 'Guillema', '9780 Fairfield Parkway', 'A63', 'Tangping');
