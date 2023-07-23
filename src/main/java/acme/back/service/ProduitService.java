@@ -2,6 +2,7 @@ package acme.back.service;
 
 import java.util.ArrayList;
 
+
 import acme.back.db.ProduitDb;
 import acme.back.metier.Produit;
 import acme.front.ProduitBean;
@@ -17,101 +18,14 @@ public class ProduitService {
 		if (singleton == null) singleton = new ProduitService();
 		return singleton;
 	}
-	public ArrayList<ProduitBean> search(ProduitBean pb) throws BizException {
-		
-		ArrayList<ProduitBean> result;
-		Connexion con = new Connexion();
-		
-		try {
-			result = search(pb, con);
-			con.close();
-			return result;
-		} catch (BizException be) {
-			con.close();
-			throw be;
-		}
-	}
-	public ArrayList<ProduitBean> search(ProduitBean pb, Connexion con) throws BizException {
-		
-		ArrayList<ProduitBean> results = new ArrayList<ProduitBean>();
-		
-		Produit prod = new Produit();			
-		
-		prod.setCodeProduit(pb.getCodeProduit());
-		prod.setLibelleProduit(pb.getLibelleProduit());
-		prod.setPrix(pb.getPrix());
-		prod.setDescription(pb.getDescription());
-		// TO DO
-		/*try {
-			ArrayList<Produit> produits = ProduitDb.search(con, prod);
-			ProduitBean cbt = null;
-			int pId = -1; 
-			for (int i=0; i<commandes.size(); i++) {
-				Commande tmp = commandes.get(i);
-				int cId = tmp.getIdCommande();
-				if (cId != pId) {
-					if (cbt != null) results.add(cbt);
-					cbt = new ProduitBean();
-					DetailCommandeBean dcb = new DetailCommandeBean();
-					cbt.setCodeClient(tmp.getCodeClient());
-					cbt.setDateCommande(tmp.getDate());
-					cbt.setIdCommande(tmp.getIdCommande());
-					cbt.setNomClient(tmp.getNomClient());
-					cbt.setStimestamp(tmp.getStimestamp());
-					dcb.setCodeProduit(tmp.getCodeProduit());
-					dcb.setLibelleProduit(tmp.getLibelleProduit());
-					dcb.setMontant(tmp.getPrix() * tmp.getQuantite());
-					dcb.setQuantite(tmp.getQuantite());
-					dcb.setStimestamp(tmp.getStimestamp());
-					cbt.addDetailCommandeBean(dcb);
-				} else {
-					DetailCommandeBean dcb = new DetailCommandeBean();
-					dcb.setCodeProduit(tmp.getCodeProduit());
-					dcb.setLibelleProduit(tmp.getLibelleProduit());
-					dcb.setMontant(tmp.getPrix() * tmp.getQuantite());
-					dcb.setQuantite(tmp.getQuantite());
-					dcb.setStimestamp(tmp.getStimestamp());
-					cbt.addDetailCommandeBean(dcb);	
-				}
-				if (i == (commandes.size()-1)) results.add(cbt);
-				pId = cId;
-			}
-			return results;
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
-		}*/
 
-		//PROVISOIRE
-		return null;
-	}
-		
-	private Produit produitBeanToProduit(ProduitBean pb) {
-		Produit result = new Produit();
-		result.setCodeProduit(pb.getCodeProduit());
-		result.setLibelleProduit(pb.getLibelleProduit());
-		result.setDescription(pb.getDescription());
-		result.setPrix(pb.getPrix());
-		return result;
-	}
-	
-	private ProduitBean produitToProduitBean(Produit p) {
-		ProduitBean result = new ProduitBean();
-		result.setCodeProduit(p.getCodeProduit());
-		result.setLibelleProduit(p.getLibelleProduit());
-		result.setDescription(p.getDescription());
-		result.setPrix(p.getPrix());
-		return result;
-	}
-	
 	
 	public ArrayList<ProduitBean> ProductListBean() throws BizException {		
 
-		ProduitDb prodDb = new ProduitDb();
 		Connexion con = new Connexion();
 		ArrayList<ProduitBean> prodBeans = new ArrayList<ProduitBean>();
 		try {
-			ArrayList<Produit> productList = prodDb.getAll(con);
+			ArrayList<Produit> productList = ProduitDb.getAll(con);
 			for (Produit produit : productList) {
 				ProduitBean pb = new ProduitBean();
 				pb.setCodeProduit(produit.getCodeProduit());
@@ -132,5 +46,145 @@ public class ProduitService {
 
 	}
 	
+	public int deleteProduit(ProduitBean pb) throws BizException {
+		
+		int result;
+		Connexion con = new Connexion();
+		
+		try {
+			con.beginTransaction();
+			result = deleteProduit(pb, con);
+			con.endTransaction();
+			return result;
+		} catch (BizException be) {
+			con.rollBack();
+			be.printStackTrace();
+			throw be;
+		}
+	}
 	
+	public int deleteProduit(ProduitBean pb, Connexion con) throws BizException {
+		
+		int result = 0;
+		Produit pr = produitBeanToProduit(pb);
+		try {
+			System.out.println("suppression produit = " + ProduitDb.deleteByKey(con, pr));
+			return result;
+		} catch (BizException be) {
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	
+	public int updateProduit(ProduitBean pb) throws BizException {
+		
+		int result;
+		Connexion con = new Connexion();
+		
+		try {
+			con.beginTransaction();
+			result = updateProduit(pb, con);
+			con.endTransaction();
+			return result;
+		} catch (BizException be) {
+			con.rollBack();
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	
+	public int updateProduit(ProduitBean pb, Connexion con) throws BizException {
+		
+		int result = 0;
+		Produit p = produitBeanToProduit(pb);
+		try {
+			System.out.println("modification produit = " + ProduitDb.updateByKey(con, p));
+			return result;
+		} catch (BizException be) {
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	
+	public int insertProduit(ProduitBean pb) throws BizException {
+		
+		int result;
+		Connexion con = new Connexion();
+		
+		try {
+			con.beginTransaction();
+			result = insertProduit(pb, con);
+			con.endTransaction();
+			return result;
+		} catch (BizException be) {
+			con.rollBack();
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	
+	public int insertProduit(ProduitBean pb, Connexion con) throws BizException {
+		
+		int result = 0;
+		Produit p = produitBeanToProduit(pb);
+		try {
+			System.out.println("ajout produit = " + ProduitDb.insert(con, p));
+			return result;
+		} catch (BizException be) {
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	
+	
+	public ProduitBean getProduitByKey(ProduitBean pb) throws BizException {
+		
+		Connexion con = new Connexion();
+		
+		try {
+			con.beginTransaction();
+			ProduitBean result = getProduitByKey(pb, con);
+			con.endTransaction();
+			return result;
+		} catch (BizException be) {
+			con.rollBack();
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	
+	public ProduitBean getProduitByKey(ProduitBean pb, Connexion con) throws BizException {
+		
+		Produit p = produitBeanToProduit(pb);
+		try {
+			Produit pNew = ProduitDb.getByKey(con, p);
+			System.out.println("le produit demandé = " + pNew);
+			return produitToProduitBean(pNew);
+		} catch (BizException be) {
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	
+	
+	
+	private Produit produitBeanToProduit(ProduitBean pb) {
+		Produit result = new Produit();
+		result.setCodeProduit(pb.getCodeProduit());
+		result.setLibelleProduit(pb.getLibelleProduit());
+		result.setDescription(pb.getDescription());
+		result.setPrix(pb.getPrix());
+		result.setStimestamp(pb.getStimestamp());
+		return result;
+	}
+	
+	private ProduitBean produitToProduitBean(Produit p) {
+		ProduitBean result = new ProduitBean();
+		result.setCodeProduit(p.getCodeProduit());
+		result.setLibelleProduit(p.getLibelleProduit());
+		result.setDescription(p.getDescription());
+		result.setPrix(p.getPrix());
+		result.setStimestamp(p.getStimestamp());
+		return result;
+	}
 }
