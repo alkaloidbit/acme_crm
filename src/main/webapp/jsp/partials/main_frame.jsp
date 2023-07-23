@@ -6,10 +6,25 @@
 		<div class="row">
 			<div class="col-12">
 				<%
-				 //String pageContent = (String)request.getAttribute("page_content");
 				 String pagePath = "partials/" + (String)request.getAttribute("page_content") + ".jsp";
 				%>
 				<jsp:include page="<%=pagePath%>" ></jsp:include>
+			</div>
+			<!-- /.col -->
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<%
+					String pageButton = (String)request.getAttribute("page_button");
+					String buttonPath = null;
+					if (pageButton != null) {
+						buttonPath = "partials/" + (String)request.getAttribute("page_button") + ".jsp";
+					}
+				%>
+				<% 
+					if (buttonPath != null) {%> 
+						<jsp:include page="<%=buttonPath%>" ></jsp:include>
+					<%}%>
 			</div>
 			<!-- /.col -->
 		</div>

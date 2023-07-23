@@ -46,11 +46,13 @@ public class Commande extends HttpServlet {
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
 			} else
 			//Bouton Détail
-			if ("Detail".equals(request.getParameter("detail"))) {
+			if ("detail".equals(request.getParameter("parametre"))) {
 				System.out.println("Détail");
-				int i = Integer.parseInt(request.getParameter("simu"));
+				int i = Integer.parseInt(request.getParameter("valeur"));
 				ArrayList<CommandeBean> commandes = (ArrayList<CommandeBean>)session.getAttribute("commandes");
-				session.setAttribute("cbdetail", commandes.get(i));
+				session.setAttribute("cdbs", commandes.get(i).getAl());
+				request.setAttribute("page_content", "detailCommandeTable");
+				request.setAttribute("page_button", "commandeButton");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/detailCommande.jsp").forward(request, response);
 			} else
 			//Bouton Suppression
@@ -63,7 +65,13 @@ public class Commande extends HttpServlet {
 				commandes.remove(i);
 				request.setAttribute("page_content", "commandeTable");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
-			} else								
+			} else
+			//Bouton Retour
+			if ("retour".equals(request.getParameter("parametre"))) {
+				System.out.println("retour");
+				request.setAttribute("page_content", "commandeTable");
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
+			} else
 			//Je viens du menu commande
 			if ("menuCommande".equals(request.getParameter("parametre"))) {
 				System.out.println("Menucommande");
