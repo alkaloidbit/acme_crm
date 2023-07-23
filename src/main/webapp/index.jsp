@@ -78,6 +78,7 @@ function soumet() {
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
+              
               <label for="remember">
                 Remember Me
               </label>
