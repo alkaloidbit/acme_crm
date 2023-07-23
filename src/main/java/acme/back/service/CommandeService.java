@@ -1,5 +1,7 @@
 package acme.back.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.ArrayList;
 
 import acme.back.db.CommandeDb;
@@ -110,7 +112,43 @@ public class CommandeService {
 			throw be;
 		}
 	}
-
+	public int insertCommande(CommandeBean cb) throws BizException {
+		
+		int result;
+		Connexion con = new Connexion();
+		
+		try {
+			con.beginTransaction();
+			result = insertCommande(cb, con);
+			con.endTransaction();
+			return result;
+		} catch (BizException be) {
+			con.rollBack();
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	public int insertCommande(CommandeBean cb, Connexion con) throws BizException {
+		
+		int result = 0;
+		Commande cm = commandeBeanToCommande(cb);
+		Date now = new Date();
+		cm.setStimestamp(new Timestamp((now.getTime())));
+		try {
+			result = cm.insert(con);
+			int idCommande = CommandeDb.getLastInsert(con);
+			for (int i = 0; i < cm.getAl().size(); i++) {
+				DetailCommande dc = cm.getAl().get(i);
+				dc.setIdCommande(idCommande);
+				dc.setStimestamp(cm.getStimestamp());
+				dc.insert(con);
+			}
+			return result;
+		} catch (BizException be) {
+			be.printStackTrace();
+			throw be;
+		}
+	}
 	private Commande commandeBeanToCommande(CommandeBean cb) {
 		System.out.println("CommandeBean : " + cb);
 		Commande result = new Commande();
