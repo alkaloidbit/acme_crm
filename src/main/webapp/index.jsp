@@ -28,7 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script language="javascript" type="text/javascript">
 function erreur() {
   if ("<%=msg%>" != "null" && "<%=msg%>" != "") { 
-    console.log("<%=msg%>"); 
+    alert("<%=msg%>"); 
   }
 }
 function loadMenu() {
@@ -78,9 +78,7 @@ function soumet() {
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
+              <label for="remember">Remember Me</label>
             </div>
           </div>
           <!-- /.col -->
