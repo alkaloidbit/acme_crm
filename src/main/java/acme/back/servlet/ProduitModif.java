@@ -41,8 +41,9 @@ public class ProduitModif extends HttpServlet {
 		ArrayList<ProduitBean> produitbeans = (ArrayList<ProduitBean>) session.getAttribute("produits");
 		// Ajout
 		if(choice.equals("create")) {
-				session.setAttribute("page_name", "Ajout de produit");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/produit_ajout.jsp").forward(request, response);
+				request.setAttribute("page_name", "Ajout de produit");
+				request.setAttribute("page_content", "produit_ajout");
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 		}
 		else {		
 			int index = Integer.parseInt(request.getParameter("index"));
@@ -52,8 +53,9 @@ public class ProduitModif extends HttpServlet {
 				
 				// Mise à jour
 				if(choice.equals("update")) {
-					session.setAttribute("page_name", "Modification de produit");
-					getServletConfig().getServletContext().getRequestDispatcher("/jsp/produit_modif.jsp").forward(request, response);
+					request.setAttribute("page_name", "Modification de produit");
+					request.setAttribute("page_content", "produit_modif");
+					getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 	
 				}
 				// Suppression
