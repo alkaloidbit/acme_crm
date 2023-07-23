@@ -5,7 +5,9 @@ import acme.util.BizException;
 import acme.back.service.ClientService;
 
 import java.io.IOException;
+
 import java.sql.Date;
+
 import java.sql.Timestamp;
 
 import jakarta.servlet.ServletException;
@@ -129,6 +131,8 @@ public class Client extends HttpServlet {
 				}
 				System.out.println("res :" + res);
 			}
+
+
 			ArrayList<ClientBean> clients = ClientService.getService().getAllClients();
 			session.setAttribute("clients", clients);
 			request.setAttribute("page_name", "Nos clients");
