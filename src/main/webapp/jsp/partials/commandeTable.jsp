@@ -31,13 +31,13 @@
 					<td><%=((CommandeBean)al.get(i)).getNomClient()%></td>
 					<td><%=Math.round(((CommandeBean)al.get(i)).getMontant()*100.0)/100.0%></td>
 					<td>
-						<a class="btn btn-success me-2" href="#">
+						<a class="btn btn-success me-2" href="./Commande?parametre=detail&valeur=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
 						<a class="btn btn-info me-2" href="#">
 							<i class="fas fa-pen"></i>
 						</a>
-						<a class="btn btn-danger" href="/MSPR/Commande?parametre=supprimer&valeur=<%=i%>">
+						<a class="btn btn-danger" href="./Commande?parametre=supprimer&valeur=<%=i%>">
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>
