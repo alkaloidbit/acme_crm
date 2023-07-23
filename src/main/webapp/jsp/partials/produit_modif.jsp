@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" import="acme.front.ProduitBean"	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Mise à jour de produit</title>
-</head>
-<body>
+
 <div>
 	<% String choice = (String) request.getSession().getAttribute("choice"); %>
 	<% ProduitBean prodB = (ProduitBean) request.getSession().getAttribute("produitBean"); %>
@@ -40,5 +34,3 @@
 	</form>
 </div> 
 <p>${errorMessage}</p>
-</body>
-</html>
