@@ -19,6 +19,7 @@ public class CommandeDb {
 	private static PreparedStatement insert;
 	private static PreparedStatement deleteByKey;
 	private static PreparedStatement search;
+	private static PreparedStatement selectLastInsert;
 
 	public CommandeDb(){}
 
@@ -73,6 +74,27 @@ public class CommandeDb {
 		+ "ORDER BY c.ID_COMMANDE LIMIT 500",
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE);
+	}
+	private static void statementSelectLastInsert(Connexion c) throws SQLException {
+		selectLastInsert = c.getConnection().prepareStatement(
+		"SELECT LAST_INSERT_ID()",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
+ 	}
+	public static int getLastInsert(Connexion c) throws BizException {
+		ResultSet rs = null;
+		int result = 0; 
+		try {
+			statementSelectLastInsert(c);
+			rs = selectLastInsert.executeQuery();
+			rs.beforeFirst();
+			if (rs.next()) result = rs.getInt(1);
+			if (rs != null) rs.close();
+			return result;
+		}
+		catch(SQLException sqle) {
+			throw new BizException(sqle.getMessage());
+		}
 	}
 	public static ArrayList<Commande> search(Connexion c, Commande t) throws BizException {
 		ResultSet rs = null;

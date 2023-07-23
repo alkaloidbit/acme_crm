@@ -21,7 +21,9 @@ public class ProduitDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX, STIMESTAMP FROM produit");
+		"SELECT CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX, STIMESTAMP FROM produit",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
