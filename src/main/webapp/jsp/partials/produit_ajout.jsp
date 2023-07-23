@@ -1,11 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="acme.front.ProduitBean"	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Gestion Produit</title>
-</head>
-<body>
+
+<%@ page contentType="text/html; charset=UTF-8" language="java"
+	import="java.util.ArrayList, acme.front.ProduitBean, acme.util.Utilitaire"
+	errorPage=""%>
+
 <div>
 	<h1>Ajout d'un Produit</h1>
 	
@@ -39,5 +36,3 @@
 	</form>
 
 </div> 
-</body>
-</html>

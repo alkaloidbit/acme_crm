@@ -40,9 +40,9 @@ public class ProduitInfo extends HttpServlet {
         // Envoyer le détails à la jsp
 
 		request.setAttribute("page_name", "Nos produits");
-       
+		request.setAttribute("page_content", "produit_details");
         // Rediriger vers la page
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/produit_details.jsp").forward(request, response);
+		getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
