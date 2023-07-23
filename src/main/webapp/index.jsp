@@ -78,11 +78,15 @@ function soumet() {
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
+<<<<<<< HEAD
 
               
               <label for="remember">
                 Remember Me
               </label>
+=======
+              <label for="remember">Remember Me</label>
+>>>>>>> f08f18f (Gestion des boutons/suppression des pages inutilisées/modif des liens (/MSRP/..... --> ./)
             </div>
           </div>
           <!-- /.col -->

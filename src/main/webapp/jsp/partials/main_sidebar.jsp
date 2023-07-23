@@ -46,7 +46,10 @@
             </a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD
 
+=======
+>>>>>>> f08f18f (Gestion des boutons/suppression des pages inutilisées/modif des liens (/MSRP/..... --> ./)
             <a href="./Commande?parametre=menuCommande" class="nav-link">
               <i class="nav-icon fas fa-file-invoice"></i>
               <p>
@@ -55,7 +58,10 @@
             </a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD
 
+=======
+>>>>>>> f08f18f (Gestion des boutons/suppression des pages inutilisées/modif des liens (/MSRP/..... --> ./)
             <a href="./Client" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -67,7 +73,6 @@
           <li class="nav-item">
 
             <a href="./Produits" class="nav-link">
-
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Produit
@@ -75,7 +80,6 @@
             </a>
           </li>
           <li class="nav-item">
-
             <a href="/MSPR/Utilisateur" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
