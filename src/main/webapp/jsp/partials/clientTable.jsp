@@ -38,11 +38,12 @@
 						<a class="btn btn-success me-2" href="/Test/Client?action=detail&valeur=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
-						<a class="btn btn-info me-2" href="#">
+						<a class="btn btn-info me-2" href="/Test/Client?action=update&valeur=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
 
 						<a class="btn btn-danger btn-delete" href="/MSPR/Client?action=suppression&valeur=<%=i%>">
+
 
 							<i class="fas fa-trash"></i>
 						</a>

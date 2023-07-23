@@ -24,6 +24,7 @@ public class ClientDb {
 		"SELECT CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, STIMESTAMP FROM client",
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE);
+
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
