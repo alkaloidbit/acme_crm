@@ -31,5 +31,3 @@ VALUES ('ADMIN', 'ADMINISTRATEUR');
 
 -- Insertion de données dans la table `utilisateur`
 INSERT INTO `utilisateur` (`LOGIN`, `PSW`, `CODE_ROLE`)
-VALUES ('JSE', '11894eea1b12cf706b905884083852ed', 'ADMIN');
- 

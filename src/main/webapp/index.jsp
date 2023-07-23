@@ -113,10 +113,11 @@ function soumet() {
 </div>
 <!-- /.login-box -->
 
-<!-- REQUIRED SCRIPTS -->
+<!-- REQUIRED SCRIPTS --
 
 <!-- jQuery -->
 <script src="resources/AdminLTE/plugins/jquery/jquery.min.js"></script>
+	
 <!-- Bootstrap 4 -->
 <script src="resources/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
