@@ -21,7 +21,7 @@ public class ProduitDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX, STIMESTAMP FROM produit",
+		"SELECT CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX, STIMESTAMP FROM produit", 
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE);
 	}
@@ -38,7 +38,11 @@ public class ProduitDb {
 		"SET 		LIBELLE_PRODUIT = ?, " +  
 		"DESCRIPTION = ?, " +  
 		"PRIX = ? " + 
+<<<<<<< HEAD
 		"WHERE CODE_PRODUIT = ? ",
+=======
+		"WHERE CODE_PRODUIT = ? ", 
+>>>>>>> a292a85 (Update chaine Produit)
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE); 
 	}
@@ -46,14 +50,22 @@ public class ProduitDb {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO produit " + 
 		"(CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX) " + 
+<<<<<<< HEAD
 		"values(?, ?, ?, ?)",
+=======
+		"values(?, ?, ?, ?)", 
+>>>>>>> a292a85 (Update chaine Produit)
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM produit " + 
+<<<<<<< HEAD
 		"WHERE CODE_PRODUIT = ? ",
+=======
+		"WHERE CODE_PRODUIT = ? ", 
+>>>>>>> a292a85 (Update chaine Produit)
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE); 
 	}
@@ -66,6 +78,7 @@ public class ProduitDb {
 			selectByKey.setString(1, t.getCodeProduit());
 			rs = selectByKey.executeQuery();
 			rs.beforeFirst();
+			
 			if(rs.next()) {
 				if (rs.getTimestamp(5).after(t.getStimestamp())) {
 					throw new BizException("Data modified by another user");
@@ -152,13 +165,12 @@ public class ProduitDb {
 			throw new BizException(sqle.getMessage());
 		}
 	}
-	public static ArrayList getAll(Connexion c) throws BizException {
+	public static ArrayList<Produit> getAll(Connexion c) throws BizException {
 		ResultSet rs = null;
-		ArrayList result = null;
+		ArrayList<Produit> result =  new ArrayList<Produit>();
 		try {
 			statementSelectAll(c);
 			rs = selectAll.executeQuery();
-			result = new ArrayList();
 			rs.beforeFirst();
 			while (rs.next()) {
 				Produit t = new Produit();

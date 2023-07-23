@@ -27,16 +27,20 @@ public class ProduitInfo extends HttpServlet {
 
 		// PROVISOIRE POUR TEST
 		// Récupérer le code produit
+		int index = Integer.parseInt(request.getParameter("index"));
 		HttpSession session = (HttpSession)request.getSession();
-		ArrayList<ProduitBean> produits = (ArrayList<ProduitBean>)session.getAttribute("produits");
-		String codeProduit = request.getParameter("codeProduit");
+		ArrayList<ProduitBean> produitbeans = (ArrayList<ProduitBean>)session.getAttribute("produits");
+		ProduitBean produitBean = produitbeans.get(index);			
+		session.setAttribute("produitBean", produitBean);
+		//String codeProduit = request.getParameter("codeProduit");
 
 		// Récupérer le produit concerné
 		
 		
         // Envoyer le détails à la jsp
-        request.setAttribute("codeProduit", codeProduit);
-        
+
+		request.setAttribute("page_name", "Nos produits");
+       
         // Rediriger vers la page
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/produit_details.jsp").forward(request, response);
 	}
