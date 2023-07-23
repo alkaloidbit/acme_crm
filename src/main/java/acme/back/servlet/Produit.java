@@ -32,17 +32,7 @@ public class Produit extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("page_name", "Nos Produits");
-		
-		// PROVISOIRE POUR TEST
-		AuthentificationBean ab = new AuthentificationBean();
-		ab.setLogin("totobidon");
-		ab.setLogin("moulin");
-		ab.setCodeRole("ADMIN");
-		// FIN PROVISOIRE POUR TEST
-		// TRY CATCH A FAIRE
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 	
 		HttpSession session = (HttpSession)request.getSession();
 		try {
@@ -53,7 +43,7 @@ public class Produit extends HttpServlet {
 		}
 
 		session.removeAttribute("erreur");
-		session.setAttribute("authentification", ab);
+		request.setAttribute("page_name", "Nos Produits");
 		request.setAttribute("page_content", "content_datatable_produits");
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 			
