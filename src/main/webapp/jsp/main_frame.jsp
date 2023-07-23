@@ -7,9 +7,7 @@
 			<div class="col-12">
 				<%
 				 String page_content = (String)request.getAttribute("page_content");
-				 String msg = (String)request.getAttribute("msg");
 				%>
-				<div class="alert alert-warning">${msg}</div>
 				<jsp:include page='<%=page_content+".jsp"%>' />
 			</div>
 			<!-- /.col -->
