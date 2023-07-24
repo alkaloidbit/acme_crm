@@ -176,7 +176,6 @@ public int createClient(ClientBean cb, Connexion con) throws BizException {
 		Client cm = clientBeanToClient(cb);
 		try {
 			result = ClientDb.deleteByKey(con, cm);
-
 			return result;
 		} catch (BizException be) {
 			be.printStackTrace();

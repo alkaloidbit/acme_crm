@@ -49,6 +49,7 @@ public class Client extends HttpServlet {
 				request.setAttribute("page_content", "clientDetail");
 			} else
 
+
 			if ("creation".equals(request.getParameter("action"))) {
 				request.setAttribute("page_name", "Nouveau client");
 				request.setAttribute("page_content", "clientForm");
