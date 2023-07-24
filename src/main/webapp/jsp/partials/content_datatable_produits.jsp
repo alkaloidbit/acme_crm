@@ -34,7 +34,9 @@
 						<a class="btn btn-info me-2 modifProduit"  href="<%=request.getContextPath()%>/Produit/modification?choice=update&index=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
-						<a class="btn btn-danger supprProduit" href="<%=request.getContextPath()%>/Produit/modification?choice=delete&index=<%=i%>">
+						<!-- <a class="btn btn-danger supprProduit" href="<%=request.getContextPath()%>/Produit/modification?choice=delete&index=<%=i%>"> -->
+						<a class="btn btn-danger btn-delete supprProduit" href="<%=request.getContextPath()%>/Produits?index=<%=i%>">
+
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>

@@ -59,6 +59,7 @@ public class ProduitModif extends HttpServlet {
 	
 				}
 				// Suppression
+				/*
 				else if(choice.equals("delete")) {
 					ProduitService ps = ProduitService.getService();
 					try {
@@ -83,7 +84,7 @@ public class ProduitModif extends HttpServlet {
 					// session.setAttribute("page_name", "Suppression de produit");
 					// getServletConfig().getServletContext().getRequestDispatcher("/jsp/produit_modif.jsp").forward(request, response);
 					getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
-				}
+				}*/
 				
 				else {
 					request.setAttribute("page_content", "content_datatable_produits");

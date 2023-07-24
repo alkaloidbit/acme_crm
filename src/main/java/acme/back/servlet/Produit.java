@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import acme.back.service.AuthentificationService;
+import acme.back.service.ClientService;
 import acme.back.service.CommandeService;
 import acme.back.service.ProduitService;
 import acme.front.AuthentificationBean;
+import acme.front.ClientBean;
 import acme.front.CommandeBean;
 import acme.front.ProduitBean;
 import acme.util.BizException;
@@ -54,5 +56,40 @@ public class Produit extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	@Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        try {
+            int i = Integer.parseInt(request.getParameter("index"));
+            System.out.println("produit:" + i);
+            ArrayList<ProduitBean> produits = (ArrayList<ProduitBean>) session.getAttribute("produits");
+            ProduitBean pb = produits.get(i);
 
+            int res;
+            try {
+                res = ProduitService.getService().deleteProduit(pb);
+                System.out.println("res" + res);
+            } catch (Exception e) {
+                e.printStackTrace();
+                res = -1; 
+            }
+
+            String resultat;
+            if (res == 0) {
+                resultat = "success";
+            } else {
+                resultat = "error";
+            }
+
+            response.setContentType("application/json");
+            response.setHeader("Cache-Control", "no-cache");
+
+            response.getWriter().write("{\"resultat\":\"" + resultat + "\"}");
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.setAttribute("erreur", e.getMessage());
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Erreur interne du serveur");
+        }
+    }
 }

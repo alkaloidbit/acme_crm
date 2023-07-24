@@ -72,7 +72,7 @@ public class ProduitDb {
 					throw new BizException("Data modified by another user");
 				}
 			}
-			else { throw new BizException("Data modified by another user"); }
+			else { throw new BizException("Data modified by another user");}
 			deleteByKey.setString(1, t.getCodeProduit());
 			result = deleteByKey.executeUpdate();
 			if (rs != null) rs.close();
