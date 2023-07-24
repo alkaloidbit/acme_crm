@@ -3,7 +3,7 @@
 
 <div class="card">
 	<div class="card-header">
-		<h3 class="card-title">Table Produits <span class="right badge badge-danger">${ errorMessage }</span></h3>
+		<h3 class="card-title">Table Produits</h3>
 	</div>
 	<!-- /.card-header -->
 	<div class="card-body">
@@ -57,6 +57,34 @@
 	</div>
 	<!-- /.card-body -->
 </div>
+<div hidden="hidden" id="error_message">${errorMessage}</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript">
+  let errorMes = $("#error_message").text();
+  console.log("errorMes : " + errorMes);
+
+  if (errorMes != "") { 
+    toastr["error"](errorMes, "Erreur");
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-top-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+  }
+</script>
 
 <!-- /.card -->
  

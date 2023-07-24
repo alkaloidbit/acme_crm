@@ -47,7 +47,7 @@
   console.log("errorMes : " + errorMes);
 
   if (errorMes != "") { 
-    toastr["error"](errorMes, "Error");
+    toastr["error"](errorMes, "Erreur");
     toastr.options = {
       "closeButton": false,
       "debug": false,
