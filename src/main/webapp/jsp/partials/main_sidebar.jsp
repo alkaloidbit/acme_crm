@@ -82,7 +82,20 @@
             </a>
           </li>
           <li class="nav-item">
+<<<<<<< HEAD
             <a href="./Authentification?parametre=menuDeconnexion" class="nav-link">
+=======
+<<<<<<< HEAD
+            <a href="/MSPR/Utilisateur" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Utilisateurs
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/MSPR/Authentification?parametre=menuDeconnexion" class="nav-link">
+>>>>>>> 3b9b2ce (modif de l'url (/TEST --> /MSPR))
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Déconnexion
