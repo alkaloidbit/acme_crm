@@ -44,6 +44,17 @@ public class Client extends HttpServlet {
 				request.setAttribute("page_name", "Nos clients");
 				request.setAttribute("page_content", "clientDetail");
 				this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
+			} else
+
+			if ("suppression".equals(request.getParameter("action"))) {
+				int i = Integer.parseInt(request.getParameter("valeur"));
+				ArrayList<ClientBean> clients = (ArrayList<ClientBean>)session.getAttribute("clients");
+				ClientBean cb = clients.get(i);
+				ClientService.getService().deleteClient(cb);
+				clients.remove(i);
+				request.setAttribute("page_name", "Nos clients");
+				request.setAttribute("page_content", "clientTable");
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
 			} else {
 
 				ArrayList<ClientBean> clients = ClientService.getService().getAllClients();

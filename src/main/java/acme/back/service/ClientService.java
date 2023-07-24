@@ -83,6 +83,7 @@ public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
 		Client cm = clientBeanToClient(cb);
 		try {
 			result = ClientDb.deleteByKey(con, cm);
+
 			return result;
 		} catch (BizException be) {
 			be.printStackTrace();
