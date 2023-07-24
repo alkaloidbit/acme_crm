@@ -48,7 +48,9 @@ public class Client extends HttpServlet {
 				session.setAttribute("cbdetail", clients.get(i));
 				request.setAttribute("page_name", "Nos clients");
 				request.setAttribute("page_content", "clientDetail");
+
 			} else
+
 
 			if ("creation".equals(request.getParameter("action"))) {
 				request.setAttribute("page_name", "Nouveau client");

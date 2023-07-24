@@ -41,7 +41,7 @@
 						<a class="btn btn-info me-2" href="./Client?action=update&valeur=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
-						<a class="btn btn-danger btn-delete" href="/MSPR/Client?action=suppression&valeur=<%=i%>">
+						<a class="btn btn-danger btn-delete" href="./Client?action=suppression&valeur=<%=i%>">
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>
