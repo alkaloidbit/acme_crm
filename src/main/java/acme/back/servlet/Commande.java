@@ -74,13 +74,11 @@ public class Commande extends HttpServlet {
 				request.setAttribute("page_button", "creerCommandeButton");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
-
 			} else
 			//Bouton Retour
 			if ("retour".equals(request.getParameter("parametre"))) {
 				System.out.println("retour");
 				request.setAttribute("page_content", "commandeTable");
-
 				request.setAttribute("page_button", "creerCommandeButton");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
