@@ -39,30 +39,33 @@
 		</div>				
 	</form>
 </div> 
-<p hidden id="error_message" >"${errorMessage}"</p>
+<div hidden="hidden" id="error_message">${errorMessage}</div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript">
-let errorMes = $("#error_message").innerText;
-console.log("errorMes : " + errorMes)
-if(errorMes != null){
-	Command: toastr["error"](errorMes, "Error")
-	toastr.options = {
-	  "closeButton": false,
-	  "debug": false,
-	  "newestOnTop": false,
-	  "progressBar": false,
-	  "positionClass": "toast-top-center",
-	  "preventDuplicates": false,
-	  "onclick": null,
-	  "showDuration": "300",
-	  "hideDuration": "1000",
-	  "timeOut": "5000",
-	  "extendedTimeOut": "1000",
-	  "showEasing": "swing",
-	  "hideEasing": "linear",
-	  "showMethod": "fadeIn",
-	  "hideMethod": "fadeOut"
-	}
-}
+  let errorMes = $("#error_message").text();
+  console.log("errorMes : " + errorMes);
+
+  if (errorMes != "") { 
+    toastr["error"](errorMes, "Error");
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-top-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+  }
 </script>
 
