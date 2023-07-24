@@ -16,6 +16,7 @@
 		<h3 class="card-title">Détail Commandes</h3>
 	</div>
 
+
 	 	<div class="form-group">
 	        <label>N° commande: <%=cb.getIdCommande()%></label>
 	      </div>
@@ -31,7 +32,6 @@
 		<table id="example1" class="table table-bordered table-striped">
 			<thead>
 			<tr>
-
 				<th>Code produit</th>
 				<th>Libelle produit</th>
 				<th>Quantité</th>

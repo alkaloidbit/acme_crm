@@ -1,7 +1,6 @@
 package acme.back.servlet;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,17 +15,11 @@ import acme.util.Utilitaire;
 import acme.front.CommandeBean;
 import acme.front.ProduitBean;
 import acme.util.BizException;
-=======
-import java.util.ArrayList;
-
-import acme.front.ProduitBean;
->>>>>>> 5ccf802 (Ajout de la page utilisateur avec ses données)
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 public class ProduitModif extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,7 +31,6 @@ public class ProduitModif extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String choice = request.getParameter("choice");
 		HttpSession session = (HttpSession)request.getSession();
 		session.setAttribute("choice", choice);
@@ -189,7 +181,6 @@ public class ProduitModif extends HttpServlet {
             request.setAttribute("errorMessage", "Tous les champs doivent être renseignés.");
 			request.setAttribute("page_content", "produit_modif");
             request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
-
             return null; 
         }
         if(requestType.equals("update")) {

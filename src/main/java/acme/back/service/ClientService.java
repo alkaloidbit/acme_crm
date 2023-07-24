@@ -184,6 +184,37 @@ public int createClient(ClientBean cb, Connexion con) throws BizException {
 		}
 	}
 
+public int createClient(ClientBean cb) throws BizException {
+
+		int result;
+		Connexion con = new Connexion();
+
+		try {
+			con.beginTransaction();
+			result = createClient(cb, con);
+			con.endTransaction();
+			return result;
+		} catch (Exception be) {
+			con.rollBack();
+			be.printStackTrace();
+			throw be;
+		}
+}
+
+public int createClient(ClientBean cb, Connexion con) throws BizException {
+
+		int result = 0;
+		Client cl = clientBeanToClient(cb);
+		try {
+			result = ClientDb.insert(con, cl);
+			return result;
+		} catch (BizException be) {
+			be.printStackTrace();
+			throw be;
+		}
+
+}
+
 	public int deleteClient(ClientBean cb) throws BizException {
 		
 		int result;
@@ -206,7 +237,7 @@ public int createClient(ClientBean cb, Connexion con) throws BizException {
 		System.out.println(cb);
 		Client cm = clientBeanToClient(cb);
 		try {
-			System.out.println("suppression=" + ClientDb.deleteByKey(con, cm));
+			result = ClientDb.deleteByKey(con, cm);
 			return result;
 		} catch (BizException be) {
 			be.printStackTrace();

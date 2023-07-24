@@ -37,6 +37,7 @@
 						</a>
 						<a class="btn btn-danger supprProduit" href="/MSPR/Produit/modification?choice=delete&index=<%=i%>">
 
+
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>

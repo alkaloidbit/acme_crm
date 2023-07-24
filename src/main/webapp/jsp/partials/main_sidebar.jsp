@@ -46,10 +46,6 @@
             </a>
           </li>
           <li class="nav-item">
-<<<<<<< HEAD
-
-=======
->>>>>>> 2bcd688 (Gestion des boutons/suppression des pages inutilisées/modif des liens (/MSRP/..... --> ./)
             <a href="./Commande?parametre=menuCommande" class="nav-link">
               <i class="nav-icon fas fa-file-invoice"></i>
               <p>
@@ -58,10 +54,6 @@
             </a>
           </li>
           <li class="nav-item">
-<<<<<<< HEAD
-
-=======
->>>>>>> 2bcd688 (Gestion des boutons/suppression des pages inutilisées/modif des liens (/MSRP/..... --> ./)
             <a href="./Client" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -75,6 +67,7 @@
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Produit
+<<<<<<< HEAD
               </p>
             </a>
           </li>
@@ -83,11 +76,13 @@
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Utilisateurs
+=======
+>>>>>>> f08f18f (Gestion des boutons/suppression des pages inutilisées/modif des liens (/MSRP/..... --> ./)
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/MSPR/Authentification?parametre=menuDeconnexion" class="nav-link">
+            <a href="./Authentification?parametre=menuDeconnexion" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Déconnexion

@@ -71,6 +71,7 @@ public class Commande extends HttpServlet {
 				CommandeService.getService().deleteCommande(cb);
 				commandes.remove(i);
 				request.setAttribute("page_content", "commandeTable");
+
 				request.setAttribute("page_button", "creerCommandeButton");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
@@ -79,6 +80,7 @@ public class Commande extends HttpServlet {
 			if ("retour".equals(request.getParameter("parametre"))) {
 				System.out.println("retour");
 				request.setAttribute("page_content", "commandeTable");
+
 				request.setAttribute("page_button", "creerCommandeButton");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commande.jsp").forward(request, response);
@@ -141,6 +143,7 @@ public class Commande extends HttpServlet {
 				request.setAttribute("page_button", "creerCommandeButton");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);
+
 
 			} else
 			//Je viens du menu commande

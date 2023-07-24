@@ -7,7 +7,6 @@ import acme.back.service.ClientService;
 import java.io.IOException;
 
 import java.sql.Date;
-
 import java.sql.Timestamp;
 
 import jakarta.servlet.ServletException;
@@ -50,7 +49,6 @@ public class Client extends HttpServlet {
 				request.setAttribute("page_content", "clientDetail");
 			} else
 
-
 			if ("creation".equals(request.getParameter("action"))) {
 				request.setAttribute("page_name", "Nouveau client");
 				request.setAttribute("page_content", "clientForm");
@@ -60,9 +58,7 @@ public class Client extends HttpServlet {
 				ArrayList<ClientBean> clients = (ArrayList<ClientBean>)session.getAttribute("clients");
 				session.setAttribute("cbedit", clients.get(i));
 				request.setAttribute("page_name", "Edition client");
-
 				request.setAttribute("page_content", "clientUpdateForm");
-
 			} else {
 				ArrayList<ClientBean> clients = ClientService.getService().getAllClients();
 				session.setAttribute("clients", clients);
@@ -86,7 +82,6 @@ public class Client extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 			HttpSession session = (HttpSession) request.getSession();
 		try {
 
