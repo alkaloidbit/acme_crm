@@ -61,6 +61,7 @@
 <script src="resources/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
 <script src="resources/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<<<<<<< HEAD
 
 
 <script src="resources/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -68,7 +69,6 @@
 <script src="resources/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<<<<<<< HEAD
 <script src="resources/AdminLTE/plugins/jszip/jszip.min.js"></script>
 <script src="resources/AdminLTE/plugins/pdfmake/pdfmake.min.js"></script>
 <script src="resources/AdminLTE/plugins/pdfmake/vfs_fonts.js"></script>

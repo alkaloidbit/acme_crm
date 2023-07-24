@@ -15,6 +15,7 @@
 <!-- Datatables -->
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 
+<<<<<<< HEAD
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
@@ -28,6 +29,11 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
 
+=======
+
+<!-- Theme style -->
+<link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
+>>>>>>> 2c5ceca (Add CSS JS resources locally)
 <script language="javascript">
 function loadGauche() {
 	parent.frames['leftFrame'].window.location='jsp/gauche.jsp';
