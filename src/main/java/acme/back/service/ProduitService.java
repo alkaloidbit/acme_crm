@@ -187,4 +187,5 @@ public class ProduitService {
 		result.setStimestamp(p.getStimestamp());
 		return result;
 	}
+
 }
