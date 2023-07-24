@@ -26,7 +26,7 @@ public class ClientService {
 
 		try {
 			result = getAllClient(con);
-			System.out.println(result);
+			// System.out.println(result);
 			con.close();
 			return result;
 		} catch (BizException be) {
