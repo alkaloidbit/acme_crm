@@ -21,9 +21,7 @@ public class UtilisateurDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT LOGIN, PSW, CODE_ROLE, STIMESTAMP FROM utilisateur",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE);
+		"SELECT LOGIN, PSW, CODE_ROLE, STIMESTAMP FROM utilisateur");
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
@@ -38,24 +36,18 @@ public class UtilisateurDb {
 		"UPDATE utilisateur " + 
 		"SET 		PSW = ?, " +  
 		"CODE_ROLE = ? " + 
-		"WHERE LOGIN = ? ",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE); 
+		"WHERE LOGIN = ? "); 
 	}
 	private static void statementInsert(Connexion c) throws SQLException {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO utilisateur " + 
 		"(LOGIN, PSW, CODE_ROLE) " + 
-		"values(?, ?, ?)",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE);
+		"values(?, ?, ?)");
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM utilisateur " + 
-		"WHERE LOGIN = ? ",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE); 
+		"WHERE LOGIN = ? "); 
 	}
 	public static int deleteByKey(Connexion c, Utilisateur t) throws BizException {
 		ResultSet rs = null;
@@ -149,13 +141,13 @@ public class UtilisateurDb {
 			throw new BizException(sqle.getMessage());
 		}
 	}
-	public static ArrayList<Utilisateur> getAll(Connexion c) throws BizException {
+	public static ArrayList getAll(Connexion c) throws BizException {
 		ResultSet rs = null;
-		ArrayList<Utilisateur> result = null;
+		ArrayList result = null;
 		try {
 			statementSelectAll(c);
 			rs = selectAll.executeQuery();
-			result = new ArrayList<Utilisateur>();
+			result = new ArrayList();
 			rs.beforeFirst();
 			while (rs.next()) {
 				Utilisateur t = new Utilisateur();

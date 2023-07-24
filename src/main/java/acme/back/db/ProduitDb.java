@@ -28,9 +28,7 @@ public class ProduitDb {
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
 		"SELECT CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX, STIMESTAMP FROM produit " + 
-		"WHERE CODE_PRODUIT = ? ",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE); 
+		"WHERE CODE_PRODUIT = ? " ); 
  	}
 	private static void statementUpdateByKey(Connexion c) throws SQLException {
 		updateByKey = c.getConnection().prepareStatement(
@@ -38,24 +36,18 @@ public class ProduitDb {
 		"SET 		LIBELLE_PRODUIT = ?, " +  
 		"DESCRIPTION = ?, " +  
 		"PRIX = ? " + 
-		"WHERE CODE_PRODUIT = ? ",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE); 
+		"WHERE CODE_PRODUIT = ? "); 
 	}
 	private static void statementInsert(Connexion c) throws SQLException {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO produit " + 
 		"(CODE_PRODUIT, LIBELLE_PRODUIT, DESCRIPTION, PRIX) " + 
-		"values(?, ?, ?, ?)",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE);
+		"values(?, ?, ?, ?)");
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM produit " + 
-		"WHERE CODE_PRODUIT = ? ",
-		ResultSet.TYPE_SCROLL_SENSITIVE, 
-		ResultSet.CONCUR_UPDATABLE); 
+		"WHERE CODE_PRODUIT = ? "); 
 	}
 	public static int deleteByKey(Connexion c, Produit t) throws BizException {
 		ResultSet rs = null;
