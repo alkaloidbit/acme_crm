@@ -243,6 +243,7 @@ public int createClient(ClientBean cb, Connexion con) throws BizException {
 			throw be;
 		}
 	}
+
 	private Client clientBeanToClient(ClientBean cb) {
 		Client result = new Client();
 		result.setCodeClient(cb.getCodeClient());
