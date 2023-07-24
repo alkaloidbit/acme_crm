@@ -9,6 +9,11 @@ import java.util.Date;
 
 public class Utilitaire {
 
+	public static Date getDateAmericaineSansTiret(String date) throws BizException {
+		try {
+			return new Date(date.replace('-', '/'));
+		} catch (Exception e) { throw new BizException("Wrong date format."); }
+	}
 	public static Date getDateAmericaine(String date) throws BizException {
 		try {
 			return new Date(date.substring(6, 10) + "/" + date.substring(3, 5) + "/" + date.substring(0, 2));
@@ -18,7 +23,10 @@ public class Utilitaire {
 	public static Date getDateEuropeenne(String date) throws BizException {
 		try {
 			return new Date(date.substring(8, 10) + "/" + date.substring(5, 7) + "/" + date.substring(0, 3));
-		} catch (Exception e) { throw new BizException("Wrong date format."); }
+			
+		} catch (Exception e) {
+			throw new BizException("Wrong date format.");
+		}
 	}
 	
 	public static String getDateEuropeenne(Date date) throws BizException {
