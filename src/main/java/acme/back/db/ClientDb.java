@@ -21,7 +21,6 @@ public class ClientDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-
 		"SELECT CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, STIMESTAMP FROM client",
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE);
