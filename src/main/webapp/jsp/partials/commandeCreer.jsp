@@ -1,12 +1,32 @@
 <%@ page contentType="text/html; charset=iso-8859-1"
 		 language="java"
 	 	 import="java.util.ArrayList, acme.front.CommandeBean, acme.util.Utilitaire, java.util.Date, acme.front.ProduitBean"
-		 errorPage="" %>
+		 errorPage="" 
+%>
 
 <% 	
+	String msg = (String)request.getSession().getAttribute("erreur");
 	ArrayList<ProduitBean> al = (ArrayList<ProduitBean>)request.getSession().getAttribute("produits");
 	int taille = al.size();
 %>
+<script type="text/javascript" src="./jsp/mspr.js" type="text/javascript"></script>
+<script type="text/javascript">
+function erreur() {	if ("<%=msg%>" != "null" && "<%=msg%>" != "") { alert("<%=msg%>"); }}
+function verification() {
+	if (isNull(window.document.forms[0].codeClient.value)) {
+		window.document.forms[0].codeClient.focus();
+		alert("Champ vide");
+		return false;
+	}
+	if (isNull(window.document.forms[0].dateCommande.value)) {
+		window.document.forms[0].dateCommande.focus();
+		alert("Champ vide");
+		return false;
+	} 
+	return true;
+}
+</script>
+<body onload="erreur()">
 <form methode=post action="Commande">
 <div class="card">
 	<div class="card-header">
@@ -55,9 +75,9 @@
 	</div>
 	<!-- /.card-body -->
 </div>
-		<button name="parametre" value="enregistrer" type="submit" class="btn btn-primary">Enregistrer</button>
-		<!-- <a class="btn btn-primary" role="button" href="./Commande?parametre=enregistrer">Enregistrer</a> -->
+		<button name="parametre" value="enregistrer" type="submit" class="btn btn-primary" onclick="return verification()">Enregistrer</button>
 		<a class="btn btn-primary" role="button" href="./Commande?parametre=annuler">Annuler</a>
 </form>
+</body>
 <!-- /.card -->
 
