@@ -29,6 +29,7 @@ public class ClientDb {
 
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
+
 		"SELECT CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, STIMESTAMP FROM client " + 
 		"WHERE CODE_CLIENT = ? ",
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
@@ -60,6 +61,7 @@ public class ClientDb {
 		"WHERE CODE_CLIENT = ? ",
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE); 
+
 	}
 	public static int deleteByKey(Connexion c, Client t) throws BizException {
 		ResultSet rs = null;
