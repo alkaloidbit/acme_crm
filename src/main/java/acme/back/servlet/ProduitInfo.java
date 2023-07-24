@@ -40,7 +40,11 @@ public class ProduitInfo extends HttpServlet {
         // Envoyer le détails à la jsp
 
 		request.setAttribute("page_name", "Nos produits");
+<<<<<<< HEAD
 		request.setAttribute("page_content", "produit_details");
+=======
+       
+>>>>>>> 507a646 (Update chaine Produit)
         // Rediriger vers la page
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 	}

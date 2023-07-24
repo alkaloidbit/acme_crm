@@ -20,6 +20,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 public class ProduitModif extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -49,7 +50,6 @@ public class ProduitModif extends HttpServlet {
 				
 				// Mise à jour
 				if(choice.equals("update")) {
-
 					request.setAttribute("page_name", "Modification de produit");
 					request.setAttribute("page_content", "produit_modif");
 					getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
@@ -155,6 +155,7 @@ public class ProduitModif extends HttpServlet {
 				e.printStackTrace();
 				String errorMessage = "Veuillez vérifier que les champs sont correctement renseignés et que le code produit n'est pas déjà utilisé par ailleurs";
 				request.setAttribute("errorMessage", errorMessage);
+
 				request.setAttribute("page_name", "Table produits");
 				request.setAttribute("page_content", "content_datatable_produits");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
@@ -179,6 +180,7 @@ public class ProduitModif extends HttpServlet {
             || description == null || description.isEmpty()
             || prixStr == null || prixStr.isEmpty()) {
             request.setAttribute("errorMessage", "Tous les champs doivent être renseignés.");
+
 			request.setAttribute("page_content", "produit_modif");
             request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
             return null; 
@@ -200,7 +202,6 @@ public class ProduitModif extends HttpServlet {
         if(requestType.equals("update")) {
             timestampStr = echapInput(timestampStr);
         }
-
 
         try {
             float prix = Float.parseFloat(prixStr);
@@ -226,7 +227,6 @@ public class ProduitModif extends HttpServlet {
             return null;
         } catch (IllegalArgumentException e) {
             request.setAttribute("errorMessage", "Date de création invalide");
-
 			request.setAttribute("page_content", "produit_modif");
             request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 

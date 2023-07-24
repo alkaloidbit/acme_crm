@@ -187,5 +187,8 @@ public class ProduitService {
 		result.setStimestamp(p.getStimestamp());
 		return result;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 507a646 (Update chaine Produit)
 }
