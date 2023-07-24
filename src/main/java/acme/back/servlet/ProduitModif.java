@@ -136,7 +136,7 @@ public class ProduitModif extends HttpServlet {
 				e.printStackTrace();
 				String errorMessage = "Vérifiez que les champs sont correctement renseignés et qu'il n'a pas été modifié récemment";
 				request.setAttribute("errorMessage", errorMessage);
-				request.setAttribute("page_content", "content_datatable_produits");
+				request.setAttribute("page_content", "produit_modif");
 				request.setAttribute("page_name", "Table produits");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 			}
@@ -160,7 +160,7 @@ public class ProduitModif extends HttpServlet {
 				String errorMessage = "Veuillez vérifier que les champs sont correctement renseignés et que le code produit n'est pas déjà utilisé par ailleurs";
 				request.setAttribute("errorMessage", errorMessage);
 				request.setAttribute("page_name", "Table produits");
-				request.setAttribute("page_content", "content_datatable_produits");
+				request.setAttribute("page_content", "produit_ajout");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 			}
 			
@@ -184,7 +184,12 @@ public class ProduitModif extends HttpServlet {
             || description == null || description.isEmpty()
             || prixStr == null || prixStr.isEmpty()) {
             request.setAttribute("errorMessage", "Tous les champs doivent être renseignés.");
-			request.setAttribute("page_content", "produit_modif");
+            if(requestType.equals("update")) {
+            	request.setAttribute("page_content", "produit_modif");
+            }
+            else{
+            	request.setAttribute("page_content", "produit_ajout");
+            }
             request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 
             return null; 
@@ -192,7 +197,12 @@ public class ProduitModif extends HttpServlet {
         if(requestType.equals("update")) {
         	if (timestampStr == null || timestampStr.isEmpty()) {
                 request.setAttribute("errorMessage", "Date de création invalide");
-    			request.setAttribute("page_content", "produit_modif");
+                if(requestType.equals("update")) {
+                	request.setAttribute("page_content", "produit_modif");
+                }
+                else{
+                	request.setAttribute("page_content", "produit_ajout");
+                }
                 request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
         		return null; 
         	}
@@ -225,13 +235,24 @@ public class ProduitModif extends HttpServlet {
             return produit;
         } catch (NumberFormatException e) {
             request.setAttribute("errorMessage", "Veuillez vérifier que le champs prix est bien renseigné");
-			request.setAttribute("page_content", "produit_modif");
+            
+            if(requestType.equals("update")) {
+            	request.setAttribute("page_content", "produit_modif");
+            }
+            else{
+            	request.setAttribute("page_content", "produit_ajout");
+            }
             request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 
             return null;
         } catch (IllegalArgumentException e) {
             request.setAttribute("errorMessage", "Date de création invalide");
-			request.setAttribute("page_content", "produit_modif");
+            if(requestType.equals("update")) {
+            	request.setAttribute("page_content", "produit_modif");
+            }
+            else{
+            	request.setAttribute("page_content", "produit_ajout");
+            }
             request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 
             return null;

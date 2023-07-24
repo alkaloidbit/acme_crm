@@ -4,7 +4,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <img src="resources/images/logo_white_acme.png" alt="Acme Station Logo" class="brand-image img-rounded elevation-3" style="opacity: .8">
+      <img src="/resources/images/logo_white_acme.png" alt="Acme Station Logo" class="brand-image img-rounded elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Station v1.0</span>
     </a>
 
@@ -63,7 +63,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/MSPR/Produits" class="nav-link">
+            <a href="<%=request.getContextPath()%>/Produits" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Produit

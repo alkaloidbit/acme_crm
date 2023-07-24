@@ -28,13 +28,13 @@
 					<td><%= Math.round(pbs.get(i).getPrix()*100.0)/100.0 %></td>
 					<td><%= pbs.get(i).getStimestamp() %></td>
 	    			<td>
-						<a class="btn btn-success me-2 detailsProduit" href="/MSPR/Produit/info?index=<%=i%>">
+						<a class="btn btn-success me-2 detailsProduit" href="<%=request.getContextPath()%>/Produit/info?index=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
-						<a class="btn btn-info me-2 modifProduit"  href="/MSPR/Produit/modification?choice=update&index=<%=i%>">
+						<a class="btn btn-info me-2 modifProduit"  href="<%=request.getContextPath()%>/Produit/modification?choice=update&index=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
-						<a class="btn btn-danger supprProduit" href="/MSPR/Produit/modification?choice=delete&index=<%=i%>">
+						<a class="btn btn-danger supprProduit" href="<%=request.getContextPath()%>/Produit/modification?choice=delete&index=<%=i%>">
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>
@@ -49,9 +49,7 @@
 				<th>Prix</th>
 				<th>Date de création</th>
     			<th>
-					<a class="btn btn-info me-2 modifProduit"  href="/MSPR/Produit/modification?choice=create">
-						<i class="fas fa-trash"></i>
-					</a>
+    				<a class="btn btn-primary" role="button" href="<%=request.getContextPath()%>/Produit/modification?choice=create">Ajouter un produit</a>
 				</th>
 			</tr>
 			</tfoot>
