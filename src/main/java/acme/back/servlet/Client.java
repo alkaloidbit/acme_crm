@@ -82,6 +82,7 @@ public class Client extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 			HttpSession session = (HttpSession) request.getSession();
 		try {
 
@@ -146,7 +147,6 @@ public class Client extends HttpServlet {
 	}
 
 	@Override
-
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 			HttpSession session = (HttpSession) request.getSession();
