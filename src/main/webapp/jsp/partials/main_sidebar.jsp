@@ -67,7 +67,6 @@
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Produit
-<<<<<<< HEAD
               </p>
             </a>
           </li>
@@ -76,8 +75,6 @@
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Utilisateurs
-=======
->>>>>>> f08f18f (Gestion des boutons/suppression des pages inutilisées/modif des liens (/MSRP/..... --> ./)
               </p>
             </a>
           </li>

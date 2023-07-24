@@ -1,7 +1,6 @@
 package acme.front;
 
 import java.util.Comparator;
-
 public class ComparateurCommandeBean implements Comparator<CommandeBean> {
 	
 	private static String critere = "";

@@ -60,7 +60,6 @@ public class ClientDb {
 		"WHERE CODE_CLIENT = ? ",
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE); 
-
 	}
 	public static int deleteByKey(Connexion c, Client t) throws BizException {
 		ResultSet rs = null;
