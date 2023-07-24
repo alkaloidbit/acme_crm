@@ -49,6 +49,7 @@ public class ProduitModif extends HttpServlet {
 				
 				// Mise à jour
 				if(choice.equals("update")) {
+
 					request.setAttribute("page_name", "Modification de produit");
 					request.setAttribute("page_content", "produit_modif");
 					getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
@@ -136,7 +137,6 @@ public class ProduitModif extends HttpServlet {
 				request.setAttribute("page_name", "Table produits");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 			}
-
 		}
 		// Ajout
 		else if(choice.equals("create")) {
@@ -186,6 +186,7 @@ public class ProduitModif extends HttpServlet {
         if(requestType.equals("update")) {
         	if (timestampStr == null || timestampStr.isEmpty()) {
                 request.setAttribute("errorMessage", "Date de création invalide");
+
     			request.setAttribute("page_content", "produit_modif");
                 request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
         		return null; 
@@ -225,6 +226,7 @@ public class ProduitModif extends HttpServlet {
             return null;
         } catch (IllegalArgumentException e) {
             request.setAttribute("errorMessage", "Date de création invalide");
+
 			request.setAttribute("page_content", "produit_modif");
             request.getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 
