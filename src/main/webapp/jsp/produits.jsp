@@ -17,19 +17,14 @@
 
 <!-- Datatables -->
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
 
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
-<script language="javascript">
-function loadGauche() {
-	parent.frames['leftFrame'].window.location='jsp/gauche.jsp';
-	return true;
-}
-</script>
-</script>
 </head>
-<body onload="loadGauche()">
+<body>
   <div class="wrapper">
     <%@ include file="partials/navbar.jsp"%>
     <%@ include file="partials/main_sidebar.jsp"%>
@@ -50,6 +45,12 @@ function loadGauche() {
 <script src="resources/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables -->
 <script src="resources/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
 <!-- AdminLTE App -->
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
 <script>
@@ -58,15 +59,6 @@ function loadGauche() {
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
   });
 </script>
 </body>
