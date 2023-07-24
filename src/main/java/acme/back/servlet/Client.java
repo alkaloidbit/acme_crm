@@ -144,44 +144,6 @@ public class Client extends HttpServlet {
 	}
 
 	@Override
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-			HttpSession session = (HttpSession) request.getSession();
-		try {
-			ClientBean cb = new ClientBean();
-			cb.setCodeClient(request.getParameter("code_client"));
-			cb.setNom(request.getParameter("nom"));
-			cb.setPrenom(request.getParameter("prenom"));
-			cb.setAdresse(request.getParameter("adresse"));
-			cb.setCodePostal(request.getParameter("code_postal"));
-			cb.setVille(request.getParameter("ville"));
-			System.out.println(cb);
-			int res = ClientService.getService().createClient(cb);
-
-			if (res == 1) {
-				request.setAttribute("msg", "Mise a jour Effectuée !");
-			} else {
-				request.setAttribute("error", "Probleme durant la Mise a jour");
-			}
-
-			System.out.println("res :" + res);
-			ArrayList<ClientBean> clients = ClientService.getService().getAllClients();
-			session.setAttribute("clients", clients);
-			request.setAttribute("page_name", "Nos clients");
-			request.setAttribute("page_content", "clientTable");
-			this.getServletContext().getRequestDispatcher("/jsp/client.jsp").forward(request, response);
-		} catch (BizException be) {
-			try {
-				be.printStackTrace();
-				session.setAttribute("erreur", be.getMessage());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		}
-	}
-
-	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				HttpSession session = (HttpSession) request.getSession();
 		try {
