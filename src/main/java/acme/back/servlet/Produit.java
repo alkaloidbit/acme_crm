@@ -38,7 +38,11 @@ public class Produit extends HttpServlet {
 	
 		HttpSession session = (HttpSession)request.getSession();
 		try {
-			ArrayList<ProduitBean> prodBeans = new ProduitService().ProductListBean();
+			// POUR TEST
+			AuthentificationBean ab = new AuthentificationBean();
+			ab.setCodeRole("admin");
+			// FIN TEST
+			ArrayList<ProduitBean> prodBeans = new ProduitService().ProductListBean(ab);
 			session.setAttribute("produits", prodBeans);
 		} catch (BizException e) {
 			e.printStackTrace();
@@ -60,6 +64,10 @@ public class Produit extends HttpServlet {
 	@Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
+		// POUR TEST
+		AuthentificationBean ab = new AuthentificationBean();
+		ab.setCodeRole("admin");
+		// FIN TEST
         try {
             int i = Integer.parseInt(request.getParameter("index"));
             System.out.println("produit:" + i);
@@ -68,7 +76,7 @@ public class Produit extends HttpServlet {
 
             int res;
             try {
-                res = ProduitService.getService().deleteProduit(pb);
+                res = ProduitService.getService().deleteProduit(ab, pb);
                 System.out.println("res" + res);
             } catch (Exception e) {
                 e.printStackTrace();

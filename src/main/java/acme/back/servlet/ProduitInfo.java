@@ -25,17 +25,18 @@ public class ProduitInfo extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// PROVISOIRE POUR TEST
+		// POUR TEST
+		AuthentificationBean ab = new AuthentificationBean();
+		ab.setCodeRole("admin");
+		// FIN TEST
+		
 		// Récupérer le code produit
 		int index = Integer.parseInt(request.getParameter("index"));
 		HttpSession session = (HttpSession)request.getSession();
 		ArrayList<ProduitBean> produitbeans = (ArrayList<ProduitBean>)session.getAttribute("produits");
 		ProduitBean produitBean = produitbeans.get(index);			
 		session.setAttribute("produitBean", produitBean);
-		//String codeProduit = request.getParameter("codeProduit");
 
-		// Récupérer le produit concerné
-		
 		
         // Envoyer le détails à la jsp
 
