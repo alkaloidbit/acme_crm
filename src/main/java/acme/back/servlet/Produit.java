@@ -39,8 +39,7 @@ public class Produit extends HttpServlet {
 		HttpSession session = (HttpSession)request.getSession();
 		try {
 			// POUR TEST
-			AuthentificationBean ab = new AuthentificationBean();
-			ab.setCodeRole("admin");
+			AuthentificationBean ab = session.getAttribute("authentification");
 			// FIN TEST
 			ArrayList<ProduitBean> prodBeans = new ProduitService().ProductListBean(ab);
 			session.setAttribute("produits", prodBeans);

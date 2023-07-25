@@ -25,7 +25,7 @@ public class ProduitService {
 		Connexion con = new Connexion();
 		ArrayList<ProduitBean> prodBeans = new ArrayList<ProduitBean>();
 		try {
-			ArrayList<Produit> productList = ProduitDb.getAll(con);
+			ArrayList<Produit> productList = ProduitDb.getAll(user, con);
 			for (Produit produit : productList) {
 				ProduitBean pb = new ProduitBean();
 				pb.setCodeProduit(produit.getCodeProduit());
@@ -53,7 +53,7 @@ public class ProduitService {
 		
 		try {
 			con.beginTransaction();
-			result = deleteProduit(pb, con);
+			result = deleteProduit(user, pb, con);
 			con.endTransaction();
 			return result;
 		} catch (BizException be) {
@@ -63,12 +63,12 @@ public class ProduitService {
 		}
 	}
 	
-	public int deleteProduit(AuthentificationBean utilisateur, ProduitBean pb, Connexion con) throws BizException {
+	public int deleteProduit(AuthentificationBean user, ProduitBean pb, Connexion con) throws BizException {
 		if (user.hasPermissionToDeleteProduct()) {
 			int result = 0;
 			Produit pr = produitBeanToProduit(pb);
 			try {
-				System.out.println("suppression produit = " + ProduitDb.deleteByKey(con, pr));
+				System.out.println("suppression produit = " + ProduitDb.deleteByKey(user, con, pr));
 				return result;
 			} catch (BizException be) {
 				be.printStackTrace();
@@ -80,14 +80,14 @@ public class ProduitService {
 	    }
 	}
 	
-	public int updateProduit(AuthentificationBean utilisateur, ProduitBean pb) throws BizException {
+	public int updateProduit(AuthentificationBean user, ProduitBean pb) throws BizException {
 		
 		int result;
 		Connexion con = new Connexion();
 		
 		try {
 			con.beginTransaction();
-			result = updateProduit(pb, con);
+			result = updateProduit(user, pb, con);
 			con.endTransaction();
 			return result;
 		} catch (BizException be) {
@@ -97,12 +97,12 @@ public class ProduitService {
 		}
 	}
 	
-	public int updateProduit(AuthentificationBean utilisateur, ProduitBean pb, Connexion con) throws BizException {
+	public int updateProduit(AuthentificationBean user, ProduitBean pb, Connexion con) throws BizException {
 		
 		int result = 0;
 		Produit p = produitBeanToProduit(pb);
 		try {
-			System.out.println("modification produit = " + ProduitDb.updateByKey(con, p));
+			System.out.println("modification produit = " + ProduitDb.updateByKey(user, con, p));
 			return result;
 		} catch (BizException be) {
 			be.printStackTrace();
@@ -110,14 +110,14 @@ public class ProduitService {
 		}
 	}
 	
-	public int insertProduit(AuthentificationBean utilisateur, ProduitBean pb) throws BizException {
+	public int insertProduit(AuthentificationBean user, ProduitBean pb) throws BizException {
 		if (user.hasPermissionToCreateProduct()) {
 			int result;
 			Connexion con = new Connexion();
 			
 			try {
 				con.beginTransaction();
-				result = insertProduit(pb, con);
+				result = insertProduit(user, pb, con);
 				con.endTransaction();
 				return result;
 			} catch (BizException be) {
@@ -130,12 +130,12 @@ public class ProduitService {
         }
 	}
 	
-	public int insertProduit(AuthentificationBean utilisateur, ProduitBean pb, Connexion con) throws BizException {
+	public int insertProduit(AuthentificationBean user, ProduitBean pb, Connexion con) throws BizException {
 		if (user.hasPermissionToCreateProduct()) {
 			int result = 0;
-			Produit p = produitBeanToProduit(pb);
+			Produit p = produitBeanToProduit(user, pb);
 			try {
-				System.out.println("ajout produit = " + ProduitDb.insert(con, p));
+				System.out.println("ajout produit = " + ProduitDb.insert(user, con, p));
 				return result;
 			} catch (BizException be) {
 				be.printStackTrace();
@@ -147,13 +147,13 @@ public class ProduitService {
 	}
 	
 	
-	public ProduitBean getProduitByKey(AuthentificationBean utilisateur, ProduitBean pb) throws BizException {
+	public ProduitBean getProduitByKey(AuthentificationBean user, ProduitBean pb) throws BizException {
 		if (user.hasPermissionToReadProduct()) {
 			Connexion con = new Connexion();
 			
 			try {
 				con.beginTransaction();
-				ProduitBean result = getProduitByKey(pb, con);
+				ProduitBean result = getProduitByKey(user, pb, con);
 				con.endTransaction();
 				return result;
 			} catch (BizException be) {
@@ -166,11 +166,11 @@ public class ProduitService {
         }
 	}
 	
-	public ProduitBean getProduitByKey(AuthentificationBean utilisateur, ProduitBean pb, Connexion con) throws BizException {
+	public ProduitBean getProduitByKey(AuthentificationBean user, ProduitBean pb, Connexion con) throws BizException {
 		if (user.hasPermissionToReadProduct()) {
 			Produit p = produitBeanToProduit(pb);
 			try {
-				Produit pNew = ProduitDb.getByKey(con, p);
+				Produit pNew = ProduitDb.getByKey(user, con, p);
 				System.out.println("le produit demandé = " + pNew);
 				return produitToProduitBean(pNew);
 			} catch (BizException be) {
