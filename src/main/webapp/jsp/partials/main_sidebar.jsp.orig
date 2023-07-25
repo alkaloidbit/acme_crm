@@ -1,10 +1,14 @@
-  <%@ page language="java" contentType="text/html; charset=UTF-8" import="acme.front.AuthentificationBean"
+  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
+<<<<<<< HEAD
       <img src="resources/images/AdminLTELogo.png" alt="Acme Station Logo" class="brand-image img-rounded elevation-3" style="opacity: .8">
+=======
+      <img src="/resources/images/logo_white_acme.png" alt="Acme Station Logo" class="brand-image img-rounded elevation-3" style="opacity: .8">
+>>>>>>> main
       <span class="brand-text font-weight-light">Station v1.0</span>
     </a>
 
@@ -58,21 +62,18 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Client
-                <!-- <span class="right badge badge-danger">New</span> -->
+                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
-          <% AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification"); %>
-          <% if(ab.hasPermissionToReadProduct()){ %>
-	          <li class="nav-item">
-	            <a href="<%=request.getContextPath()%>/Produits" class="nav-link">
-	              <i class="nav-icon fas fa-book"></i>
-	              <p>
-	                Produit
-	              </p>
-	            </a>
-	          </li>
-			<%}%> 
+          <li class="nav-item">
+            <a href="<%=request.getContextPath()%>/Produits" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Produit
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="./Authentification?parametre=menuDeconnexion" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>

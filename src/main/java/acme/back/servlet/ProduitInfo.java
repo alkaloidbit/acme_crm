@@ -3,6 +3,7 @@ package acme.back.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import acme.front.AuthentificationBean;
 import acme.front.CommandeBean;
 import acme.front.ProduitBean;
 import jakarta.servlet.ServletException;
@@ -24,18 +25,21 @@ public class ProduitInfo extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
 
-		// PROVISOIRE POUR TEST
+		// Récuperer l'utilisateur loggé
+		AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
+		
 		// Récupérer le code produit
 		int index = Integer.parseInt(request.getParameter("index"));
-		HttpSession session = (HttpSession)request.getSession();
 		ArrayList<ProduitBean> produitbeans = (ArrayList<ProduitBean>)session.getAttribute("produits");
 		ProduitBean produitBean = produitbeans.get(index);			
 		session.setAttribute("produitBean", produitBean);
-		//String codeProduit = request.getParameter("codeProduit");
 
-		// Récupérer le produit concerné
-		
 		
         // Envoyer le détails à la jsp
 

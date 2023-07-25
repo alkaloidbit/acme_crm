@@ -61,7 +61,8 @@ public class UtilisateurBean extends AbstractBean {
 	public void setSTIMESTAMP_UTILISATEUR(Timestamp sTIMESTAMP_UTILISATEUR) {
 		STIMESTAMP_UTILISATEUR = sTIMESTAMP_UTILISATEUR;
 	}
-
+	
+	
 	@Override
 	public String toString() {
 		return "UtilisateurBean [CODE_ROLE=" + CODE_ROLE + ", LIBELLE_ROLE=" + LIBELLE_ROLE + ", STIMESTAMP_ROLE="

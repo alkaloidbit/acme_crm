@@ -26,7 +26,7 @@ public class ClientService {
 
 		try {
 			result = getAllClient(con);
-			System.out.println(result);
+			// System.out.println(result);
 			con.close();
 			return result;
 		} catch (BizException be) {
@@ -134,7 +134,6 @@ public class ClientService {
 			return result;
 		} catch (BizException be) {
 			con.rollBack();
-			be.printStackTrace();
 			throw be;
 		}
 	}
@@ -147,7 +146,6 @@ public class ClientService {
 			result = ClientDb.deleteByKey(con, cm);
 			return result;
 		} catch (BizException be) {
-			be.printStackTrace();
 			throw be;
 		}
 	}
