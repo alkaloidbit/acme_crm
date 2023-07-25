@@ -24,27 +24,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 	String msg = (String)request.getSession().getAttribute("erreur");
 	System.out.println ("msg="+msg);
 %>
-<script language="javascript" src="./jsp/mspr.js" type="text/javascript"></script>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript" src="./jsp/mspr.js"></script>
+<script type="text/javascript">
 function erreur() {
   if ("<%=msg%>" != "null" && "<%=msg%>" != "") { 
     alert("<%=msg%>"); 
   }
 }
-function loadMenu() {
-	parent.frames['leftFrame'].window.location='menu.html';
-	return true;
-}
-function soumet() {
-	if (!isNull(window.document.forms[0].password.value)) {
-		window.document.forms[0].password.value=<%=Utilitaire.getStringMD5(request.getParameter("password"))%>
-		console.log(window.document.forms[0].password.value);
-		console.log("true");
-		return true;
-	}
-	console.log("false");
-	return false;
-}
+
 </script>
 </head>
 <body onload="erreur();" class="hold-transition login-page">
