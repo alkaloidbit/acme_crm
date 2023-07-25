@@ -30,12 +30,12 @@
 					<td><%= pbs.get(i).getStimestamp() %></td>
 	    			<td>
 	    				<% 	if(ab.hasPermissionToReadProduct()){%>
-						<a class="btn btn-success me-2 detailsProduit" href="<%=request.getContextPath()%>/Produit/info?index=<%=i%>">
+						<a class="btn btn-success me-2 detailsProduit" href="<%=request.getContextPath()%>/Produitinfo?index=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
 						<%}%>  
 						<% 	if(ab.hasPermissionToUpdateProduct()){%>
-						<a class="btn btn-info me-2 modifProduit"  href="<%=request.getContextPath()%>/Produit/modification?choice=update&index=<%=i%>">
+						<a class="btn btn-info me-2 modifProduit"  href="<%=request.getContextPath()%>/Produitmodification?choice=update&index=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
 						<%}%>  
@@ -59,7 +59,7 @@
 				<th>Date de création</th>
     			<th>
     			<% 	if(ab.hasPermissionToCreateProduct()){%>
-					<a class="btn btn-primary" role="button" href="<%=request.getContextPath()%>/Produit/modification?choice=create">Ajouter un produit</a>
+					<a class="btn btn-primary" role="button" href="<%=request.getContextPath()%>/Produitmodification?choice=create">Ajouter un produit</a>
 				<%}%>  				
 				</th>
 			</tr>
