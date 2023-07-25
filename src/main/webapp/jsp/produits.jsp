@@ -64,6 +64,9 @@
 
 <script>
     $("#example1").DataTable({
+      "language": {
+        url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json',
+      },
       "ordering": false,
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]

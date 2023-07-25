@@ -42,7 +42,7 @@ function erreur() {
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Connectez vous pour demarrer une session</p>
 
       <form action="Authentification" method="post">
         <div class="input-group mb-3">
@@ -54,7 +54,7 @@ function erreur() {
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control" placeholder="Mot de passe">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -65,35 +65,23 @@ function erreur() {
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
-              <label for="remember">Remember Me</label>
+              <label for="remember">Se souvenir de moi</label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" name="connexion" value="connexion" class="btn btn-primary btn-block">connexion</button>
+            <button type="submit" name="connexion" value="connexion" class="btn btn-primary btn-block">Connexion</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
-      <!--
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-      </div>
-      -->
-      <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="forgot-password.html">J'ai oublié mon mot de passe</a>
       </p>
-      <p class="mb-0">
+      <!--<p class="mb-0">
         <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
+      </p>-->
     </div>
     <!-- /.login-card-body -->
   </div>
@@ -104,7 +92,6 @@ function erreur() {
 
 <!-- jQuery -->
 <script src="resources/AdminLTE/plugins/jquery/jquery.min.js"></script>
-	
 <!-- Bootstrap 4 -->
 <script src="resources/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->

@@ -60,11 +60,23 @@
 <script>
 (function (window, $, swal) {
     $("#example1").DataTable({
+      "dom": 'Bfrtip',
+      "buttons": [
+          {
+            text: 'My button',
+            action: function ( e, dt, node, config ) {
+              window.location.href="Client?action=creation"
+            }
+          }
+      ],
+      "language": {
+        url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json',
+      },
       "ordering": false,
-      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true, "lengthChange": true, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
+  
   $(function () {
     const deleteProduct = function ($link) {
       $link.addClass('text-danger');
@@ -127,7 +139,7 @@
       });
     });
   });
-  })(window, jQuery, swal);
+})(window, jQuery, swal);
 </script>
 </body>
 </html>
