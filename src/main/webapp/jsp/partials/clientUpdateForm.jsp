@@ -10,7 +10,7 @@
 	<div class="card-header">
 		<h3 class="card-title">Formulaire Client</h3>
 	</div>
-		<form method="POST" action="http://localhost:8080/Test/Client?action=update">
+		<form method="POST" action="Client?action=update">
 			<div class="card-body">
 				<div class="form-group">
 					<label for="inputCodeClient">Code Client</label>

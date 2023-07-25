@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4@5.0.15/bootstrap-4.min.css">
 
 <!-- Theme style -->
 <link rel="stylesheet" href="resources/AdminLTE/dist/css/adminlte.min.css">
@@ -58,25 +58,35 @@
 <!-- AdminLTE App -->
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
 <script>
-(function (Window, $, swal) {
+(function (window, $, swal) {
     $("#example1").DataTable({
       "ordering": false,
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
+    /*
     const deleteUser = function ($link) {
 	let deleteUrl = $link.attr('href');
 	return $.ajax({
 	  url: deleteUrl,
 	  method: 'DELETE'
-	  }).then(function(res) {
-	    console.log(res);
-	    $link.closest('tr').fadeOut();
-	    $link.remove();
-	});
-    }
-    $('.btn-delete').on("click", function(e) {
+	  }).then(
+	    function(res) {
+	      console.log(res);
+	      Swal.fire('Suppression effectuée!', '', 'success')
+	      $link.closest('tr').fadeOut();
+	      $link.remove();
+	    },
+	    function(res) {
+	      console.log(res.responseText.resultat);
+	      Swal.fire( res.responseText.resultat, '', 'info')
+	      console.log(res);
+	    }
+	  );
+      };
+
+      $('.btn-delete').on("click", function(e) {
 	e.preventDefault();
 	var $link = $(e.currentTarget);
 	Swal.fire({
@@ -87,16 +97,41 @@
 	  denyButtonText: `Annuler`,
 	}).then(
 	  function (result) {
-	    /* Read more about isConfirmed, isDenied below */
-	    console.log(result);
-	    Swal.fire('Suppression effectuée!', '', 'success')
 	    return deleteUser($link);
 	  },
 	  function () {
-	      console.log("canceled");
 	      Swal.fire('Suppression annulée', '', 'info')
 	  }
 	);
+    });
+    */
+
+    $('.btn-delete').on("click", function(e) {
+      e.preventDefault();
+      var $link = $(e.currentTarget);
+      let deleteUrl = $link.attr('href');
+      Swal.fire({
+	title: 'Etes-vous sur de vouloir supprimer ce client ?',
+	showCancelButton: true,
+	confirmButtonText: 'Confirmer',
+	showLoaderOnConfirm: true,
+	preConfirm: () => {
+	  var myInit = { method: 'DELETE'};
+	  return fetch(deleteUrl, myInit)
+	    .then((response) => response.json())
+	    .then((data) => {
+	      console.log(data);
+	    });
+	},
+	allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+	console.log
+	if (result.isConfirmed) {
+	  Swal.fire({
+	    title: result.value
+	  })
+	}
+      })
     });
   })(window, jQuery, swal);
 </script>

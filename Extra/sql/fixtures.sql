@@ -2,13 +2,15 @@ use mspr;
 -- Insertion de données dans la table `role`
 INSERT INTO `role` (`CODE_ROLE`, `LIBELLE_ROLE`)
 VALUES ('R001', 'Admin'),
-       ('R002', 'Utilisateur');
+       ('R002', 'Utilisateur'),
+        ('R003', 'Commercial'  );
 
 -- Insertion de données dans la table `utilisateur`
 INSERT INTO `utilisateur` (`LOGIN`, `PSW`, `CODE_ROLE`)
 VALUES ('admin', 'password123', 'R001'),
        ('user1', 'pass456', 'R002'),
-       ('user2', 'pass789', 'R002');
+       ('user2', 'pass789', 'R003');
+        
 
 UPDATE utilisateur SET PSW = MD5('password123') WHERE LOGIN = 'admin';
 
