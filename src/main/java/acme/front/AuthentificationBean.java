@@ -43,27 +43,27 @@ public class AuthentificationBean extends AbstractBean {
 	}*/
 
 	public boolean hasPermissionToReadProduct() {
-        return "admin".equals(codeRole) || "utilisateur".equals(codeRole) || "commercial".equals(codeRole);
+        return "R001".equals(codeRole) || "R002".equals(codeRole) || "R003".equals(codeRole);
     }
 
 	public boolean hasPermissionToCreateProduct() {
-	    return "admin".equals(codeRole) || "utilisateur".equals(codeRole);
+	    return "R001".equals(codeRole) || "R002".equals(codeRole);
 	}
 	
 	
 	public boolean hasPermissionToUpdateProduct() {
-	    return "admin".equals(codeRole) || "utilisateur".equals(codeRole);
+	    return "R001".equals(codeRole) || "R002".equals(codeRole);
 	}
 	
 	
 	public boolean hasPermissionToDeleteProduct() {
-	    return "ADMIN".equals(CODE_ROLE) || "UTILISATEUR".equals(CODE_ROLE);
+	    return "R001".equals(codeRole) || "R002".equals(codeRole);
 	}
 		
 	@Override
-	public String toString() {
-		return "AuthentificationBean [login=" + login + ", password=" + password + ", codeRole=" + codeRole
-				/*+ ", isAthenticate=" + isAuthenticate*/ + "]";
+	public String toString() {		
+		return "AuthentificationBean [login=" + login + ", password=" + password + ", codeRole=" + codeRole /* + ", isAthenticate=" + isAuthenticate*/ + "]";
+				
 	}
 
 }

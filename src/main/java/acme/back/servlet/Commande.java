@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import acme.back.service.CommandeService;
 import acme.back.service.ProduitService;
+import acme.front.AuthentificationBean;
 import acme.front.CommandeBean;
 import acme.front.DetailCommandeBean;
 import acme.front.ProduitBean;
@@ -85,7 +86,8 @@ public class Commande extends HttpServlet {
 			if ("creer".equals(request.getParameter("parametre")))  {
 				System.out.println("Créer");
 				request.setAttribute("page_content", "commandeCreer");
-				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean();
+				AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
+				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean(ab);
 				session.setAttribute("produits", produits);
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);
