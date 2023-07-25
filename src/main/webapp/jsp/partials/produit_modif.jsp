@@ -8,7 +8,7 @@
 		<h3 class="card-title">Modification d'un produit</h3>
 	</div>
 
-	<form action="<%=request.getContextPath()%>/Produit/modification" method="post">
+	<form action="<%=request.getContextPath()%>/Produitmodification" method="post">
 		<div class="card-body">
 			<div class="form-group">
 				<label for="code_produit">Code produit :</label>
