@@ -102,7 +102,7 @@ public class Commande extends HttpServlet {
 			//Bouton modifier
 			if ("modifier".equals(request.getParameter("parametre")))  {
 				System.out.println("modifier");
-				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean();
+				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean((AuthentificationBean)session.getAttribute("authentification"));
 				session.setAttribute("produits", produits);
 				int i = Integer.parseInt(request.getParameter("valeur"));
 				System.out.println("Choix commande="+i);
