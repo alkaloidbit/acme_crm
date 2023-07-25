@@ -3,6 +3,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import acme.back.db.ProduitDb;
+import acme.front.AuthentificationBean;
 import acme.util.BizException;
 import acme.util.Connexion;
 

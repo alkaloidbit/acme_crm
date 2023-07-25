@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import acme.back.metier.Produit;
+import acme.front.AuthentificationBean;
 import acme.util.BizException;
 import acme.util.Connexion;
 
@@ -83,8 +84,9 @@ public class ProduitDb {
 				throw new BizException(sqle.getMessage());
 			}
 		}else {
-            System.out.println("Accès refusé pour supprimer un produit.");
+			throw new BizException("Accès refusé pour supprimer un produit.");
         }
+
 	}
 	
 	public static int insert(AuthentificationBean user, Connexion c, Produit t) throws BizException {
@@ -111,7 +113,7 @@ public class ProduitDb {
 			}
 		}
 		else {
-            System.out.println("Accès refusé pour créer un produit.");
+			throw new BizException("Accès refusé pour créer un produit.");
         }
 	}
 	
@@ -143,7 +145,7 @@ public class ProduitDb {
 				throw new BizException(sqle.getMessage());
 			}
         }else {
-            System.out.println("Accès refusé pour mettre à jour un produit.");
+        	throw new BizException("Accès refusé pour mettre à jour un produit.");
         }
 	}
 	
@@ -170,7 +172,7 @@ public class ProduitDb {
 				throw new BizException(sqle.getMessage());
 			}
 		}else {
-            System.out.println("Accès refusé pour récupérer un produit.");
+			throw new BizException("Accès refusé pour récupérer un produit.");
         }
 	}
 	
@@ -198,7 +200,7 @@ public class ProduitDb {
 				throw new BizException(sqle.getMessage());
 			}		
 		}else {
-	        System.out.println("Accès refusé pour récupérer les produits.");
+			throw new BizException("Accès refusé pour récupérer les produits.");
 	    }
 	}
 }

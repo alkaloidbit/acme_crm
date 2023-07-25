@@ -38,9 +38,9 @@ public class Produit extends HttpServlet {
 	
 		HttpSession session = (HttpSession)request.getSession();
 		try {
-			// POUR TEST
-			AuthentificationBean ab = session.getAttribute("authentification");
-			// FIN TEST
+			// Récuperer l'utilisateur loggé
+			AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
+			// Récupération liste des produits
 			ArrayList<ProduitBean> prodBeans = new ProduitService().ProductListBean(ab);
 			session.setAttribute("produits", prodBeans);
 		} catch (BizException e) {
@@ -63,10 +63,8 @@ public class Produit extends HttpServlet {
 	@Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-		// POUR TEST
-		AuthentificationBean ab = new AuthentificationBean();
-		ab.setCodeRole("admin");
-		// FIN TEST
+		// Récuperer l'utilisateur loggé
+		AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
         try {
             int i = Integer.parseInt(request.getParameter("index"));
             System.out.println("produit:" + i);

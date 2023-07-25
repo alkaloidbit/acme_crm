@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import acme.back.service.CommandeService;
 import acme.back.service.ProduitService;
 import acme.util.Utilitaire;
+import acme.front.AuthentificationBean;
 import acme.front.CommandeBean;
 import acme.front.ProduitBean;
 import acme.util.BizException;
@@ -36,6 +37,7 @@ public class ProduitModif extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// Redirection vers les pages d'ajout ou de mise à jour
+		
 		String choice = request.getParameter("choice");
 		HttpSession session = (HttpSession)request.getSession();
 		session.setAttribute("choice", choice);
@@ -102,12 +104,12 @@ public class ProduitModif extends HttpServlet {
 
 		// Mise à jour ou Ajout
 		
-		// POUR TEST
-		AuthentificationBean ab = new AuthentificationBean();
-		ab.setCodeRole("admin");
-		// FIN TEST
-		
 		HttpSession session = (HttpSession)request.getSession();
+		// Récuperer l'utilisateur loggé
+		AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
+		System.out.println("utilisateur loggé");
+		System.out.println(ab);
+		
 		ArrayList<ProduitBean> produitbeans = (ArrayList<ProduitBean>) session.getAttribute("produits");
 		String code_produit = request.getParameter("code_produit");
 		String libelle_produit = request.getParameter("libelle_produit");
@@ -128,7 +130,7 @@ public class ProduitModif extends HttpServlet {
 				String codeProd = pb.getCodeProduit();
 		        for (ProduitBean prodb : produitbeans) {
 		            if (prodb.getCodeProduit().equals(codeProd)) {
-		            	ProduitBean pbUpdated = ProduitService.getService().getProduitByKey(pb);
+		            	ProduitBean pbUpdated = ProduitService.getService().getProduitByKey(ab, pb);
 		            	prodb.setCodeProduit(pbUpdated.getCodeProduit());
 		            	prodb.setLibelleProduit(pbUpdated.getLibelleProduit());
 		            	prodb.setDescription(pbUpdated.getDescription());
@@ -156,7 +158,7 @@ public class ProduitModif extends HttpServlet {
 			ProduitBean pb = createProduitBeanFromInputs(code_produit, libelle_produit, description, prixStr, tsStr, "create", request, response);
 			try {
 				// Ajout à la base de données
-				ps.insertProduit(pb);
+				ps.insertProduit(ab, pb);
 				// Récupération du produit ajouté à la base; ce qui permettra d'obtenir le timestamp
 				ProduitBean pbUpdated = ProduitService.getService().getProduitByKey(ab, pb);
 				// Ajout à la liste des produits affichése
