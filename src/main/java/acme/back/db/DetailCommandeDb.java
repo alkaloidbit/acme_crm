@@ -17,6 +17,7 @@ public class DetailCommandeDb {
 	private static PreparedStatement insert;
 	private static PreparedStatement deleteByKey;
 	private static PreparedStatement selectByIdCommande;
+	private static PreparedStatement deleteByIdCommande;
 
 	public DetailCommandeDb(){}
 
@@ -66,6 +67,27 @@ public class DetailCommandeDb {
 		ResultSet.TYPE_SCROLL_SENSITIVE, 
 		ResultSet.CONCUR_UPDATABLE); 
  	}
+	private static void statementDeleteByIdCommande(Connexion c) throws SQLException {
+		deleteByIdCommande = c.getConnection().prepareStatement(
+		"DELETE FROM detail_commande " + 
+		"WHERE ID_COMMANDE = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+		ResultSet.CONCUR_UPDATABLE); 
+	}
+	public static int deleteByIdCommande(Connexion c, DetailCommande t) throws BizException {
+		ResultSet rs = null;
+		int result;
+		try {
+			statementDeleteByIdCommande(c);
+			deleteByIdCommande.setInt(1, t.getIdCommande());
+			result = deleteByIdCommande.executeUpdate();
+			return result;
+		}
+		catch(SQLException sqle) {
+			System.out.println(sqle);
+			throw new BizException(sqle.getMessage());
+		}
+	}
 	public static ArrayList<DetailCommande> getByIdCommande(Connexion c, DetailCommande t) throws BizException {
 		ResultSet rs = null;
 		ArrayList<DetailCommande> result;
