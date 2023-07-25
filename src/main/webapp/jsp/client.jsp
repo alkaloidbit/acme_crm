@@ -65,74 +65,68 @@
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-    /*
-    const deleteUser = function ($link) {
-	let deleteUrl = $link.attr('href');
-	return $.ajax({
-	  url: deleteUrl,
-	  method: 'DELETE'
-	  }).then(
-	    function(res) {
-	      console.log(res);
-	      Swal.fire('Suppression effectuée!', '', 'success')
-	      $link.closest('tr').fadeOut();
-	      $link.remove();
-	    },
-	    function(res) {
-	      console.log(res.responseText.resultat);
-	      Swal.fire( res.responseText.resultat, '', 'info')
-	      console.log(res);
-	    }
-	  );
-      };
+  $(function () {
+    const deleteProduct = function ($link) {
+      $link.addClass('text-danger');
+      $link.find('.fas')
+        .removeClass('fa-trash')
+        .addClass('fa-spinner')
+        .addClass('fa-spin');
 
-      $('.btn-delete').on("click", function(e) {
-	e.preventDefault();
-	var $link = $(e.currentTarget);
-	Swal.fire({
-	  title: 'Etes-vous sur de vouloir supprimer ce client ?',
-	  showDenyButton: true,
-	  showCancelButton: true,
-	  confirmButtonText: 'Confirmer',
-	  denyButtonText: `Annuler`,
-	}).then(
-	  function (result) {
-	    return deleteUser($link);
-	  },
-	  function () {
-	      Swal.fire('Suppression annulée', '', 'info')
-	  }
-	);
-    });
-    */
+      let deleteUrl = $link.attr('href');
+      let $row = $link.closest('tr');
+
+      $.ajax({
+        url: deleteUrl,
+        method: 'DELETE',
+        dataType: 'json',
+        success: function(response) {
+          if (response.status === 'ok') {
+            // Suppression réussie
+            $row.fadeOut(function () {
+              $row.remove();
+            });
+            Swal.fire('Suppression effectuée!', '', 'success');
+          } else {
+            // Suppression échouée
+            $link.removeClass('text-danger');
+            $link.find('.fas')
+              .removeClass('fa-spinner')
+              .removeClass('fa-spin')
+              .addClass('fa-trash');
+            Swal.fire('Erreur de suppression', response.resultat, 'info');
+          }
+        },
+        error: function(xhr, status, error) {
+          // Erreur lors de la requête AJAX
+          $link.removeClass('text-danger');
+          $link.find('.fas')
+            .removeClass('fa-spinner')
+            .removeClass('fa-spin')
+            .addClass('fa-trash');
+          Swal.fire('Erreur', 'Une erreur est survenue lors de la suppression.', 'error');
+        }
+      });
+    };
 
     $('.btn-delete').on("click", function(e) {
       e.preventDefault();
       var $link = $(e.currentTarget);
-      let deleteUrl = $link.attr('href');
       Swal.fire({
-	title: 'Etes-vous sur de vouloir supprimer ce client ?',
-	showCancelButton: true,
-	confirmButtonText: 'Confirmer',
-	showLoaderOnConfirm: true,
-	preConfirm: () => {
-	  var myInit = { method: 'DELETE'};
-	  return fetch(deleteUrl, myInit)
-	    .then((response) => response.json())
-	    .then((data) => {
-	      console.log(data);
-	    });
-	},
-	allowOutsideClick: () => !Swal.isLoading()
+        title: 'Êtes-vous sûr de vouloir supprimer ce produit ?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Confirmer',
+        denyButtonText: 'Annuler',
       }).then((result) => {
-	console.log
-	if (result.isConfirmed) {
-	  Swal.fire({
-	    title: result.value
-	  })
-	}
-      })
+        if (result.isConfirmed) {
+          deleteProduct($link);
+        } else if (result.isDenied) {
+          Swal.fire('Suppression annulée', '', 'info');
+        }
+      });
     });
+  });
   })(window, jQuery, swal);
 </script>
 </body>
