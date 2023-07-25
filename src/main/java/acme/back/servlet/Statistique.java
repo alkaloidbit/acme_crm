@@ -5,18 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import acme.util.Connexion;
 
 /**
  * Servlet implementation class Statistique
  */
-@WebServlet("/Statistique")
 public class Statistique extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -42,9 +42,9 @@ public class Statistique extends HttpServlet {
 			Connexion c = new Connexion();
 			stmt = c.getConnection().prepareStatement(
 					"select YEAR(c.`DATE`) as year, sum(p.PRIX*dc.quantite) as ca from produit p " +
-							"inner join detail_commande dc " +
+							" inner join detail_commande dc " +
 							" on dc.CODE_PRODUIT = p.CODE_PRODUIT" +
-							"inner join commande c" +
+							" inner join commande c" +
 							" on c.ID_COMMANDE = dc.ID_COMMANDE" +
 							" GROUP BY YEAR(c.`DATE`)",
 						    ResultSet.TYPE_SCROLL_SENSITIVE,

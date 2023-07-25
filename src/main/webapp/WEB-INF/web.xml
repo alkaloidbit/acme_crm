@@ -54,13 +54,21 @@
 		<servlet-name>ProduitInfo</servlet-name>
 		<url-pattern>/Produit/info</url-pattern>
 	</servlet-mapping>
-		<servlet>
+	<servlet>
 		<servlet-name>ProduitModif</servlet-name>
 		<servlet-class>acme.back.servlet.ProduitModif</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProduitModif</servlet-name>
 		<url-pattern>/Produit/modification</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Statistique</servlet-name>
+		<servlet-class>acme.back.servlet.Statistique</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Statistique</servlet-name>
+		<url-pattern>/Statistique</url-pattern>
 	</servlet-mapping>
 	<jsp-config>
 		<jsp-property-group>

@@ -14,7 +14,7 @@
 			<div class="card-body">
 				<div class="form-group">
 					<label for="inputCodeClient">Code Client</label>
-					<input type="text" name="code_client" class="form-control" id="inputCodeClient" value="<%=cb.getCodeClient()%>" placeholder="Code Client">
+					<input type="text" name="code_client" disabled="disabled" class="form-control" id="inputCodeClient" value="<%=cb.getCodeClient()%>" placeholder="Code Client">
 				</div>
 				<div class="form-group">
 					<label for="inputNom">Nom</label>
