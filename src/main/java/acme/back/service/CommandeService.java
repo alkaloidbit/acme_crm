@@ -179,6 +179,8 @@ public class CommandeService {
 				result = DetailCommandeDb.insert(con, tmp);
 			}
 			System.out.println("resultat de l'insert=" + result);
+			result = cm.update(con);
+			System.out.println("resultat de l'update=" + result);
 			return result;
 		} catch (BizException be) {
 			be.printStackTrace();

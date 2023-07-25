@@ -20,6 +20,14 @@
 <script type="text/javascript" src="./jsp/mspr.js" type="text/javascript"></script>
 <script type="text/javascript">
 function erreur() {	if ("<%=msg%>" != "null" && "<%=msg%>" != "") { alert("<%=msg%>"); }}
+function enregistrer() {
+	let text = "Enregistrement ?";
+		if (confirm(text) == true) {
+	 	return true;
+	} else {
+		return false;
+	}
+}
 function verification() {
 	if (isNull(window.document.forms[0].codeClient.value)) {
 		window.document.forms[0].codeClient.focus();
@@ -31,7 +39,11 @@ function verification() {
 		alert("Champ vide");
 		return false;
 	} 
-	return true;
+	if (enregistrer()) {
+		return true;
+	} else {
+		return false;
+	}
 }
 </script>
 <body onload="erreur()">
