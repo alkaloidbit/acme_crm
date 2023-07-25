@@ -66,7 +66,7 @@
           <% AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification"); %>
           <% if(ab.hasPermissionToReadProduct()){ %>
 	          <li class="nav-item">
-	            <a href="<%=request.getContextPath()%>/Produits" class="nav-link">
+	            <a href="./Produits" class="nav-link">
 	              <i class="nav-icon fas fa-book"></i>
 	              <p>
 	                Produit
