@@ -26,7 +26,7 @@ public class Authentification extends HttpServlet {
 		//C'est a cela que sert la ligne dans la jsp : <input name="connexion" type="submit" value="connexion"/>
 		try {
 			if ("connexion".equals(request.getParameter("connexion"))) {
-				pageApresErreur = "/login.jsp";
+				pageApresErreur = "/index.jsp";
 				AuthentificationBean ab = new AuthentificationBean();
 				//login
 				ab.setLogin(request.getParameter("login"));

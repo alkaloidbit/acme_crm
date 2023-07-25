@@ -7,17 +7,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${ page_name }</title>
 
-
-  <link rel="icon" type="image/ico" href="mspr.ico" />
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome Icons -->
-<!-- <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css" integrity="sha512-3PN6gfRNZEX4YFyz+sIyTF6pGlQiryJu9NlGhu9LrLMQ7eDjNgudQoFDK3WSNAayeIKc6B8WXXpo4a7HqxjKwg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- Datatables -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
 <!-- Theme style -->
 <!-- <link rel="stylesheet" href="dist/css/adminlte.min.css"> -->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 <script language="javascript">
 function loadGauche() {
@@ -54,6 +54,7 @@ function loadGauche() {
 <!-- AdminLTE App -->
 <!-- <script src="dist/js/adminlte.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -71,5 +72,6 @@ function loadGauche() {
     });
   });
 </script>
+
 </body>
 </html>

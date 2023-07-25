@@ -47,6 +47,12 @@
 <script src="resources/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="resources/AdminLTE/plugins/jszip/jszip.min.js"></script>
+<script src="resources/AdminLTE/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="resources/AdminLTE/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
 <!-- AdminLTE App -->
@@ -54,6 +60,7 @@
 <script>
   $(function () {
     $("#example1").DataTable({
+      "ordering": false,
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');

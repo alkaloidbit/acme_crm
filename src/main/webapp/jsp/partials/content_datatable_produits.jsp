@@ -28,13 +28,13 @@
 					<td><%= Math.round(pbs.get(i).getPrix()*100.0)/100.0 %></td>
 					<td><%= pbs.get(i).getStimestamp() %></td>
 	    			<td>
-						<a class="btn btn-success me-2 detailsProduit" href="/Test/Produit/info?codeProduit=<%=pbs.get(i).getCodeProduit()%>">
+						<a class="btn btn-success me-2 detailsProduit" href="<%=request.getContextPath()%>/Produit/info?index=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
-						<a class="btn btn-info me-2 modifProduit"  href="/Test/Produit/modification?choice=update&index=<%=i%>">
+						<a class="btn btn-info me-2 modifProduit"  href="<%=request.getContextPath()%>/Produit/modification?choice=update&index=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
-						<a class="btn btn-danger supprProduit" href="/Test/Produit/modification?choice=delete&index=<%=i%>">
+						<a class="btn btn-danger supprProduit" href="<%=request.getContextPath()%>/Produit/modification?choice=delete&index=<%=i%>">
 							<i class="fas fa-trash"></i>
 						</a>
 					</td>
@@ -47,13 +47,44 @@
 				<th>Libéllé produit</th>
 				<th>Description</th>
 				<th>Prix</th>
-				<th>Date de création</th>				
+				<th>Date de création</th>
+    			<th>
+    				<a class="btn btn-primary" role="button" href="<%=request.getContextPath()%>/Produit/modification?choice=create">Ajouter un produit</a>
+				</th>
 			</tr>
 			</tfoot>
 		</table>
 	</div>
 	<!-- /.card-body -->
 </div>
+<div hidden="hidden" id="error_message">${errorMessage}</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript">
+  let errorMes = $("#error_message").text();
+  console.log("errorMes : " + errorMes);
+
+  if (errorMes != "") { 
+    toastr["error"](errorMes, "Erreur");
+    toastr.options = {
+      "closeButton": false,
+      "debug": false,
+      "newestOnTop": false,
+      "progressBar": false,
+      "positionClass": "toast-top-center",
+      "preventDuplicates": false,
+      "onclick": null,
+      "showDuration": "300",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    };
+  }
+</script>
 
 <!-- /.card -->
  

@@ -3,8 +3,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="resources/images/logo_white_acme.png" alt="Acme Station Logo" class="brand-image img-rounded elevation-3" style="opacity: .8">
+    <a href="#" class="brand-link">
+      <img src="/resources/images/logo_white_acme.png" alt="Acme Station Logo" class="brand-image img-rounded elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Station v1.0</span>
     </a>
 
@@ -41,37 +41,37 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Dashboard
+                Utilisateur
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Commande?parametre=menuCommande" class="nav-link">
+            <a href="./Commande?parametre=menuCommande" class="nav-link">
               <i class="nav-icon fas fa-file-invoice"></i>
               <p>
-                Commandes
+                Commande
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Client" class="nav-link">
+            <a href="./Client" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Clients
+                Client
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Produits" class="nav-link">
+            <a href="<%=request.getContextPath()%>/Produits" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Catalogue
+                Produit
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/Test/Authentification?parametre=menuDeconnexion" class="nav-link">
+            <a href="./Authentification?parametre=menuDeconnexion" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Déconnexion
