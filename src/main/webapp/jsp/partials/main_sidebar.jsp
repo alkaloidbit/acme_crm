@@ -58,7 +58,7 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Client
-                <span class="right badge badge-danger">New</span>
+                <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>

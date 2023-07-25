@@ -134,7 +134,6 @@ public class ClientService {
 			return result;
 		} catch (BizException be) {
 			con.rollBack();
-			be.printStackTrace();
 			throw be;
 		}
 	}
@@ -147,7 +146,6 @@ public class ClientService {
 			result = ClientDb.deleteByKey(con, cm);
 			return result;
 		} catch (BizException be) {
-			be.printStackTrace();
 			throw be;
 		}
 	}

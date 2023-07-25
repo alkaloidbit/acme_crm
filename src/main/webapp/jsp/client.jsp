@@ -58,7 +58,7 @@
 <!-- AdminLTE App -->
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
 <script>
-  $(function () {
+(function (Window, $, swal) {
     $("#example1").DataTable({
       "ordering": false,
       "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -66,19 +66,14 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     const deleteUser = function ($link) {
-
-	$link.addClass('text-danger');
-	$link.find('.fas')
-	  .removeClass('fa-trash')
-	  .addClass('fa-spinner')
-	  .addClass('fa-spin');
-
 	let deleteUrl = $link.attr('href');
-	let $row = $link.closest('tr');
-	$.ajax({
+	return $.ajax({
 	  url: deleteUrl,
 	  method: 'DELETE'
-	}).then(function() {
+	  }).then(function(res) {
+	    console.log(res);
+	    $link.closest('tr').fadeOut();
+	    $link.remove();
 	});
     }
     $('.btn-delete').on("click", function(e) {
@@ -90,19 +85,20 @@
 	  showCancelButton: true,
 	  confirmButtonText: 'Confirmer',
 	  denyButtonText: `Annuler`,
-	}).then((result) => {
-	  /* Read more about isConfirmed, isDenied below */
-	  if (result.isConfirmed) {
-	    deleteUser($link);
-	    $link.closest('tr').fadeOut();
-	    $link.remove();
+	}).then(
+	  function (result) {
+	    /* Read more about isConfirmed, isDenied below */
+	    console.log(result);
 	    Swal.fire('Suppression effectuée!', '', 'success')
-	  } else if (result.isDenied) {
-	    Swal.fire('Suppression annulée', '', 'info')
+	    return deleteUser($link);
+	  },
+	  function () {
+	      console.log("canceled");
+	      Swal.fire('Suppression annulée', '', 'info')
 	  }
-	})
+	);
     });
-  });
+  })(window, jQuery, swal);
 </script>
 </body>
 </html>
