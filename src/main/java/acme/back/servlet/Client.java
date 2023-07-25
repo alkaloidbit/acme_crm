@@ -37,7 +37,11 @@ public class Client extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = (HttpSession) request.getSession();
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
 		session.removeAttribute("erreur");
 		try {
 			if ("detail".equals(request.getParameter("action"))) {

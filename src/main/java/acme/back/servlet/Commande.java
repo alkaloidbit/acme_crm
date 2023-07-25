@@ -1,12 +1,11 @@
 package acme.back.servlet;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 import acme.back.service.CommandeService;
 import acme.back.service.ProduitService;
+import acme.front.AuthentificationBean;
 import acme.front.CommandeBean;
 import acme.front.DetailCommandeBean;
 import acme.front.ProduitBean;
@@ -24,7 +23,11 @@ public class Commande extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		HttpSession session = (HttpSession)request.getSession();
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
 		session.removeAttribute("erreur");
 		String pageApresErreur = "/jsp/erreur.jsp";
 		try {
@@ -87,8 +90,78 @@ public class Commande extends HttpServlet {
 			if ("creer".equals(request.getParameter("parametre")))  {
 				System.out.println("Créer");
 				request.setAttribute("page_content", "commandeCreer");
-				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean();
+				AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
+				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean(ab);
 				session.setAttribute("produits", produits);
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
+				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);
+			} else
+			
+			//Bouton Annuler
+			if ("annuler".equals(request.getParameter("parametre")))  {
+				System.out.println("Annuler");
+				request.setAttribute("page_content", "commandeTable");
+				request.setAttribute("page_button", "creerCommandeButton");
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
+				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);
+			} else
+			//Bouton modifier
+			if ("modifier".equals(request.getParameter("parametre")))  {
+				System.out.println("modifier");
+				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean((AuthentificationBean)session.getAttribute("authentification"));
+				session.setAttribute("produits", produits);
+				int i = Integer.parseInt(request.getParameter("valeur"));
+				System.out.println("Choix commande="+i);
+				ArrayList<CommandeBean> commandes = (ArrayList<CommandeBean>)session.getAttribute("commandes");
+				System.out.println("Commande="+commandes.get(i));
+				session.setAttribute("cb", commandes.get(i));
+				request.setAttribute("page_content", "commandeModifier");
+				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
+				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);
+			} else
+			//Bouton modifier/enregistrer une commande
+			if ("enregistrer".equals(request.getParameter("parametre")) && "commandeModifier".equals(request.getParameter("page")))  {
+				System.out.println("enregistrer modification");
+				pageApresErreur = "/jsp/blanc.jsp";
+				request.setAttribute("page_content", "commandeModifier");
+				request.setAttribute("page_button", "enregistrerCommandeButton");
+				CommandeBean cbid = (CommandeBean) session.getAttribute("cb"); 
+				CommandeBean cb = new CommandeBean(); 
+				String d = (String)request.getParameter("codeClient");
+				System.out.println("codeclient="+d);
+				cb.setCodeClient(d);
+				d = (String)request.getParameter("dateCommande");
+				System.out.println("datecommande="+d);
+				cb.setDateCommande(Utilitaire.getDateAmericaineSansTiret(d));
+				//d = (String)request.getParameter("idCommande");
+				System.out.println("idCommande="+cbid.getIdCommande());
+				cb.setIdCommande(cbid.getIdCommande());
+				ArrayList<ProduitBean> produits = (ArrayList<ProduitBean>)session.getAttribute("produits");
+				for (int i=0; i<produits.size(); i++) {
+					d = (String)request.getParameter("box"+i);
+					System.out.println("box"+i +"="+d);
+					if (d != null) {
+						d = (String)request.getParameter("qte"+i);
+						System.out.println("qte"+i +"="+d);
+						DetailCommandeBean dcb = new DetailCommandeBean();
+						dcb.setCodeProduit(produits.get(i).getCodeProduit());
+						dcb.setLibelleProduit(produits.get(i).getLibelleProduit());
+						dcb.setQuantite(Integer.parseInt(d));
+						dcb.setMontant(Integer.parseInt(d) * produits.get(i).getPrix());
+						cb.addDetailCommandeBean(dcb);
+					}
+				}
+				System.out.println(cb);
+				CommandeService.getService().updateCommande(cb);
+				cb.setDateCommande(null);
+				cb.setIdCommande(0);
+				cb.setNomClient("%");
+				ArrayList<CommandeBean> commandes = CommandeService.getService().search(cb);
+				session.setAttribute("commandes", commandes);
+				cb.setNomClient("");
+				session.setAttribute("cb", cb);
+				request.setAttribute("page_content", "commandeTable");
+				request.setAttribute("page_button", "creerCommandeButton");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);
 			} else
@@ -129,14 +202,6 @@ public class Commande extends HttpServlet {
 				session.setAttribute("commandes", commandes);
 				cb.setNomClient("");
 				session.setAttribute("cb", cb);
-				request.setAttribute("page_content", "commandeTable");
-				request.setAttribute("page_button", "creerCommandeButton");
-				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
-				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);
-			} else
-			//Bouton Annuler
-			if ("annuler".equals(request.getParameter("parametre")))  {
-				System.out.println("Annuler");
 				request.setAttribute("page_content", "commandeTable");
 				request.setAttribute("page_button", "creerCommandeButton");
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
