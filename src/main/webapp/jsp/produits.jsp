@@ -67,6 +67,7 @@
       "language": {
         url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json',
       },
+      "columnDefs": [{ width: 220, targets: 2 }],
       "ordering": false,
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
