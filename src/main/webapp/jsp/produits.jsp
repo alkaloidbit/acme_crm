@@ -121,7 +121,7 @@ function loadGauche() {
       Swal.fire({
         title: 'Êtes-vous sûr de vouloir supprimer ce produit ?',
         showDenyButton: true,
-        showCancelButton: true,
+        showCancelButton: false,
         confirmButtonText: 'Confirmer',
         denyButtonText: 'Annuler',
       }).then((result) => {
