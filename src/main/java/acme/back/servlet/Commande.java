@@ -85,7 +85,11 @@ public class Commande extends HttpServlet {
 			if ("creer".equals(request.getParameter("parametre")))  {
 				System.out.println("Créer");
 				request.setAttribute("page_content", "commandeCreer");
+<<<<<<< Updated upstream
 				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean();
+=======
+				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean((AuthentificationBean)session.getAttribute("authentification"));
+>>>>>>> Stashed changes
 				session.setAttribute("produits", produits);
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);
