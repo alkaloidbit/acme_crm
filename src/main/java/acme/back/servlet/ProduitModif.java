@@ -34,7 +34,8 @@ public class ProduitModif extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		// Redirection vers les pages d'ajout ou de mise à jour
 		String choice = request.getParameter("choice");
 		HttpSession session = (HttpSession)request.getSession();
 		session.setAttribute("choice", choice);
@@ -98,6 +99,13 @@ public class ProduitModif extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// Mise à jour ou Ajout
+		
+		// POUR TEST
+		AuthentificationBean ab = new AuthentificationBean();
+		ab.setCodeRole("admin");
+		// FIN TEST
 		
 		HttpSession session = (HttpSession)request.getSession();
 		ArrayList<ProduitBean> produitbeans = (ArrayList<ProduitBean>) session.getAttribute("produits");
@@ -115,7 +123,7 @@ public class ProduitModif extends HttpServlet {
 		if(choice.equals("update")){
 			ProduitBean pb = createProduitBeanFromInputs(code_produit, libelle_produit, description, prixStr, tsStr, "update", request, response);
 			try {
-				ps.updateProduit(pb);
+				ps.updateProduit(ab, pb);
 				// modification dans la liste du tableau affiché
 				String codeProd = pb.getCodeProduit();
 		        for (ProduitBean prodb : produitbeans) {
@@ -150,7 +158,7 @@ public class ProduitModif extends HttpServlet {
 				// Ajout à la base de données
 				ps.insertProduit(pb);
 				// Récupération du produit ajouté à la base; ce qui permettra d'obtenir le timestamp
-				ProduitBean pbUpdated = ProduitService.getService().getProduitByKey(pb);
+				ProduitBean pbUpdated = ProduitService.getService().getProduitByKey(ab, pb);
 				// Ajout à la liste des produits affichése
 				produitbeans.add(pbUpdated);
 				request.setAttribute("page_content", "content_datatable_produits");

@@ -20,7 +20,7 @@ public class ProduitService {
 	}
 
 	
-	public ArrayList<ProduitBean> ProductListBean() throws BizException {		
+	public ArrayList<ProduitBean> ProductListBean(AuthentificationBean user) throws BizException {		
 
 		Connexion con = new Connexion();
 		ArrayList<ProduitBean> prodBeans = new ArrayList<ProduitBean>();
@@ -46,7 +46,7 @@ public class ProduitService {
 
 	}
 	
-	public int deleteProduit(ProduitBean pb) throws BizException {
+	public int deleteProduit(AuthentificationBean user, ProduitBean pb) throws BizException {
 		
 		int result;
 		Connexion con = new Connexion();
@@ -63,20 +63,24 @@ public class ProduitService {
 		}
 	}
 	
-	public int deleteProduit(ProduitBean pb, Connexion con) throws BizException {
-		
-		int result = 0;
-		Produit pr = produitBeanToProduit(pb);
-		try {
-			System.out.println("suppression produit = " + ProduitDb.deleteByKey(con, pr));
-			return result;
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
-		}
+	public int deleteProduit(AuthentificationBean utilisateur, ProduitBean pb, Connexion con) throws BizException {
+		if (user.hasPermissionToDeleteProduct()) {
+			int result = 0;
+			Produit pr = produitBeanToProduit(pb);
+			try {
+				System.out.println("suppression produit = " + ProduitDb.deleteByKey(con, pr));
+				return result;
+			} catch (BizException be) {
+				be.printStackTrace();
+				throw be;
+			}
+			
+		}else {
+	        System.out.println("Accès refusé pour supprimer un produit.");
+	    }
 	}
 	
-	public int updateProduit(ProduitBean pb) throws BizException {
+	public int updateProduit(AuthentificationBean utilisateur, ProduitBean pb) throws BizException {
 		
 		int result;
 		Connexion con = new Connexion();
@@ -93,7 +97,7 @@ public class ProduitService {
 		}
 	}
 	
-	public int updateProduit(ProduitBean pb, Connexion con) throws BizException {
+	public int updateProduit(AuthentificationBean utilisateur, ProduitBean pb, Connexion con) throws BizException {
 		
 		int result = 0;
 		Produit p = produitBeanToProduit(pb);
@@ -106,64 +110,76 @@ public class ProduitService {
 		}
 	}
 	
-	public int insertProduit(ProduitBean pb) throws BizException {
-		
-		int result;
-		Connexion con = new Connexion();
-		
-		try {
-			con.beginTransaction();
-			result = insertProduit(pb, con);
-			con.endTransaction();
-			return result;
-		} catch (BizException be) {
-			con.rollBack();
-			be.printStackTrace();
-			throw be;
-		}
+	public int insertProduit(AuthentificationBean utilisateur, ProduitBean pb) throws BizException {
+		if (user.hasPermissionToCreateProduct()) {
+			int result;
+			Connexion con = new Connexion();
+			
+			try {
+				con.beginTransaction();
+				result = insertProduit(pb, con);
+				con.endTransaction();
+				return result;
+			} catch (BizException be) {
+				con.rollBack();
+				be.printStackTrace();
+				throw be;
+			}
+		}else {
+            System.out.println("Accès refusé pour créer un produit.");
+        }
 	}
 	
-	public int insertProduit(ProduitBean pb, Connexion con) throws BizException {
-		
-		int result = 0;
-		Produit p = produitBeanToProduit(pb);
-		try {
-			System.out.println("ajout produit = " + ProduitDb.insert(con, p));
-			return result;
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
-		}
+	public int insertProduit(AuthentificationBean utilisateur, ProduitBean pb, Connexion con) throws BizException {
+		if (user.hasPermissionToCreateProduct()) {
+			int result = 0;
+			Produit p = produitBeanToProduit(pb);
+			try {
+				System.out.println("ajout produit = " + ProduitDb.insert(con, p));
+				return result;
+			} catch (BizException be) {
+				be.printStackTrace();
+				throw be;
+			}
+		}else {
+            System.out.println("Accès refusé pour créer un produit.");
+        }
 	}
 	
 	
-	public ProduitBean getProduitByKey(ProduitBean pb) throws BizException {
-		
-		Connexion con = new Connexion();
-		
-		try {
-			con.beginTransaction();
-			ProduitBean result = getProduitByKey(pb, con);
-			con.endTransaction();
-			return result;
-		} catch (BizException be) {
-			con.rollBack();
-			be.printStackTrace();
-			throw be;
-		}
+	public ProduitBean getProduitByKey(AuthentificationBean utilisateur, ProduitBean pb) throws BizException {
+		if (user.hasPermissionToReadProduct()) {
+			Connexion con = new Connexion();
+			
+			try {
+				con.beginTransaction();
+				ProduitBean result = getProduitByKey(pb, con);
+				con.endTransaction();
+				return result;
+			} catch (BizException be) {
+				con.rollBack();
+				be.printStackTrace();
+				throw be;
+			}
+		}else {
+            System.out.println("Accès refusé pour récupérer un produit.");
+        }
 	}
 	
-	public ProduitBean getProduitByKey(ProduitBean pb, Connexion con) throws BizException {
-		
-		Produit p = produitBeanToProduit(pb);
-		try {
-			Produit pNew = ProduitDb.getByKey(con, p);
-			System.out.println("le produit demandé = " + pNew);
-			return produitToProduitBean(pNew);
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
-		}
+	public ProduitBean getProduitByKey(AuthentificationBean utilisateur, ProduitBean pb, Connexion con) throws BizException {
+		if (user.hasPermissionToReadProduct()) {
+			Produit p = produitBeanToProduit(pb);
+			try {
+				Produit pNew = ProduitDb.getByKey(con, p);
+				System.out.println("le produit demandé = " + pNew);
+				return produitToProduitBean(pNew);
+			} catch (BizException be) {
+				be.printStackTrace();
+				throw be;
+			}
+		}else {
+            System.out.println("Accès refusé pour récupérer un produit.");
+        }
 	}
 	
 	
