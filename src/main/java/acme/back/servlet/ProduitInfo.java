@@ -25,7 +25,12 @@ public class ProduitInfo extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = (HttpSession)request.getSession();
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
+
 		// Récuperer l'utilisateur loggé
 		AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
 		
