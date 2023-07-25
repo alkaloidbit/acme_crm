@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.ArrayList, acme.front.ProduitBean, acme.util.Utilitaire, acme.back.metier.Produit"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="java.util.ArrayList, acme.front.ProduitBean, acme.util.Utilitaire, acme.back.metier.Produit, acme.front.AuthentificationBean"
 	pageEncoding="UTF-8"%>
 
 <div class="card">
@@ -19,7 +19,8 @@
 			</tr>
 			</thead>
 			<tbody>
-			<% 	ArrayList<ProduitBean> pbs = (ArrayList<ProduitBean>) request.getSession().getAttribute("produits");
+				<% AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");%>
+				<% ArrayList<ProduitBean> pbs = (ArrayList<ProduitBean>) request.getSession().getAttribute("produits");
 				for (int i = 0; i < pbs.size(); i++) {%>
     			<tr>
     				<td><%= pbs.get(i).getCodeProduit() %></td>
@@ -28,17 +29,23 @@
 					<td><%= Math.round(pbs.get(i).getPrix()*100.0)/100.0 %></td>
 					<td><%= pbs.get(i).getStimestamp() %></td>
 	    			<td>
+	    				<% 	if(ab.hasPermissionToReadProduct()){%>
 						<a class="btn btn-success me-2 detailsProduit" href="<%=request.getContextPath()%>/Produit/info?index=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
+						<%}%>  
+						<% 	if(ab.hasPermissionToUpdateProduct()){%>
 						<a class="btn btn-info me-2 modifProduit"  href="<%=request.getContextPath()%>/Produit/modification?choice=update&index=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
+						<%}%>  
+						<% 	if(ab.hasPermissionToDeleteProduct()){%>
 						<!-- <a class="btn btn-danger supprProduit" href="<%=request.getContextPath()%>/Produit/modification?choice=delete&index=<%=i%>"> -->
 						<a class="btn btn-danger btn-delete supprProduit" href="<%=request.getContextPath()%>/Produits?index=<%=i%>">
 
 							<i class="fas fa-trash"></i>
 						</a>
+						<%}%>  
 					</td>
     			</tr>
 			<%}%>
@@ -51,7 +58,9 @@
 				<th>Prix</th>
 				<th>Date de création</th>
     			<th>
-    				<a class="btn btn-primary" role="button" href="<%=request.getContextPath()%>/Produit/modification?choice=create">Ajouter un produit</a>
+    			<% 	if(ab.hasPermissionToCreateProduct()){%>
+					<a class="btn btn-primary" role="button" href="<%=request.getContextPath()%>/Produit/modification?choice=create">Ajouter un produit</a>
+				<%}%>  				
 				</th>
 			</tr>
 			</tfoot>

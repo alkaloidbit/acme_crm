@@ -1,4 +1,4 @@
-  <%@ page language="java" contentType="text/html; charset=UTF-8"
+  <%@ page language="java" contentType="text/html; charset=UTF-8" import="acme.front.AuthentificationBean"
     pageEncoding="UTF-8"%>
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -62,14 +62,17 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="<%=request.getContextPath()%>/Produits" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Produit
-              </p>
-            </a>
-          </li>
+          <% AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification"); %>
+          <% if(ab.hasPermissionToReadProduct()){ %>
+	          <li class="nav-item">
+	            <a href="<%=request.getContextPath()%>/Produits" class="nav-link">
+	              <i class="nav-icon fas fa-book"></i>
+	              <p>
+	                Produit
+	              </p>
+	            </a>
+	          </li>
+			<%}%> 
           <li class="nav-item">
             <a href="./Authentification?parametre=menuDeconnexion" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
