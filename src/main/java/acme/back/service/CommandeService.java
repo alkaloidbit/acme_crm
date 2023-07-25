@@ -149,8 +149,43 @@ public class CommandeService {
 			throw be;
 		}
 	}
+	public int updateCommande(CommandeBean cb) throws BizException {
+		
+		int result;
+		Connexion con = new Connexion();
+		
+		try {
+			con.beginTransaction();
+			result = updateCommande(cb, con);
+			con.endTransaction();
+			return result;
+		} catch (BizException be) {
+			con.rollBack();
+			be.printStackTrace();
+			throw be;
+		}
+	}
+	public int updateCommande(CommandeBean cb, Connexion con) throws BizException {
+		
+		int result = 0;
+		Commande cm = commandeBeanToCommande(cb);
+		Date now = new Date();
+		cm.setStimestamp(new Timestamp((now.getTime())));
+		try {
+			//Supression de la commande
+			result = DetailCommandeDb.deleteByIdCommande(con, cm.getAl().get(0));
+			System.out.println("resultat de delete=" + result);
+			for (DetailCommande tmp  : cm.getAl()) {
+				result = DetailCommandeDb.insert(con, tmp);
+			}
+			System.out.println("resultat de l'insert=" + result);
+			return result;
+		} catch (BizException be) {
+			be.printStackTrace();
+			throw be;
+		}
+	}
 	private Commande commandeBeanToCommande(CommandeBean cb) {
-		System.out.println("CommandeBean : " + cb);
 		Commande result = new Commande();
 		result.setDate(cb.getDateCommande());
 		result.setIdCommande(cb.getIdCommande());
@@ -166,7 +201,6 @@ public class CommandeService {
 			dc.setStimestamp(tmp.getStimestamp());
 			result.addDetailCommande(dc);
 		}
-		System.out.println("Commande : " + result);
 		return result;
 	}
 }

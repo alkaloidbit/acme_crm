@@ -34,7 +34,7 @@
 						<a class="btn btn-success me-2" href="./Commande?parametre=detail&valeur=<%=i%>">
 							<i class="fas fa-search"></i>
 						</a>
-						<a class="btn btn-info me-2" href="#">
+						<a class="btn btn-info me-2" href="./Commande?parametre=modifier&valeur=<%=i%>">
 							<i class="fas fa-pen"></i>
 						</a>
 						<a class="btn btn-danger" href="./Commande?parametre=supprimer&valeur=<%=i%>">
