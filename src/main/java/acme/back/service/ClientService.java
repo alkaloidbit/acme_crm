@@ -26,7 +26,7 @@ public class ClientService {
 
 		try {
 			result = getAllClient(con);
-			System.out.println(result);
+			// System.out.println(result);
 			con.close();
 			return result;
 		} catch (BizException be) {
@@ -35,33 +35,95 @@ public class ClientService {
 		}
 	}
 
-public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
+	public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
 
-		ArrayList<ClientBean> result = new ArrayList<ClientBean>();
+			ArrayList<ClientBean> result = new ArrayList<ClientBean>();
 
-		try {
-			ArrayList<Client> clients = ClientDb.getAll(con);
-			for (Client client : clients) {
-				Client cl = new Client();
-				cl.setCodeClient(client.getCodeClient());
-				cl.setNom(client.getNom());
-				cl.setPrenom(client.getPrenom());
-				cl.setAdresse(client.getAdresse());
-				cl.setCodePostal(client.getCodePostal());
-				cl.setVille(client.getVille());
-				cl.setStimestamp(client.getStimestamp());
-				cl = cl.select(con);
-				result.add(clientToClientBean(cl));
+			try {
+				ArrayList<Client> clients = ClientDb.getAll(con);
+				for (Client client : clients) {
+					Client cl = new Client();
+					cl.setCodeClient(client.getCodeClient());
+					cl.setNom(client.getNom());
+					cl.setPrenom(client.getPrenom());
+					cl.setAdresse(client.getAdresse());
+					cl.setCodePostal(client.getCodePostal());
+					cl.setVille(client.getVille());
+					cl.setStimestamp(client.getStimestamp());
+					cl = cl.select(con);
+					result.add(clientToClientBean(cl));
+				}
+				return result;
+			} catch (BizException be) {
+				be.printStackTrace();
+				throw be;
 			}
-			return result;
-		} catch (BizException be) {
-			be.printStackTrace();
-			throw be;
 		}
+
+	public int updateClient(ClientBean cb) throws BizException {
+			int result;
+			Connexion con = new Connexion();
+
+			try {
+				con.beginTransaction();
+				result = updateClient(cb, con);
+				con.endTransaction();
+				return result;
+			} catch (Exception be) {
+				con.rollBack();
+				be.printStackTrace();
+				throw be;
+			}
+
+		}
+
+	public int updateClient(ClientBean cb, Connexion con) throws BizException {
+
+			int result = 0;
+			Client cl = clientBeanToClient(cb);
+			try {
+				result = ClientDb.updateByKey(con, cl);
+				return result;
+			} catch (BizException be) {
+				be.printStackTrace();
+				throw be;
+			}
+
+		}
+		
+	public int createClient(ClientBean cb) throws BizException {
+
+			int result;
+			Connexion con = new Connexion();
+
+			try {
+				con.beginTransaction();
+				result = createClient(cb, con);
+				con.endTransaction();
+				return result;
+			} catch (Exception be) {
+				con.rollBack();
+				be.printStackTrace();
+				throw be;
+			}
+	}
+
+	public int createClient(ClientBean cb, Connexion con) throws BizException {
+
+			int result = 0;
+			Client cl = clientBeanToClient(cb);
+			try {
+				result = ClientDb.insert(con, cl);
+				return result;
+			} catch (BizException be) {
+				be.printStackTrace();
+				throw be;
+			}
+
 	}
 
 	public int deleteClient(ClientBean cb) throws BizException {
-		
+			
 		int result;
 		Connexion con = new Connexion();
 		
@@ -72,7 +134,6 @@ public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
 			return result;
 		} catch (BizException be) {
 			con.rollBack();
-			be.printStackTrace();
 			throw be;
 		}
 	}
@@ -82,10 +143,9 @@ public ArrayList<ClientBean> getAllClient(Connexion con) throws BizException {
 		System.out.println(cb);
 		Client cm = clientBeanToClient(cb);
 		try {
-			System.out.println("suppression=" + ClientDb.deleteByKey(con, cm));
+			result = ClientDb.deleteByKey(con, cm);
 			return result;
 		} catch (BizException be) {
-			be.printStackTrace();
 			throw be;
 		}
 	}

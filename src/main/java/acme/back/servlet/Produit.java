@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import acme.back.service.AuthentificationService;
+import acme.back.service.ClientService;
 import acme.back.service.CommandeService;
 import acme.back.service.ProduitService;
 import acme.front.AuthentificationBean;
+import acme.front.ClientBean;
 import acme.front.CommandeBean;
 import acme.front.ProduitBean;
 import acme.util.BizException;
@@ -32,28 +34,26 @@ public class Produit extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("page_name", "Nos Produits");
-		
-		// PROVISOIRE POUR TEST
-		AuthentificationBean ab = new AuthentificationBean();
-		ab.setLogin("totobidon");
-		ab.setLogin("moulin");
-		ab.setCodeRole("ADMIN");
-		// FIN PROVISOIRE POUR TEST
-		// TRY CATCH A FAIRE
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 	
-		HttpSession session = (HttpSession)request.getSession();
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
+
 		try {
-			ArrayList<ProduitBean> prodBeans = new ProduitService().ProductListBean();
+			// Récuperer l'utilisateur loggé
+			AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
+			// Récupération liste des produits
+			ArrayList<ProduitBean> prodBeans = new ProduitService().ProductListBean(ab);
 			session.setAttribute("produits", prodBeans);
 		} catch (BizException e) {
 			e.printStackTrace();
 		}
 
 		session.removeAttribute("erreur");
-		session.setAttribute("authentification", ab);
+		request.setAttribute("page_name", "Nos Produits");
 		request.setAttribute("page_content", "content_datatable_produits");
 		getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 			
@@ -64,5 +64,42 @@ public class Produit extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	@Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+		// Récuperer l'utilisateur loggé
+		AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
+        try {
+            int i = Integer.parseInt(request.getParameter("index"));
+            System.out.println("produit:" + i);
+            ArrayList<ProduitBean> produits = (ArrayList<ProduitBean>) session.getAttribute("produits");
+            ProduitBean pb = produits.get(i);
 
+            int res;
+            try {
+                res = ProduitService.getService().deleteProduit(ab, pb);
+                System.out.println("res" + res);
+            } catch (Exception e) {
+                e.printStackTrace();
+                res = -1; 
+            }
+
+            String resultat;
+            if (res == 0) {
+                resultat = "success";
+            } else {
+                resultat = "error";
+            }
+
+            response.setContentType("application/json");
+            response.setHeader("Cache-Control", "no-cache");
+
+            response.getWriter().write("{\"resultat\":\"" + resultat + "\"}");
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.setAttribute("erreur", e.getMessage());
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Erreur interne du serveur");
+        }
+    }
 }

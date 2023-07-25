@@ -3,6 +3,7 @@ package acme.back.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import acme.front.AuthentificationBean;
 import acme.front.CommandeBean;
 import acme.front.ProduitBean;
 import jakarta.servlet.ServletException;
@@ -24,21 +25,28 @@ public class ProduitInfo extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
 
-		// PROVISOIRE POUR TEST
-		// Récupérer le code produit
-		HttpSession session = (HttpSession)request.getSession();
-		ArrayList<ProduitBean> produits = (ArrayList<ProduitBean>)session.getAttribute("produits");
-		String codeProduit = request.getParameter("codeProduit");
-
-		// Récupérer le produit concerné
+		// Récuperer l'utilisateur loggé
+		AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
 		
+		// Récupérer le code produit
+		int index = Integer.parseInt(request.getParameter("index"));
+		ArrayList<ProduitBean> produitbeans = (ArrayList<ProduitBean>)session.getAttribute("produits");
+		ProduitBean produitBean = produitbeans.get(index);			
+		session.setAttribute("produitBean", produitBean);
+
 		
         // Envoyer le détails à la jsp
-        request.setAttribute("codeProduit", codeProduit);
-        
+
+		request.setAttribute("page_name", "Nos produits");
+		request.setAttribute("page_content", "produit_details");
         // Rediriger vers la page
-		getServletConfig().getServletContext().getRequestDispatcher("/jsp/produit_details.jsp").forward(request, response);
+		getServletConfig().getServletContext().getRequestDispatcher("/jsp/produits.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

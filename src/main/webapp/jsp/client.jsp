@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${ page_name }</title>
 
+  <link rel="icon" type="image/ico" href="mspr.ico" />
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome Icons -->
@@ -46,16 +47,58 @@
 <script src="resources/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="resources/AdminLTE/plugins/jszip/jszip.min.js"></script>
+<script src="resources/AdminLTE/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="resources/AdminLTE/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
 
 <!-- AdminLTE App -->
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
 <script>
-  $(function () {
+(function (Window, $, swal) {
     $("#example1").DataTable({
+      "ordering": false,
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  });
+
+    const deleteUser = function ($link) {
+	let deleteUrl = $link.attr('href');
+	return $.ajax({
+	  url: deleteUrl,
+	  method: 'DELETE'
+	  }).then(function(res) {
+	    console.log(res);
+	    $link.closest('tr').fadeOut();
+	    $link.remove();
+	});
+    }
+    $('.btn-delete').on("click", function(e) {
+	e.preventDefault();
+	var $link = $(e.currentTarget);
+	Swal.fire({
+	  title: 'Etes-vous sur de vouloir supprimer ce client ?',
+	  showDenyButton: true,
+	  showCancelButton: true,
+	  confirmButtonText: 'Confirmer',
+	  denyButtonText: `Annuler`,
+	}).then(
+	  function (result) {
+	    /* Read more about isConfirmed, isDenied below */
+	    console.log(result);
+	    Swal.fire('Suppression effectuée!', '', 'success')
+	    return deleteUser($link);
+	  },
+	  function () {
+	      console.log("canceled");
+	      Swal.fire('Suppression annulée', '', 'info')
+	  }
+	);
+    });
+  })(window, jQuery, swal);
 </script>
 </body>
 </html>

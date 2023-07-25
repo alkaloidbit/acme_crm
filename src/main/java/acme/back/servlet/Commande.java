@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import acme.back.service.CommandeService;
 import acme.back.service.ProduitService;
+import acme.front.AuthentificationBean;
 import acme.front.CommandeBean;
 import acme.front.DetailCommandeBean;
 import acme.front.ProduitBean;
@@ -22,7 +23,11 @@ public class Commande extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		HttpSession session = (HttpSession)request.getSession();
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
 		session.removeAttribute("erreur");
 		String pageApresErreur = "/jsp/erreur.jsp";
 		try {
@@ -85,11 +90,8 @@ public class Commande extends HttpServlet {
 			if ("creer".equals(request.getParameter("parametre")))  {
 				System.out.println("Créer");
 				request.setAttribute("page_content", "commandeCreer");
-<<<<<<< Updated upstream
-				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean();
-=======
-				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean((AuthentificationBean)session.getAttribute("authentification"));
->>>>>>> Stashed changes
+				AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification");
+				ArrayList<ProduitBean> produits = ProduitService.getService().ProductListBean(ab);
 				session.setAttribute("produits", produits);
 				getServletConfig().getServletContext().getRequestDispatcher("/jsp/blanc.jsp").forward(request, response);
 				//getServletConfig().getServletContext().getRequestDispatcher("/jsp/commandeCreer.jsp").forward(request, response);

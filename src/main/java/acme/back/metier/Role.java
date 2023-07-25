@@ -51,5 +51,6 @@ public class Role {
 	public String getKey() {
 		return codeRole;
 	}
+	
 }
 

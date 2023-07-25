@@ -3,6 +3,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import acme.back.db.ProduitDb;
+import acme.front.AuthentificationBean;
 import acme.util.BizException;
 import acme.util.Connexion;
 
@@ -39,19 +40,19 @@ public class Produit {
 			 super.toString();
 		return message;
 	}
-	public Produit select(Connexion c) throws BizException {
-		return ProduitDb.getByKey(c, this);
+	public Produit select(AuthentificationBean user, Connexion c) throws BizException {
+		return ProduitDb.getByKey(user, c, this);
 	}
-	public int delete(Connexion c) throws BizException {
-		int result = ProduitDb.deleteByKey(c, this);
+	public int delete(AuthentificationBean user, Connexion c) throws BizException {
+		int result = ProduitDb.deleteByKey(user, c, this);
 		return result;
 	}
-	public int update(Connexion c) throws BizException {
-		int result = ProduitDb.updateByKey(c, this);
+	public int update(AuthentificationBean user, Connexion c) throws BizException {
+		int result = ProduitDb.updateByKey(user, c, this);
 		return result;
 	}
-	public int insert(Connexion c) throws BizException {
-		int result = ProduitDb.insert(c, this);
+	public int insert(AuthentificationBean user, Connexion c) throws BizException {
+		int result = ProduitDb.insert(user, c, this);
 		return result;
 	}
 	public String getKey() {
