@@ -60,7 +60,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProduitModif</servlet-name>
-		<url-pattern>/Produitmodif</url-pattern>
+		<url-pattern>/Produitmodification</url-pattern>
 	</servlet-mapping>
 	<jsp-config>
 		<jsp-property-group>
