@@ -35,11 +35,15 @@ public class ProduitModif extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
 		
 		// Redirection vers les pages d'ajout ou de mise à jour
 		
 		String choice = request.getParameter("choice");
-		HttpSession session = (HttpSession)request.getSession();
 		session.setAttribute("choice", choice);
 		ArrayList<ProduitBean> produitbeans = (ArrayList<ProduitBean>) session.getAttribute("produits");
 		// Ajout
