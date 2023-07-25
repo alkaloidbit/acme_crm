@@ -25,7 +25,11 @@ public class Commande extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		HttpSession session = (HttpSession)request.getSession();
+		HttpSession session = (HttpSession)request.getSession(false);
+        if (session == null || session.getAttribute("authentification") == null) {
+        	response.sendRedirect(request.getContextPath() + "/index.jsp");
+            return;
+        }
 		session.removeAttribute("erreur");
 		String pageApresErreur = "/jsp/erreur.jsp";
 		try {
