@@ -76,6 +76,16 @@
 	            </a>
 	          </li>
 			<%}%> 
+          <% if(ab.hasPermissionToReadStats()){ %>
+	          <li class="nav-item">
+	            <a href="./Statistique" class="nav-link">
+	              <i class="nav-icon fas fa-chart-bar"></i>
+	              <p>
+	                Statistique
+	              </p>
+	            </a>
+	          </li>
+			<%}%> 
           <li class="nav-item">
             <a href="./Authentification?parametre=menuDeconnexion" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>

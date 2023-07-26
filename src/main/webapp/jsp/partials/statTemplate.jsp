@@ -1,2 +1,3 @@
-
-Salut le monde !
+<div>
+  <canvas id="myChart"></canvas>
+</div>
