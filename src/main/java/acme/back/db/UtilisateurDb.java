@@ -21,7 +21,9 @@ public class UtilisateurDb {
 
 	private static void statementSelectAll(Connexion c) throws SQLException {
 		selectAll = c.getConnection().prepareStatement(
-		"SELECT LOGIN, PSW, CODE_ROLE, STIMESTAMP FROM utilisateur");
+		"SELECT LOGIN, PSW, CODE_ROLE, STIMESTAMP FROM utilisateur",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+        ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementSelectByKey(Connexion c) throws SQLException {
 		selectByKey = c.getConnection().prepareStatement(
@@ -36,18 +38,24 @@ public class UtilisateurDb {
 		"UPDATE utilisateur " + 
 		"SET 		PSW = ?, " +  
 		"CODE_ROLE = ? " + 
-		"WHERE LOGIN = ? "); 
+		"WHERE LOGIN = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+        ResultSet.CONCUR_UPDATABLE); 
 	}
 	private static void statementInsert(Connexion c) throws SQLException {
 		insert = c.getConnection().prepareStatement(
 		"INSERT INTO utilisateur " + 
 		"(LOGIN, PSW, CODE_ROLE) " + 
-		"values(?, ?, ?)");
+		"values(?, ?, ?)",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+        ResultSet.CONCUR_UPDATABLE);
 	}
 	private static void statementDeleteByKey(Connexion c) throws SQLException {
 		deleteByKey = c.getConnection().prepareStatement(
 		"DELETE FROM utilisateur " + 
-		"WHERE LOGIN = ? "); 
+		"WHERE LOGIN = ? ",
+		ResultSet.TYPE_SCROLL_SENSITIVE, 
+        ResultSet.CONCUR_UPDATABLE); 
 	}
 	public static int deleteByKey(Connexion c, Utilisateur t) throws BizException {
 		ResultSet rs = null;
