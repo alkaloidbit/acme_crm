@@ -39,16 +39,6 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <% AuthentificationBean ab = (AuthentificationBean) session.getAttribute("authentification"); %>
-          <% if(ab.hasPermissionToReadUser()){ %>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Utilisateur
-              </p>
-            </a>
-          </li>
-          <%}%>
           <li class="nav-item">
             <a href="./Commande?parametre=menuCommande" class="nav-link">
               <i class="nav-icon fas fa-file-invoice"></i>
@@ -75,7 +65,7 @@
 	              </p>
 	            </a>
 	          </li>
-			<%}%> 
+		  <%}%> 
           <% if(ab.hasPermissionToReadStats()){ %>
 	          <li class="nav-item">
 	            <a href="./Statistique" class="nav-link">
@@ -84,9 +74,18 @@
 	                Statistique
 	              </p>
 	            </a>
+	          </li>	
+         <%}%>			
+         <% if(ab.hasPermissionToReadUser()){ %>
+ 	          <li class="nav-item">
+	            <a href="./Utilisateur" class="nav-link">
+	              <i class="nav-icon fas fa-user-alt"></i>
+	              <p>
+	                Utilisateur
+	              </p>
+	            </a>
 	          </li>
 			<%}%> 
-
           <li class="nav-item">
             <a href="./Authentification?parametre=menuDeconnexion" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
