@@ -15,6 +15,7 @@
 				<div class="form-group">
 					<label for="inputCodeClient">Code Client</label>
 					<input type="text" name="code_client" disabled="disabled" class="form-control" id="inputCodeClient" value="<%=cb.getCodeClient()%>" placeholder="Code Client">
+					<input type="hidden" name="code_client" value="<%=cb.getCodeClient()%>" />
 				</div>
 				<div class="form-group">
 					<label for="inputNom">Nom</label>
