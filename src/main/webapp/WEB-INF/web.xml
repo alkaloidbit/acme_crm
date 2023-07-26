@@ -62,14 +62,14 @@
 		<servlet-name>ProduitModif</servlet-name>
 		<url-pattern>/Produitmodification</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>Utilisateur</servlet-name>
-		<url-pattern>/Utilisateur</url-pattern>
-	</servlet-mapping>
 	<servlet>
 		<servlet-name>Utilisateur</servlet-name>
 		<servlet-class>acme.back.servlet.Utilisateur</servlet-class>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>Utilisateur</servlet-name>
+		<url-pattern>/Utilisateur</url-pattern>
+	</servlet-mapping>
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
