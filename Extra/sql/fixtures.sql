@@ -2,15 +2,19 @@ use mspr;
 -- Insertion de données dans la table `role`
 INSERT INTO `role` (`CODE_ROLE`, `LIBELLE_ROLE`)
 VALUES ('R001', 'Admin'),
-       ('R002', 'Utilisateur');
+       ('R002', 'Utilisateur'),
+        ('R003', 'Commercial'  );
 
 -- Insertion de données dans la table `utilisateur`
 INSERT INTO `utilisateur` (`LOGIN`, `PSW`, `CODE_ROLE`)
 VALUES ('admin', 'password123', 'R001'),
-       ('user1', 'pass456', 'R002'),
-       ('user2', 'pass789', 'R002');
+       ('user', 'pass456', 'R002'),
+       ('com', 'pass789', 'R003');
+        
 
 UPDATE utilisateur SET PSW = MD5('password123') WHERE LOGIN = 'admin';
+UPDATE utilisateur SET PSW = MD5('pass456') WHERE LOGIN = 'user';
+UPDATE utilisateur SET PSW = MD5('pass789') WHERE LOGIN = 'com';
 
 insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('0409-1626', 'Maypother', 'Liam', '19 Forest Run Crossing', 'DABS', 'Jhumra');
 insert into client (CODE_CLIENT, NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE) values ('51079-941', 'Strutton', 'Claudine', '0 Melody Alley', 'SAVN', 'Bomomani');

@@ -5,7 +5,7 @@
 	<div class="card-header">
 		<h3 class="card-title">Formulaire Client</h3>
 	</div>
-		<form method="POST" action="http://localhost:8080/Test/Client">
+		<form method="POST" action="Client">
 			<div class="card-body">
 				<div class="form-group">
 					<label for="inputCodeClient">Code Client</label>
