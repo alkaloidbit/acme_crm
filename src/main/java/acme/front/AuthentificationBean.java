@@ -42,6 +42,10 @@ public class AuthentificationBean extends AbstractBean {
 		this.isAuthenticate = isAuthenticate;
 	}*/
 
+	public boolean hasPermissionToReadStats() {
+		return "R001".equals(codeRole);
+	}
+
 	public boolean hasPermissionToReadUser() {
 		return "R001".equals(codeRole);
 	}
@@ -78,6 +82,8 @@ public class AuthentificationBean extends AbstractBean {
 	public boolean hasPermissionToDeleteProduct() {
 	    return "R001".equals(codeRole) || "R002".equals(codeRole);
 	}
+
+
 
 	@Override
 	public String toString() {

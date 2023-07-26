@@ -1,3 +1,4 @@
+use mspr;
 -- CA by year
 select YEAR(c.`DATE`), sum(p.PRIX*dc.quantite) from produit p
 inner join detail_commande dc
