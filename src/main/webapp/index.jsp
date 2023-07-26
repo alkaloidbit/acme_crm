@@ -98,3 +98,4 @@ function erreur() {
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
 </body>
 </html>
+
