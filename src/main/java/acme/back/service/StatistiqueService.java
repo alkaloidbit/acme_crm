@@ -39,8 +39,6 @@ public class StatistiqueService {
 			be.printStackTrace();
 			throw be;
 		}
-
-
 	}
 
 	private StatistiqueBean statistiqueToStatistiqueBean(Statistique s) {
