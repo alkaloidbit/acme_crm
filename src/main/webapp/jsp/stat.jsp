@@ -14,6 +14,7 @@
 <!-- Font Awesome Icons -->
 <link rel="stylesheet" href="resources/AdminLTE/plugins/fontawesome-free/css/all.min.css">
 <!-- Datatables -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="resources/AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
@@ -101,6 +102,23 @@
         console.log(xhr, status, error);
       }
     });
+
+    $.ajax({
+      url: 'http://localhost:8080/MSPR/Statistique?stat=orderscount',
+      method: 'GET',
+      dataType: 'json',
+      success: function(response) {
+        if (response.status === 'ok') {
+          $('.new_orders').text(response.orderscount);
+        } else {
+        }
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr, status, error);
+      }
+    });
+
+
   });
 
 
@@ -123,66 +141,6 @@
   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   
   $(function () {
-    const deleteProduct = function ($link) {
-      $link.addClass('text-danger');
-      $link.find('.fas')
-        .removeClass('fa-trash')
-        .addClass('fa-spinner')
-        .addClass('fa-spin');
-
-      let deleteUrl = $link.attr('href');
-      let $row = $link.closest('tr');
-
-      $.ajax({
-        url: deleteUrl,
-        method: 'DELETE',
-        dataType: 'json',
-        success: function(response) {
-          if (response.status === 'ok') {
-            // Suppression réussie
-            $row.fadeOut(function () {
-              $row.remove();
-            });
-            Swal.fire('Suppression effectuée!', '', 'success');
-          } else {
-            // Suppression échouée
-            $link.removeClass('text-danger');
-            $link.find('.fas')
-              .removeClass('fa-spinner')
-              .removeClass('fa-spin')
-              .addClass('fa-trash');
-            Swal.fire('Erreur de suppression', response.resultat, 'info');
-          }
-        },
-        error: function(xhr, status, error) {
-          // Erreur lors de la requête AJAX
-          $link.removeClass('text-danger');
-          $link.find('.fas')
-            .removeClass('fa-spinner')
-            .removeClass('fa-spin')
-            .addClass('fa-trash');
-          Swal.fire('Erreur', 'Une erreur est survenue lors de la suppression.', 'error');
-        }
-      });
-    };
-
-    $('.btn-delete').on("click", function(e) {
-      e.preventDefault();
-      var $link = $(e.currentTarget);
-      Swal.fire({
-        title: 'Êtes-vous sûr de vouloir supprimer ce produit ?',
-        showDenyButton: true,
-        showCancelButton: false,
-        confirmButtonText: 'Confirmer',
-        denyButtonText: 'Annuler',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          deleteProduct($link);
-        } else if (result.isDenied) {
-          Swal.fire('Suppression annulée', '', 'info');
-        }
-      });
-    });
   });
 })(window, jQuery, swal);
 </script>
