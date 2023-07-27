@@ -1,5 +1,10 @@
 package acme.back.service;
 
+import java.util.ArrayList;
+
+import acme.back.db.StatistiqueDb;
+import acme.back.metier.Statistique;
+import acme.front.StatistiqueBean;
 import acme.util.BizException;
 import acme.util.Connexion;
 
@@ -17,24 +22,23 @@ public class StatistiqueService {
 		return singleton;
 	}
 
+	public ArrayList<StatistiqueBean> getCaByYear() throws BizException {
+		ArrayList<StatistiqueBean> result = new ArrayList<StatistiqueBean>();
+		Connexion con = new Connexion();
 
-<<<<<<< Updated upstream
-=======
 		try {
 			ArrayList<Statistique> stats = StatistiqueDb.GetCaByYear(con);
 			for (Statistique stat: stats) {
 				Statistique st = new Statistique();
 				st.setYear(stat.getYear());
 				st.setCa(stat.getCa());
-				result.add(st);
+				result.add(st)
 				
 			}
 		} catch (BizException be) {
 			be.printStackTrace();
 			throw be;
 		}
-
-
 	}
 
 	private StatistiqueBean statistiqueToStatistiqueBean(Statistique s) {
@@ -43,5 +47,4 @@ public class StatistiqueService {
 		result.setCa(s.getCa());
 		return result;
 	}
->>>>>>> Stashed changes
 }

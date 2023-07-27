@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -54,11 +55,47 @@
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="resources/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="resources/AdminLTE/plugins/sweetalert2/sweetalert2.all.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- AdminLTE App -->
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
 <script>
 (function (window, $, swal) {
+/*
+      $.ajax({
+        url: 'http://localhost:8080/MSPR/Statistique?stat=cabyyear',
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+          if (response.status === 'ok') {
+            console.log(response);
+          } else {
+          }
+        },
+        error: function(xhr, status, error) {
+        }
+      });
+        */
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
+      datasets: [{
+        label: 'Ca par année',
+        data: [2776.00, 5630.00, 3206.00, 1720.00, 2268.00, 3322.00, 2696.00, 3924.00, 2427.00, 2129.00, 2581.00, 5043.00, 4915.00],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
     $("#example1").DataTable({
       "dom": 'Bfrtip',
       "buttons": [

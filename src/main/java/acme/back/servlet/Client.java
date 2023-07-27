@@ -149,7 +149,9 @@ public class Client extends HttpServlet {
 
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				HttpSession session = (HttpSession) request.getSession();
+		response.setContentType("application/json");
+		response.setHeader("Cache-Control", "no-cache");
+		HttpSession session = (HttpSession) request.getSession();
 		try {
 				int i = Integer.parseInt(request.getParameter("valeur"));
 				System.out.println("client:" + i);
@@ -163,15 +165,12 @@ public class Client extends HttpServlet {
 				if (res == 0) {
 					resultat = "error";
 				}
-
-				response.setContentType("application/json");
-				response.setHeader("Cache-Control", "no-cache");
-
-				response.getWriter().write("{resultat:"+ resultat +"}");
+				response.getWriter().write("{\"status\": \"ok\", \"resultat\": \"" + resultat + "\" }");
 		} catch (BizException be) {
 			try {
 				be.printStackTrace();
 				session.setAttribute("erreur", be.getMessage());
+				response.getWriter().write("{\"status\": \"ko\", \"resultat\" : \"Suppression interdite: des commandes en cours dépendent de ce client\" }");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

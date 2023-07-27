@@ -2,12 +2,12 @@ package acme.front;
 
 @SuppressWarnings("serial")
 public class AuthentificationBean extends AbstractBean {
-	
+
 	private String login="";
 	private String password="";
 	private String codeRole="";
 	//private boolean isAuthenticate = Boolean.FALSE;
-	
+
 	public AuthentificationBean() {}
 
 	public String getLogin() {
@@ -42,28 +42,53 @@ public class AuthentificationBean extends AbstractBean {
 		this.isAuthenticate = isAuthenticate;
 	}*/
 
+	public boolean hasPermissionToReadStats() {
+		return "R001".equals(codeRole);
+	}
+
+	public boolean hasPermissionToReadUser() {
+		return "R001".equals(codeRole);
+	}
+
+	public boolean hasPermissionToCreateUser() {
+	    return "R001".equals(codeRole);
+	}
+
+
+	public boolean hasPermissionToUpdateUser() {
+	    return "R001".equals(codeRole);
+	}
+
+
+	public boolean hasPermissionToDeleteUser() {
+	    return "R001".equals(codeRole);
+	}
+
+	// ########################################################################################
 	public boolean hasPermissionToReadProduct() {
-        return "R001".equals(codeRole) || "R002".equals(codeRole) || "R003".equals(codeRole);
-    }
+		return "R001".equals(codeRole) || "R002".equals(codeRole) || "R003".equals(codeRole);
+	}
 
 	public boolean hasPermissionToCreateProduct() {
 	    return "R001".equals(codeRole) || "R002".equals(codeRole);
 	}
-	
-	
+
+
 	public boolean hasPermissionToUpdateProduct() {
 	    return "R001".equals(codeRole) || "R002".equals(codeRole);
 	}
-	
-	
+
+
 	public boolean hasPermissionToDeleteProduct() {
 	    return "R001".equals(codeRole) || "R002".equals(codeRole);
 	}
-		
+
+
+
 	@Override
-	public String toString() {		
+	public String toString() {
 		return "AuthentificationBean [login=" + login + ", password=" + password + ", codeRole=" + codeRole /* + ", isAthenticate=" + isAuthenticate*/ + "]";
-				
+
 	}
 
 }
