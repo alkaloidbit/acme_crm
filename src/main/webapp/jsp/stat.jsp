@@ -60,59 +60,67 @@
 <script src="resources/AdminLTE/dist/js/adminlte.min.js"></script>
 <script>
 (function (window, $, swal) {
-/*
-      $.ajax({
-        url: 'http://localhost:8080/MSPR/Statistique?stat=cabyyear',
-        method: 'GET',
-        dataType: 'json',
-        success: function(response) {
-          if (response.status === 'ok') {
-            console.log(response);
-          } else {
-          }
-        },
-        error: function(xhr, status, error) {
-        }
-      });
-        */
-  const ctx = document.getElementById('myChart');
+  $(document).ready(function() {
+    const ctx = document.getElementById('myChart');
+    $.ajax({
+      url: 'http://localhost:8080/MSPR/Statistique?stat=cabyyear',
+      method: 'GET',
+      dataType: 'json',
+      success: function(response) {
+        if (response.status === 'ok') {
+          let res = response.year_ca_data;
+          let labels = [];
+          let data = [];
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'],
-      datasets: [{
-        label: 'Ca par année',
-        data: [2776.00, 5630.00, 3206.00, 1720.00, 2268.00, 3322.00, 2696.00, 3924.00, 2427.00, 2129.00, 2581.00, 5043.00, 4915.00],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
+          res.forEach((currentValue, index) => {
+            labels.push(currentValue.year);
+            data.push(currentValue.ca);
+          });
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: labels,
+              datasets: [{
+                label: 'Ca par année',
+                data: data,
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        } else {
         }
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr, status, error);
       }
-    }
+    });
   });
 
-    $("#example1").DataTable({
-      "dom": 'Bfrtip',
-      "buttons": [
-          {
-            text: 'My button',
-            action: function ( e, dt, node, config ) {
-              window.location.href="Client?action=creation"
-            }
+
+  $("#example1").DataTable({
+    "dom": 'Bfrtip',
+    "buttons": [
+        {
+          text: 'My button',
+          action: function ( e, dt, node, config ) {
+            window.location.href="Client?action=creation"
           }
-      ],
-      "language": {
-        url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json',
-      },
-      "ordering": false,
-      "responsive": true, "lengthChange": true, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        }
+    ],
+    "language": {
+      url: '//cdn.datatables.net/plug-ins/1.13.5/i18n/fr-FR.json',
+    },
+    "ordering": false,
+    "responsive": true, "lengthChange": true, "autoWidth": false,
+    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+  }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   
   $(function () {
     const deleteProduct = function ($link) {

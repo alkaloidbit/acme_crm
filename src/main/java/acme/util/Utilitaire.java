@@ -2,10 +2,14 @@ package acme.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.FieldPosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class Utilitaire {
 
@@ -76,4 +80,21 @@ public class Utilitaire {
 			throw new BizException (nsae.getMessage());
 		}
 	}
+
+		public static JSONArray convert(ResultSet resultSet) throws Exception {
+ 
+			JSONArray jsonArray = new JSONArray();
+	
+			while (resultSet.next()) {
+	
+					int columns = resultSet.getMetaData().getColumnCount();
+					JSONObject obj = new JSONObject();
+	
+					for (int i = 0; i < columns; i++)
+							obj.put(resultSet.getMetaData().getColumnLabel(i + 1).toLowerCase(), resultSet.getObject(i + 1));
+	
+					jsonArray.put(obj);
+			}
+			return jsonArray;
+		}
 }

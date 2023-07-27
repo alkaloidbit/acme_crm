@@ -5,6 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
+import com.mysql.cj.protocol.x.Ok;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -22,12 +26,17 @@ public class Statistique extends HttpServlet {
 
 	private static PreparedStatement stmt;
 
+	private JSONObject jsonObject;
+
+	private JSONArray array;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Statistique() {
 		super();
-		// TODO Auto-generated constructor stub
+		jsonObject = new JSONObject();
+		array = new JSONArray();
 	}
 
 	/**
@@ -51,23 +60,45 @@ public class Statistique extends HttpServlet {
 									ResultSet.TYPE_SCROLL_SENSITIVE,
 									ResultSet.CONCUR_UPDATABLE);
 
-				String json = "[";
 				ResultSet rs = stmt.executeQuery();
-				rs.beforeFirst();
-				while (rs.next()) {
-					json += "{year: " + rs.getString(1) + ", ca: " + rs.getFloat(2) + "}" ;
-				}
-				json += "]";
 
+				while(rs.next()) {
+					JSONObject record = new JSONObject();
+					//Inserting key-value pairs into the json object
+					record.put("year", rs.getLong("year"));
+					record.put("ca", rs.getFloat("ca"));
+					array.add(record);
+				}
+				c.close();
+				jsonObject.put("status", "ok");
+				jsonObject.put("year_ca_data", array);
 				response.setContentType("application/json");
 				response.setHeader("Cache-Control", "no-cache");
-				response.getWriter().write(json);
+
+				response.getWriter().write(jsonObject.toJSONString());
+			} else
+
+			if ("orderscount".equals(request.getParameter("stat"))) {
+				Connexion c = new Connexion();
+				stmt = c.getConnection().prepareStatement("select count(ID_COMMANDE) from commande", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+				int records = 0;
+				ResultSet rs = stmt.executeQuery();
+				while(rs.next()) {
+					records = rs.getInt(1); 
+				}
+				c.close();
+					
+				jsonObject.put("status", "ok");
+				jsonObject.put("orderscount", records);
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+
+				response.getWriter().write(jsonObject.toJSONString());
+			} else {
+				request.setAttribute("page_name", "Stats");
+				request.setAttribute("page_content", "statTemplate");
+				this.getServletContext().getRequestDispatcher("/jsp/stat.jsp").forward(request, response);
 			}
-
-
-			request.setAttribute("page_name", "Stats");
-			request.setAttribute("page_content", "statTemplate");
-			this.getServletContext().getRequestDispatcher("/jsp/stat.jsp").forward(request, response);
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
