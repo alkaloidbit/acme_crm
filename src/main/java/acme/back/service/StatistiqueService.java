@@ -18,4 +18,30 @@ public class StatistiqueService {
 	}
 
 
+<<<<<<< Updated upstream
+=======
+		try {
+			ArrayList<Statistique> stats = StatistiqueDb.GetCaByYear(con);
+			for (Statistique stat: stats) {
+				Statistique st = new Statistique();
+				st.setYear(stat.getYear());
+				st.setCa(stat.getCa());
+				result.add(st);
+				
+			}
+		} catch (BizException be) {
+			be.printStackTrace();
+			throw be;
+		}
+
+
+	}
+
+	private StatistiqueBean statistiqueToStatistiqueBean(Statistique s) {
+		StatistiqueBean result = new StatistiqueBean();
+		result.setYear(s.getYear());
+		result.setCa(s.getCa());
+		return result;
+	}
+>>>>>>> Stashed changes
 }

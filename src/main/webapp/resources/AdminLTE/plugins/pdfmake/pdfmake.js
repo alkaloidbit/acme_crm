@@ -66333,7 +66333,7 @@ module.exports = __webpack_require__(5011);
     if (!sax) {
       // no sax for you!
       throw new Error(
-        "Expected sax to be defined. Make sure you're including sax.js before this file.",
+        "Expected sax to be defined. Make sure you're including sax.js before this file."
       );
     }
   }
